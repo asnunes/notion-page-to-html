@@ -1,0 +1,24 @@
+{
+  "name": "notion-page-to-html",
+  "version": "1.0.0",
+  "description": "Co-nvetion notion page to html from notion page id",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asnunes/notion-page-to-html.git"
+  },
+  "keywords": [
+    "notion",
+    "page",
+    "html"
+  ],
+  "author": "Alexandre Nunes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/asnunes/notion-page-to-html/issues"
+  },
+  "homepage": "https://github.com/asnunes/notion-page-to-html#readme"
+}
