@@ -22,7 +22,8 @@
   },
   "homepage": "https://github.com/asnunes/notion-page-to-html#readme",
   "devDependencies": {
-    "jest": "^26.1.0"
+    "jest": "^26.1.0",
+    "nock": "^13.0.2"
   },
   "dependencies": {
     "node-fetch": "^2.6.0"

@@ -22,15 +22,6 @@ class NotionApiInterface {
 
     this._assertPageAccessAndStructure(pageRecords);
 
-    const overview = await this._fetch('getRecordValues', {
-      requests: [
-        {
-          id: this._notionPageId,
-          table: 'block',
-        },
-      ],
-    });
-
     const chunk = await this._fetch('loadPageChunk', {
       pageId: this._notionPageId,
       limit: 999999, // Infinity?
@@ -41,7 +32,7 @@ class NotionApiInterface {
       verticalColumns: false,
     });
 
-    return [JSON.stringify(chunk), JSON.stringify(overview)];
+    return [JSON.stringify(chunk), JSON.stringify(pageRecords)];
   }
 
   _assertPageAccessAndStructure(pageRecords) {
