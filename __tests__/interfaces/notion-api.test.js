@@ -21,15 +21,26 @@ describe('#getPage', () => {
       const notionPageId = '4d64bbc0634d4758befa85c5a3a6c22f';
       const apiInterface = new NotionApiInterface(notionPageId);
 
-      const response = await apiInterface.getPage();
+      const response = await apiInterface.getPageContent();
 
-      expect(response).not.toBe(null);
+      expect(response).toEqual([
+        {
+          id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
+          type: 'text',
+          properties: { title: [['Hello World']] },
+        },
+        {
+          id: 'dcde43cb-7131-4687-8f22-c9789fa75f46',
+          type: 'video',
+          properties: { source: [['https://www.youtube.com/watch?v=xBFqxBfLJWc']] },
+        },
+      ]);
     });
   });
 
   describe('when notion page id is missing', () => {
     it('throws MissingPageIdError', async () => {
-      const response = () => new NotionApiInterface().getPage();
+      const response = () => new NotionApiInterface().getPageContent();
 
       await expect(response).toThrow(Errors.MissingPageIdError);
     });
@@ -44,7 +55,7 @@ describe('#getPage', () => {
       const notionPageId = 'b02b33d995cd44cb8e7f01f1870c1ee8';
       const apiInterface = new NotionApiInterface(notionPageId);
 
-      const response = () => apiInterface.getPage();
+      const response = () => apiInterface.getPageContent();
 
       await expect(response).rejects.toThrow(Errors.NotionPageAccessError);
     });
@@ -59,7 +70,7 @@ describe('#getPage', () => {
       const notionPageId = '9a75a541277f4a6480e75581f36672ba';
       const apiInterface = new NotionApiInterface(notionPageId);
 
-      const response = () => apiInterface.getPage();
+      const response = () => apiInterface.getPageContent();
 
       await expect(response).rejects.toThrow(Errors.MissingContentError);
     });

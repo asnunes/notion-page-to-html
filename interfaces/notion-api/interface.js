@@ -10,8 +10,33 @@ class NotionApiInterface {
     this._notionPageId = this._normalizeId(notionPageId);
   }
 
-  async getPage() {
-    const pageRecords = await this._fetch('getRecordValues', {
+  async getPageContent() {
+    const pageRecords = await this._fetchRecordValues();
+
+    await this._assertPageAccessAndStructure(pageRecords);
+
+    const chunk = await this._fetchPageChunk();
+
+    const contentIds = pageRecords.results[0].value.content;
+    const contents = contentIds
+      .filter((id) => !!chunk.recordMap.block[id])
+      .map((id) => chunk.recordMap.block[id].value);
+
+    return contents.map((c) => ({
+      id: c.id,
+      type: c.type,
+      properties: c.properties,
+    }));
+  }
+
+  _assertPageAccessAndStructure(pageRecords) {
+    if (!pageRecords.results[0].value) throw new Errors.NotionPageAccessError(this._notionPageId);
+    if (!pageRecords.results[0].value.content)
+      throw new Errors.MissingContentError(this._notionPageId);
+  }
+
+  _fetchRecordValues() {
+    return this._fetch('getRecordValues', {
       requests: [
         {
           id: this._notionPageId,
@@ -19,26 +44,18 @@ class NotionApiInterface {
         },
       ],
     });
+  }
 
-    this._assertPageAccessAndStructure(pageRecords);
-
-    const chunk = await this._fetch('loadPageChunk', {
+  _fetchPageChunk() {
+    return this._fetch('loadPageChunk', {
       pageId: this._notionPageId,
-      limit: 999999, // Infinity?
+      limit: 999999,
       cursor: {
         stack: [],
       },
       chunkNumber: 0,
       verticalColumns: false,
     });
-
-    return [JSON.stringify(chunk), JSON.stringify(pageRecords)];
-  }
-
-  _assertPageAccessAndStructure(pageRecords) {
-    if (!pageRecords.results[0].value) throw new Errors.NotionPageAccessError(this._notionPageId);
-    if (!pageRecords.results[0].value.content)
-      throw new Errors.MissingContentError(this._notionPageId);
   }
 
   _fetch(action, body) {
