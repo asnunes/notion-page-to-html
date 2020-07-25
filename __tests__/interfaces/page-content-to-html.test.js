@@ -345,6 +345,51 @@ describe('#parse', () => {
     });
   });
 
+  describe('When only a h3 title block is given', () => {
+    describe('When single block is given', () => {
+      it('returns html with h3 tag', () => {
+        const contents = [
+          {
+            id: 'd1e33c43-5079-4e66-961a-df032d38d532',
+            type: 'sub_sub_header',
+            properties: {
+              title: [['This is a title h3']],
+            },
+          },
+        ];
+
+        const html = new PageContentToHtml(contents).parse();
+
+        expect(html).toBe('<h3>This is a title h3</h3>');
+      });
+    });
+
+    describe('When single line h3 with decoration', () => {
+      it('returns html with single h1 with decoration tags inside', () => {
+        const contents = [
+          {
+            id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
+            type: 'sub_sub_header',
+            properties: {
+              title: [
+                ['Hello '],
+                ['World ', [['b'], ['i']]],
+                ['and', [['b']]],
+                [' sun', [['b'], ['i']]],
+              ],
+            },
+          },
+        ];
+
+        const html = new PageContentToHtml(contents).parse();
+
+        expect(html).toBe(
+          '<h3>Hello <em><strong>World </strong></em><strong>and</strong><em><strong> sun</strong></em></h3>'
+        );
+      });
+    });
+  });
+
   describe('When unknown block is given', () => {
     it('returns empty string', () => {
       const contents = [
