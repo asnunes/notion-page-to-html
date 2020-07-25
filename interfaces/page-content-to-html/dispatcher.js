@@ -9,6 +9,8 @@ class Dispatcher {
     switch (this._content.type) {
       case 'text':
         return new BlockParsers.Text(this._content);
+      case 'header':
+        return new BlockParsers.Header(this._content);
       default:
         return new BlockParsers.Unknown(this._content);
     }
