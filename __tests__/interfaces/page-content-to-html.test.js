@@ -530,6 +530,110 @@ describe('#parse', () => {
     });
   });
 
+  describe('When only a to do list block is given', () => {
+    describe('When single unchecked block is given', () => {
+      it('returns html with a div and unchecked checkbox and label inside', () => {
+        const contents = [
+          {
+            id: 'd1e33c43-5079-4e66-961a-df032d38d532',
+            type: 'to_do',
+            properties: {
+              title: [['This is a test']],
+            },
+          },
+        ];
+
+        const html = new PageContentToHtml(contents).parse();
+
+        expect(html).toBe(`<div>
+        <input type="checkbox" name="d1e33c43-5079-4e66-961a-df032d38d532">
+        <label for="d1e33c43-5079-4e66-961a-df032d38d532">This is a test</label>
+      </div>`);
+      });
+    });
+
+    describe('When single checked block is given', () => {
+      it('returns html with a div and checked checkbox and label inside', () => {
+        const contents = [
+          {
+            id: 'd1e33c43-5079-4e66-961a-df032d38d532',
+            type: 'to_do',
+            properties: {
+              title: [['This is a test']],
+              checked: [['Yes']],
+            },
+          },
+        ];
+
+        const html = new PageContentToHtml(contents).parse();
+
+        expect(html).toBe(`<div>
+        <input type="checkbox" checked name="d1e33c43-5079-4e66-961a-df032d38d532">
+        <label for="d1e33c43-5079-4e66-961a-df032d38d532">This is a test</label>
+      </div>`);
+      });
+    });
+
+    describe('When to-do block with two items is given', () => {
+      it('returns html with two divs and checkbox and label inside', () => {
+        const contents = [
+          {
+            id: 'd1e33c43-5079-4e66-961a-df032d2332',
+            type: 'to_do',
+            properties: {
+              title: [['This is a test']],
+            },
+          },
+          {
+            id: 'd1e33c43-5079-4e66-961a-df032d38d532',
+            type: 'to_do',
+            properties: {
+              title: [['This is a test too']],
+              checked: [['Yes']],
+            },
+          },
+        ];
+
+        const html = new PageContentToHtml(contents).parse();
+
+        expect(html).toBe(
+          `<div>
+        <input type="checkbox" name="d1e33c43-5079-4e66-961a-df032d2332">
+        <label for="d1e33c43-5079-4e66-961a-df032d2332">This is a test</label>
+      </div><div>
+        <input type="checkbox" checked name="d1e33c43-5079-4e66-961a-df032d38d532">
+        <label for="d1e33c43-5079-4e66-961a-df032d38d532">This is a test too</label>
+      </div>`
+        );
+      });
+    });
+
+    describe('When single line unordered list with decoration', () => {
+      it('returns html with ol tag with li tag and decorations tags inside', () => {
+        const contents = [
+          {
+            id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
+            type: 'numbered_list',
+            properties: {
+              title: [
+                ['Hello '],
+                ['World ', [['b'], ['i']]],
+                ['and', [['b']]],
+                [' sun', [['b'], ['i']]],
+              ],
+            },
+          },
+        ];
+
+        const html = new PageContentToHtml(contents).parse();
+
+        expect(html).toBe(
+          '<ol><li>Hello <em><strong>World </strong></em><strong>and</strong><em><strong> sun</strong></em></li></ol>'
+        );
+      });
+    });
+  });
+
   describe('When unknown block is given', () => {
     it('returns empty string', () => {
       const contents = [
