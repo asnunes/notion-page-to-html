@@ -1,4 +1,4 @@
-const Errors = require('./errors');
+const Errors = require('../errors');
 
 class Base {
   constructor(baseHtml, decorationArray) {
