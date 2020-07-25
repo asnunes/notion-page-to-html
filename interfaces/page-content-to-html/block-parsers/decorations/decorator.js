@@ -1,27 +1,23 @@
-const Decorations = require('./decorations');
+const Decorations = {
+  Bold: require('./bold'),
+  Italic: require('./italic'),
+  StrikeThrough: require('./strikethrough'),
+  Code: require('./code'),
+  Underline: require('./underline'),
+  Equation: require('./equation'),
+  Link: require('./link'),
+  Color: require('./color'),
+};
 
-class TextBlockParser {
-  constructor(block) {
-    this._block = block;
+class Decorator {
+  constructor(blockContent) {
+    this._blockContent = blockContent;
   }
 
-  parse() {
-    return `<p>${this._innerHtml()}</p>`;
-  }
+  decorate() {
+    if (this._blockContent.length === 1) return this._blockContent[0];
 
-  _innerHtml() {
-    const blockContents = this._block.properties && this._block.properties.title;
-    if (!blockContents) return '';
-
-    const decoratedContents = blockContents.map((bc) => this._parseDecoration(bc));
-
-    return this._replaceLineBreaksWithBrTags(decoratedContents).join('');
-  }
-
-  _parseDecoration(blockContent) {
-    if (blockContent.length === 1) return blockContent[0];
-
-    return blockContent[1].reduce((decoratedHtml, decorationArray) => {
+    return this._blockContent[1].reduce((decoratedHtml, decorationArray) => {
       const type = decorationArray[0];
 
       switch (type) {
@@ -44,12 +40,8 @@ class TextBlockParser {
         default:
           return decoratedHtml;
       }
-    }, blockContent[0]);
-  }
-
-  _replaceLineBreaksWithBrTags(blockContents) {
-    return blockContents.map((bc) => bc.replace(/\n/g, '</br>'));
+    }, this._blockContent[0]);
   }
 }
 
-module.exports = TextBlockParser;
+module.exports = Decorator;
