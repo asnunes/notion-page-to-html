@@ -1,9 +1,9 @@
 const DecoratedBlock = require('../decorated-block');
 
-class BulletedListBlockParser extends DecoratedBlock {
+class ListItemParser extends DecoratedBlock {
   parse() {
     return `<li>${this._innerHtml()}</li>`;
   }
 }
 
-module.exports = BulletedListBlockParser;
+module.exports = ListItemParser;

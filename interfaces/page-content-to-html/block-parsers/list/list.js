@@ -1,7 +1,4 @@
-const ListItemParsers = {
-  BulletedList: require('./bulleted-list'),
-};
-
+const ListItemParser = require('./list-item');
 class List {
   constructor(block) {
     this._block = block;
@@ -10,14 +7,16 @@ class List {
   parse() {
     switch (this._listType) {
       case 'bulleted_list':
-        return `<ul>${this._itemsHtml(ListItemParsers.BulletedList)}</ul>`;
+        return `<ul>${this._itemsHtml()}</ul>`;
+      case 'numbered_list':
+        return `<ol>${this._itemsHtml()}</ol>`;
       default:
-        return `<ul>${this._itemsHtml(ListItemParsers.BulletedList)}</ul>`;
+        return `<ul>${this._itemsHtml()}</ul>`;
     }
   }
 
-  _itemsHtml(ItemParser) {
-    return this._block.contents.map((c) => new ItemParser(c).parse()).join('\n');
+  _itemsHtml() {
+    return this._block.contents.map((c) => new ListItemParser(c).parse()).join('\n');
   }
 
   get _listType() {
