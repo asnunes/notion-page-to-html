@@ -19,6 +19,8 @@ class Dispatcher {
         return new BlockParsers.ToDo(this._content);
       case 'code':
         return new BlockParsers.Code(this._content);
+      case 'equation':
+        return new BlockParsers.Equation(this._content);
       case 'quote':
         return new BlockParsers.Quote(this._content);
       case 'divider':

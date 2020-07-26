@@ -6,6 +6,7 @@ module.exports = {
   List: require('./list'),
   ToDo: require('./to-do'),
   Code: require('./code'),
+  Equation: require('./equation'),
   Quote: require('./quote'),
   Divider: require('./divider'),
   Unknown: require('./unknown-block'),

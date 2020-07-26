@@ -760,6 +760,41 @@ describe('#parse', () => {
     });
   });
 
+  describe('When equation block is given', () => {
+    describe('When there is no equation content', () => {
+      it('returns empty string', () => {
+        const contents = [
+          {
+            id: '9b01339a-9de6-4eb1-bd7a-4c6d537590c7',
+            type: 'equation',
+          },
+        ];
+
+        const html = new PageContentToHtml(contents).parse();
+
+        expect(html).toBe('');
+      });
+    });
+
+    describe('When there is no equation content', () => {
+      it('returns html with div tag and equation class with equation inside', () => {
+        const contents = [
+          {
+            id: '9b01339a-9de6-4eb1-bd7a-4c6d537590c7',
+            type: 'equation',
+            properties: {
+              title: [['\\int 2xdx = x^2 + C']],
+            },
+          },
+        ];
+
+        const html = new PageContentToHtml(contents).parse();
+
+        expect(html).toBe(`<div class="equation">$$\\int 2xdx = x^2 + C$$</div>`);
+      });
+    });
+  });
+
   describe('When unknown block is given', () => {
     it('returns empty string', () => {
       const contents = [
