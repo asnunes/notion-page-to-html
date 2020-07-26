@@ -6,7 +6,7 @@ This tool is based on [Potion](https://github.com/benborgers/potion), an open-
 
 ## Supported features
 
-Most of native notion block are currently supported:
+Most of native notion blocks are currently supported:
 
 - Headings
 - Text With Decorations
