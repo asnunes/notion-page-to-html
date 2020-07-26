@@ -5,9 +5,11 @@ class PageContentToHtmlInterface {
     this._contents = this._wrapLists(contents);
   }
 
-  parse() {
-    return this._contents.reduce((html, content) => {
-      return html + this._dispatch(content).parse();
+  async parse() {
+    return this._contents.reduce(async (html, content) => {
+      const parser = this._dispatch(content);
+      const parsedHtml = await parser.parse();
+      return (await html) + parsedHtml;
     }, '');
   }
 

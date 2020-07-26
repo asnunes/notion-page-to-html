@@ -9,6 +9,7 @@ module.exports = {
   Equation: require('./equation'),
   Quote: require('./quote'),
   Divider: require('./divider'),
+  Image: require('./image'),
   Unknown: require('./unknown-block'),
   YouTubeVideo: require('./youtube-video'),
 };

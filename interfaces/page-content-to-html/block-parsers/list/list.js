@@ -4,14 +4,14 @@ class List {
     this._block = block;
   }
 
-  parse() {
+  async parse() {
     switch (this._listType) {
       case 'bulleted_list':
-        return `<ul>${this._itemsHtml()}</ul>`;
+        return `<ul>${await this._itemsHtml()}</ul>`;
       case 'numbered_list':
-        return `<ol>${this._itemsHtml()}</ol>`;
+        return `<ol>${await this._itemsHtml()}</ol>`;
       default:
-        return `<ul>${this._itemsHtml()}</ul>`;
+        return `<ul>${await this._itemsHtml()}</ul>`;
     }
   }
 

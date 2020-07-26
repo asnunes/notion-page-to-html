@@ -29,6 +29,8 @@ class Dispatcher {
         return new BlockParsers.List(this._content);
       case 'video':
         return new BlockParsers.YouTubeVideo(this._content);
+      case 'image':
+        return new BlockParsers.Image(this._content);
       default:
         return new BlockParsers.Unknown(this._content);
     }
