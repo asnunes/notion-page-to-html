@@ -795,6 +795,42 @@ describe('#parse', () => {
     });
   });
 
+  describe('When video block is given', () => {
+    describe('When it is not a youtube video', () => {
+      it('returns empty string', () => {
+        const contents = [
+          {
+            id: 'dcde43cb-7131-4687-8f22-c9789fa75f46',
+            type: 'video',
+            properties: { source: [['https://www.example.com/watch?v=8G80nuEyDN4']] },
+          },
+        ];
+
+        const html = new PageContentToHtml(contents).parse();
+
+        expect(html).toBe('');
+      });
+    });
+
+    describe('When it is a youtube video', () => {
+      it('returns html with iframe tag', () => {
+        const contents = [
+          {
+            id: 'dcde43cb-7131-4687-8f22-c9789fa75f46',
+            type: 'video',
+            properties: { source: [['https://www.youtube.com/watch?v=8G80nuEyDN4']] },
+          },
+        ];
+
+        const html = new PageContentToHtml(contents).parse();
+
+        expect(html).toBe(
+          `<iframe id="ytplayer" type="text/html" width="640" height="360" src="https://www.youtube.com/watch?v=8G80nuEyDN4" frameborder="0"/>`
+        );
+      });
+    });
+  });
+
   describe('When unknown block is given', () => {
     it('returns empty string', () => {
       const contents = [

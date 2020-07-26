@@ -27,6 +27,8 @@ class Dispatcher {
         return new BlockParsers.Divider(this._content);
       case 'list':
         return new BlockParsers.List(this._content);
+      case 'video':
+        return new BlockParsers.YouTubeVideo(this._content);
       default:
         return new BlockParsers.Unknown(this._content);
     }
