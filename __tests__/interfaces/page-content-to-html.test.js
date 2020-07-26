@@ -634,6 +634,56 @@ describe('#parse', () => {
     });
   });
 
+  describe('When single code block is given', () => {
+    describe('When there are no style on code block', () => {
+      it('returns html with pre tag and code tag inside', () => {
+        const contents = [
+          {
+            id: '479c7b34-6c22-4f2d-b947-8f47d02b48d6',
+            type: 'code',
+            properties: {
+              title: [['function test() {\n\tvar isTesting = true;\n\treturn isTesting;\n}']],
+              language: [['JavaScript']],
+            },
+          },
+        ];
+
+        const html = new PageContentToHtml(contents).parse();
+
+        expect(html).toBe(
+          `<pre><code class="language-javascript">function test() {\n\tvar isTesting = true;\n\treturn isTesting;\n}</code></pre>`
+        );
+      });
+    });
+  });
+
+  describe('When single code block is given', () => {
+    describe('When there are style on code block', () => {
+      it('ignores styles and returns html with pre tag and code tag inside', () => {
+        const contents = [
+          {
+            id: '479c7b34-6c22-4f2d-b947-8f47d02b48d6',
+            type: 'code',
+            properties: {
+              title: [
+                ['function test() {\n\tvar isTesting = true;\n\treturn '],
+                ['isTesting', [['b']]],
+                [';\n}'],
+              ],
+              language: [['JavaScript']],
+            },
+          },
+        ];
+
+        const html = new PageContentToHtml(contents).parse();
+
+        expect(html).toBe(
+          `<pre><code class="language-javascript">function test() {\n\tvar isTesting = true;\n\treturn isTesting;\n}</code></pre>`
+        );
+      });
+    });
+  });
+
   describe('When unknown block is given', () => {
     it('returns empty string', () => {
       const contents = [

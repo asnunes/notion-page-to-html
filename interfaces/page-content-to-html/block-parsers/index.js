@@ -5,6 +5,7 @@ module.exports = {
   SubSubHeader: require('./sub-sub-header'),
   List: require('./list'),
   ToDo: require('./to-do'),
+  Code: require('./code'),
   Unknown: require('./unknown-block'),
   YouTubeVideo: require('./youtube-video'),
 };

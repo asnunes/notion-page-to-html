@@ -17,6 +17,8 @@ class Dispatcher {
         return new BlockParsers.SubSubHeader(this._content);
       case 'to_do':
         return new BlockParsers.ToDo(this._content);
+      case 'code':
+        return new BlockParsers.Code(this._content);
       case 'list':
         return new BlockParsers.List(this._content);
       default:
