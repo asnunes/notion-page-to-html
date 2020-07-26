@@ -1,6 +1,6 @@
 const resolve = require('path').resolve;
 const nock = require('nock');
-const PageContentToHtml = require('../../interfaces/page-content-to-html');
+const BlocksToTagInterface = require('../../interfaces/blocks-to-tag');
 const base64Img = require('../mocks/img/base64');
 
 describe('#parse', () => {
@@ -14,7 +14,7 @@ describe('#parse', () => {
           },
         ];
 
-        const html = await new PageContentToHtml(contents).parse();
+        const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe('<p></p>');
       });
@@ -30,7 +30,7 @@ describe('#parse', () => {
           },
         ];
 
-        const html = await new PageContentToHtml(contents).parse();
+        const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe('<p>Hello World</p>');
       });
@@ -48,7 +48,7 @@ describe('#parse', () => {
           },
         ];
 
-        const html = await new PageContentToHtml(contents).parse();
+        const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe('<p>Hello <strong>World</strong></p>');
       });
@@ -66,7 +66,7 @@ describe('#parse', () => {
           },
         ];
 
-        const html = await new PageContentToHtml(contents).parse();
+        const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe('<p>Hello <em>World</em></p>');
       });
@@ -84,7 +84,7 @@ describe('#parse', () => {
           },
         ];
 
-        const html = await new PageContentToHtml(contents).parse();
+        const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe('<p>Hello <span style="text-decoration: underline;">World</span></p>');
       });
@@ -102,7 +102,7 @@ describe('#parse', () => {
           },
         ];
 
-        const html = await new PageContentToHtml(contents).parse();
+        const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe('<p>Hello <del>World</del></p>');
       });
@@ -120,7 +120,7 @@ describe('#parse', () => {
           },
         ];
 
-        const html = await new PageContentToHtml(contents).parse();
+        const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe('<p>Hello <code>World</code></p>');
       });
@@ -136,7 +136,7 @@ describe('#parse', () => {
           },
         ];
 
-        const html = await new PageContentToHtml(contents).parse();
+        const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe(
           '<p>Hello <a href="https://www.google.com" target="_blank">World</a></p>'
@@ -156,7 +156,7 @@ describe('#parse', () => {
           },
         ];
 
-        const html = await new PageContentToHtml(contents).parse();
+        const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe('<p>Hello World $2x$</p>');
       });
@@ -174,7 +174,7 @@ describe('#parse', () => {
           },
         ];
 
-        const html = await new PageContentToHtml(contents).parse();
+        const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe('<p><span style="color: purple;">Hello</span></p>');
       });
@@ -192,7 +192,7 @@ describe('#parse', () => {
           },
         ];
 
-        const html = await new PageContentToHtml(contents).parse();
+        const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe('<p><span style="background: yellow;">Hello</span></p>');
       });
@@ -210,7 +210,7 @@ describe('#parse', () => {
           },
         ];
 
-        const html = await new PageContentToHtml(contents).parse();
+        const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe('<p>Hello <em><strong>World</strong></em></p>');
       });
@@ -233,7 +233,7 @@ describe('#parse', () => {
           },
         ];
 
-        const html = await new PageContentToHtml(contents).parse();
+        const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe(
           '<p>Hello <em><strong>World </strong></em><strong>and</strong><em><strong> sun</strong></em></p>'
@@ -251,7 +251,7 @@ describe('#parse', () => {
           },
         ];
 
-        const html = await new PageContentToHtml(contents).parse();
+        const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe('<p>Hello World</br>Is everything alright?</br>Yes, Dude!</p>');
       });
@@ -271,7 +271,7 @@ describe('#parse', () => {
           },
         ];
 
-        const html = await new PageContentToHtml(contents).parse();
+        const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe('<h1>This is a title h1</h1>');
       });
@@ -294,7 +294,7 @@ describe('#parse', () => {
           },
         ];
 
-        const html = await new PageContentToHtml(contents).parse();
+        const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe(
           '<h1>Hello <em><strong>World </strong></em><strong>and</strong><em><strong> sun</strong></em></h1>'
@@ -316,7 +316,7 @@ describe('#parse', () => {
           },
         ];
 
-        const html = await new PageContentToHtml(contents).parse();
+        const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe('<h2>This is a title h2</h2>');
       });
@@ -339,7 +339,7 @@ describe('#parse', () => {
           },
         ];
 
-        const html = await new PageContentToHtml(contents).parse();
+        const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe(
           '<h2>Hello <em><strong>World </strong></em><strong>and</strong><em><strong> sun</strong></em></h2>'
@@ -361,7 +361,7 @@ describe('#parse', () => {
           },
         ];
 
-        const html = await new PageContentToHtml(contents).parse();
+        const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe('<h3>This is a title h3</h3>');
       });
@@ -384,7 +384,7 @@ describe('#parse', () => {
           },
         ];
 
-        const html = await new PageContentToHtml(contents).parse();
+        const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe(
           '<h3>Hello <em><strong>World </strong></em><strong>and</strong><em><strong> sun</strong></em></h3>'
@@ -406,7 +406,7 @@ describe('#parse', () => {
           },
         ];
 
-        const html = await new PageContentToHtml(contents).parse();
+        const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe('<ul><li>This is a test</li></ul>');
       });
@@ -431,7 +431,7 @@ describe('#parse', () => {
           },
         ];
 
-        const html = await new PageContentToHtml(contents).parse();
+        const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe('<ul><li>This is a test</li>\n<li>This is a test too</li></ul>');
       });
@@ -454,7 +454,7 @@ describe('#parse', () => {
           },
         ];
 
-        const html = await new PageContentToHtml(contents).parse();
+        const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe(
           '<ul><li>Hello <em><strong>World </strong></em><strong>and</strong><em><strong> sun</strong></em></li></ul>'
@@ -476,7 +476,7 @@ describe('#parse', () => {
           },
         ];
 
-        const html = await new PageContentToHtml(contents).parse();
+        const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe('<ol><li>This is a test</li></ol>');
       });
@@ -501,7 +501,7 @@ describe('#parse', () => {
           },
         ];
 
-        const html = await new PageContentToHtml(contents).parse();
+        const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe('<ol><li>This is a test</li>\n<li>This is a test too</li></ol>');
       });
@@ -524,7 +524,7 @@ describe('#parse', () => {
           },
         ];
 
-        const html = await new PageContentToHtml(contents).parse();
+        const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe(
           '<ol><li>Hello <em><strong>World </strong></em><strong>and</strong><em><strong> sun</strong></em></li></ol>'
@@ -546,7 +546,7 @@ describe('#parse', () => {
           },
         ];
 
-        const html = await new PageContentToHtml(contents).parse();
+        const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe(`<div>
         <input type="checkbox" name="d1e33c43-5079-4e66-961a-df032d38d532">
@@ -568,7 +568,7 @@ describe('#parse', () => {
           },
         ];
 
-        const html = await new PageContentToHtml(contents).parse();
+        const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe(`<div>
         <input type="checkbox" checked name="d1e33c43-5079-4e66-961a-df032d38d532">
@@ -597,7 +597,7 @@ describe('#parse', () => {
           },
         ];
 
-        const html = await new PageContentToHtml(contents).parse();
+        const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe(
           `<div>
@@ -628,7 +628,7 @@ describe('#parse', () => {
           },
         ];
 
-        const html = await new PageContentToHtml(contents).parse();
+        const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe(
           '<ol><li>Hello <em><strong>World </strong></em><strong>and</strong><em><strong> sun</strong></em></li></ol>'
@@ -651,7 +651,7 @@ describe('#parse', () => {
           },
         ];
 
-        const html = await new PageContentToHtml(contents).parse();
+        const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe(
           `<pre><code class="language-javascript">function test() {\n\tvar isTesting = true;\n\treturn isTesting;\n}</code></pre>`
@@ -678,7 +678,7 @@ describe('#parse', () => {
           },
         ];
 
-        const html = await new PageContentToHtml(contents).parse();
+        const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe(
           `<pre><code class="language-javascript">function test() {\n\tvar isTesting = true;\n\treturn isTesting;\n}</code></pre>`
@@ -700,7 +700,7 @@ describe('#parse', () => {
           },
         ];
 
-        const html = await new PageContentToHtml(contents).parse();
+        const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe(`<blockquote>This a quote</blockquote>`);
       });
@@ -725,7 +725,7 @@ describe('#parse', () => {
           },
         ];
 
-        const html = await new PageContentToHtml(contents).parse();
+        const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe(
           `<blockquote>Hello <em><strong>World </strong></em><strong>and</strong><em><strong> sun</strong></em></blockquote>`
@@ -757,7 +757,7 @@ describe('#parse', () => {
         },
       ];
 
-      const html = await new PageContentToHtml(contents).parse();
+      const html = await new BlocksToTagInterface(contents).parse();
 
       expect(html).toBe(`<p>This a text</p><hr><p>This a text</p>`);
     });
@@ -773,7 +773,7 @@ describe('#parse', () => {
           },
         ];
 
-        const html = await new PageContentToHtml(contents).parse();
+        const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe('');
       });
@@ -791,7 +791,7 @@ describe('#parse', () => {
           },
         ];
 
-        const html = await new PageContentToHtml(contents).parse();
+        const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe(`<div class="equation">$$\\int 2xdx = x^2 + C$$</div>`);
       });
@@ -809,7 +809,7 @@ describe('#parse', () => {
           },
         ];
 
-        const html = await new PageContentToHtml(contents).parse();
+        const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe('');
       });
@@ -825,7 +825,7 @@ describe('#parse', () => {
           },
         ];
 
-        const html = await new PageContentToHtml(contents).parse();
+        const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe(
           `<iframe id="ytplayer" type="text/html" width="640" height="360" src="https://www.youtube.com/watch?v=8G80nuEyDN4" frameborder="0"/>`
@@ -856,7 +856,7 @@ describe('#parse', () => {
           },
         ];
 
-        const html = await new PageContentToHtml(contents).parse();
+        const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe(`<img src="${base64Img}" alt="" />`);
       });
@@ -886,7 +886,7 @@ describe('#parse', () => {
           },
         ];
 
-        const html = await new PageContentToHtml(contents).parse();
+        const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe(`<img src="${base64Img}" alt="It is a caption" />`);
       });
@@ -905,7 +905,7 @@ describe('#parse', () => {
         },
       ];
 
-      const html = await new PageContentToHtml(contents).parse();
+      const html = await new BlocksToTagInterface(contents).parse();
 
       expect(html).toBe('');
     });

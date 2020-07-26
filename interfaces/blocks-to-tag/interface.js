@@ -1,6 +1,7 @@
 const Dispatcher = require('./dispatcher');
 const ListWrapper = require('./list-wrapper');
-class PageContentToHtmlInterface {
+
+class BlocksToTagInterface {
   constructor(contents) {
     this._contents = this._wrapLists(contents);
   }
@@ -22,4 +23,4 @@ class PageContentToHtmlInterface {
   }
 }
 
-module.exports = PageContentToHtmlInterface;
+module.exports = BlocksToTagInterface;

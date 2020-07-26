@@ -22,8 +22,12 @@ class NotionApiInterface {
       .filter((id) => !!chunk.recordMap.block[id])
       .map((id) => chunk.recordMap.block[id].value);
 
-    return contents.map((c) => ({
+    return contents.map((c, index) => ({
       id: c.id,
+      ...(index === 0 &&
+        pageRecords.results[0].value.properties && {
+          title: pageRecords.results[0].value.properties.title[0][0],
+        }),
       type: c.type,
       properties: c.properties,
     }));
