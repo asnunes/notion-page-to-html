@@ -21,6 +21,8 @@ class Dispatcher {
         return new BlockParsers.Code(this._content);
       case 'quote':
         return new BlockParsers.Quote(this._content);
+      case 'divider':
+        return new BlockParsers.Divider(this._content);
       case 'list':
         return new BlockParsers.List(this._content);
       default:

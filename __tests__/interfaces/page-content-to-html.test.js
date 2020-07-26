@@ -731,6 +731,35 @@ describe('#parse', () => {
     });
   });
 
+  describe('When divider block is given', () => {
+    it('returns html with hr tag', () => {
+      const contents = [
+        {
+          id: 'e0a0cfa3-438b-ac79-95e5c7ad4565',
+          type: 'text',
+          properties: {
+            title: [['This a text']],
+          },
+        },
+        {
+          id: 'e0a0cfa3-1f64-438b-ac79-95e5c7ad4565',
+          type: 'divider',
+        },
+        {
+          id: 'e0a0cfa3-438b-95e5c7ad4565',
+          type: 'text',
+          properties: {
+            title: [['This a text']],
+          },
+        },
+      ];
+
+      const html = new PageContentToHtml(contents).parse();
+
+      expect(html).toBe(`<p>This a text</p><hr><p>This a text</p>`);
+    });
+  });
+
   describe('When unknown block is given', () => {
     it('returns empty string', () => {
       const contents = [

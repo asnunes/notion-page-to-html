@@ -7,6 +7,7 @@ module.exports = {
   ToDo: require('./to-do'),
   Code: require('./code'),
   Quote: require('./quote'),
+  Divider: require('./divider'),
   Unknown: require('./unknown-block'),
   YouTubeVideo: require('./youtube-video'),
 };
