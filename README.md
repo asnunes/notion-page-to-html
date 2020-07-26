@@ -1,5 +1,3 @@
-# Readme
-
 # Notion Page To HTML
 
 NodeJS tool to convert a publics notion pages to HTML.
