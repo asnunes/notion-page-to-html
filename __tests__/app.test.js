@@ -1,8 +1,8 @@
-const NotionPageToHtml = require('../app');
+const NotionPageToHtml = require('../src/app');
 const nock = require('nock');
 const NotionApiMocks = require('./mocks/notion-api');
 const HTML_RESPONSES = require('./mocks/html');
-const Errors = require('../errors');
+const Errors = require('../src/errors');
 
 describe('#parse', () => {
   describe('When should include full html document', () => {

@@ -1,6 +1,6 @@
 const nock = require('nock');
-const NotionApiInterface = require('../../interfaces/notion-api');
-const Errors = require('../../interfaces/notion-api/errors');
+const NotionApiInterface = require('../../src/interfaces/notion-api');
+const Errors = require('../../src/interfaces/notion-api/errors');
 const NotionApiMocks = require('../mocks/notion-api');
 
 describe('#getPage', () => {

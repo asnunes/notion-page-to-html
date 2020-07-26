@@ -1,10 +1,11 @@
 {
   "name": "notion-page-to-html",
-  "version": "1.0.0",
-  "description": "Co-nvetion notion page to html from notion page id",
+  "version": "0.5.0",
+  "description": "Convert public notion pages to html from notion page id",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=test jest --runInBand"
+    "test": "NODE_ENV=test jest --runInBand",
+    "prepublish": "babel src -d lib"
   },
   "repository": {
     "type": "git",
@@ -22,10 +23,18 @@
   },
   "homepage": "https://github.com/asnunes/notion-page-to-html#readme",
   "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
     "jest": "^26.1.0",
     "nock": "^13.0.2"
   },
   "dependencies": {
     "node-fetch": "^2.6.0"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
   }
 }

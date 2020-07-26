@@ -1,6 +1,6 @@
 const resolve = require('path').resolve;
 const nock = require('nock');
-const BlocksToTagInterface = require('../../interfaces/blocks-to-tag');
+const BlocksToTagInterface = require('../../src/interfaces/blocks-to-tag');
 const base64Img = require('../mocks/img/base64');
 
 describe('#parse', () => {

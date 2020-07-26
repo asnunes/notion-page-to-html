@@ -30,7 +30,7 @@ Toggle lists, embeds and nested blocks are not supported yet.
 Install it using npm or yarn
 
 ```bash
-npm install notion-page-to-html
+npm install notion-page-to-html --save
 ```
 
 Import lib inside your code and give link to a public notion page and get full html
@@ -39,11 +39,16 @@ Import lib inside your code and give link to a public notion page and get full h
 const NotionPageToHtml = require('notion-page-to-html');
 
 // ...
-NotionPageToHtml.parse('https://www.notion.so/asnunes/Simple-Page-Text-4d64bbc0634d4758befa85c5a3a6c22f');
+NotionPageToHtml.parse(
+  'https://www.notion.so/asnunes/Simple-Page-Text-4d64bbc0634d4758befa85c5a3a6c22f'
+);
 ```
 
 If you want to load only html body, without any css or scripts to highlight code or style math equations, you can pass false as second argument to parse method
 
 ```jsx
-NotionPageToHtml.parse('https://www.notion.so/asnunes/Simple-Page-Text-4d64bbc0634d4758befa85c5a3a6c22f', false);
+NotionPageToHtml.parse(
+  'https://www.notion.so/asnunes/Simple-Page-Text-4d64bbc0634d4758befa85c5a3a6c22f',
+  false
+);
 ```
