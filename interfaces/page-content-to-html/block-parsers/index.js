@@ -6,6 +6,7 @@ module.exports = {
   List: require('./list'),
   ToDo: require('./to-do'),
   Code: require('./code'),
+  Quote: require('./quote'),
   Unknown: require('./unknown-block'),
   YouTubeVideo: require('./youtube-video'),
 };

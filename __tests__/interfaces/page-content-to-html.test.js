@@ -684,6 +684,53 @@ describe('#parse', () => {
     });
   });
 
+  describe('When single quote block is given', () => {
+    describe('When there are no style on quote block', () => {
+      it('returns html with blockquote tag', () => {
+        const contents = [
+          {
+            id: 'e0a0cfa3-1f64-438b-ac79-95e5c7ad4565',
+            type: 'quote',
+            properties: {
+              title: [['This a quote']],
+            },
+          },
+        ];
+
+        const html = new PageContentToHtml(contents).parse();
+
+        expect(html).toBe(`<blockquote>This a quote</blockquote>`);
+      });
+    });
+  });
+
+  describe('When single quote block is given', () => {
+    describe('When there are style on quote block', () => {
+      it('returns html with blockquote tag and decorations inside', () => {
+        const contents = [
+          {
+            id: 'e0a0cfa3-1f64-438b-ac79-95e5c7ad4565',
+            type: 'quote',
+            properties: {
+              title: [
+                ['Hello '],
+                ['World ', [['b'], ['i']]],
+                ['and', [['b']]],
+                [' sun', [['b'], ['i']]],
+              ],
+            },
+          },
+        ];
+
+        const html = new PageContentToHtml(contents).parse();
+
+        expect(html).toBe(
+          `<blockquote>Hello <em><strong>World </strong></em><strong>and</strong><em><strong> sun</strong></em></blockquote>`
+        );
+      });
+    });
+  });
+
   describe('When unknown block is given', () => {
     it('returns empty string', () => {
       const contents = [
