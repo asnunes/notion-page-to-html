@@ -6,18 +6,30 @@ const Errors = require('../src/errors');
 
 describe('#parse', () => {
   describe('When should include full html document', () => {
-    it('it returns full html', async () => {
+    const pageId = '4d64bbc0634d4758befa85c5a3a6c22f';
+
+    beforeEach(() => {
       nock('https://www.notion.so')
-        .post('/api/v3/loadPageChunk')
+        .post('/api/v3/loadPageChunk', (body) => body.pageId.replace(/-/g, '') === pageId)
         .reply(200, NotionApiMocks.SUCCESSFUL_PAGE_CHUCK);
 
       nock('https://www.notion.so')
         .post('/api/v3/getRecordValues')
         .reply(200, NotionApiMocks.SUCCESSFUL_RECORDS);
+    });
 
-      const response = await NotionPageToHtml.parse(
-        'https://www.notion.so/asnunes/Simple-Page-Text-4d64bbc0634d4758befa85c5a3a6c22f'
-      );
+    it('it returns full html when full url is given', async () => {
+      const url = `https://www.notion.so/asnunes/Simple-Page-Text-${pageId}`;
+
+      const response = await NotionPageToHtml.parse(url);
+
+      expect(response).toEqual(HTML_RESPONSES.FULL_DOCUMENT);
+    });
+
+    it('it returns full html when short url is given', async () => {
+      const url = `https://www.notion.so/${pageId}`;
+
+      const response = await NotionPageToHtml.parse(url);
 
       expect(response).toEqual(HTML_RESPONSES.FULL_DOCUMENT);
     });

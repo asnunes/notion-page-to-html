@@ -25,16 +25,26 @@
   "devDependencies": {
     "@babel/cli": "^7.10.5",
     "@babel/core": "^7.10.5",
+    "@babel/plugin-transform-runtime": "^7.10.5",
     "@babel/preset-env": "^7.10.4",
     "jest": "^26.1.0",
     "nock": "^13.0.2"
   },
   "dependencies": {
+    "@babel/runtime": "^7.10.5",
     "node-fetch": "^2.6.0"
   },
   "babel": {
     "presets": [
       "@babel/preset-env"
+    ],
+    "plugins": [
+      [
+        "@babel/plugin-transform-runtime",
+        {
+          "regenerator": true
+        }
+      ]
     ]
   }
 }
