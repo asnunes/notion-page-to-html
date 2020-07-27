@@ -44,7 +44,7 @@ NotionPageToHtml.parse(
 );
 ```
 
-If you want to load only html body, without any css or scripts to highlight code or style math equations, you can pass false as second argument to parse method
+If you want to load html body only, without any css or scripts to highlight code or style math equations, you can pass false as second argument to parse method
 
 ```jsx
 NotionPageToHtml.parse(
