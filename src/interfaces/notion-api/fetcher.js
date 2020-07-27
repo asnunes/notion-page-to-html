@@ -2,7 +2,7 @@ const fetch = require('node-fetch');
 
 const NOTION_API_PATH = 'https://www.notion.so/api/v3/';
 
-module.exports = async function (action, body) {
+async function fetcher(action, body) {
   const res = await fetch(NOTION_API_PATH + action, {
     method: 'POST',
     headers: {
@@ -12,4 +12,6 @@ module.exports = async function (action, body) {
   });
 
   return res.json();
-};
+}
+
+module.exports = fetcher;
