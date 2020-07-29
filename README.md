@@ -1,6 +1,6 @@
 # Notion Page To HTML
 
-NodeJS tool to convert a publics notion pages to HTML.
+NodeJS tool to convert public notion pages to HTML.
 
 This tool is based on [Potion](https://github.com/benborgers/potion), an open-source reverse-engineered API for [Notion](http://notion.so).
 
