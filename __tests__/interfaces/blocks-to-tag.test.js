@@ -2,6 +2,7 @@ const resolve = require('path').resolve;
 const nock = require('nock');
 const BlocksToTagInterface = require('../../src/interfaces/blocks-to-tag');
 const base64Img = require('../mocks/img/base64');
+const Base64Converter = require('../../src/interfaces/blocks-to-tag/block-parsers/image/base-64-converter');
 
 describe('#parse', () => {
   describe('When only a text block is given', () => {
@@ -839,16 +840,17 @@ describe('#parse', () => {
       it('returns html with img tag with src as base64', async () => {
         const imageSource =
           'https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bcedd078-56cd-4137-a28a-af16b5746874/767-50x50.jpg';
+        const blockId = 'ec3b36fd-f77d-46b4-8592-5966488612b1';
 
         nock('https://www.notion.so')
-          .get(`/image/${encodeURIComponent(imageSource)}`)
+          .get(`/image/${encodeURIComponent(imageSource)}?table=block&id=${blockId}`)
           .replyWithFile(200, resolve('__tests__/mocks/img/baseImage.jpeg'), {
             'content-type': 'image/jpeg',
           });
 
         const contents = [
           {
-            id: 'ec3b36fd-f77d-46b4-8592-5966488612b1',
+            id: blockId,
             type: 'image',
             properties: {
               source: [[imageSource]],
@@ -861,23 +863,22 @@ describe('#parse', () => {
         expect(html).toBe(`<img src="${base64Img}" alt="" />`);
       });
     });
-  });
 
-  describe('When image block is given', () => {
     describe('When image has caption', () => {
       it('returns html with img tag with src as base64 and alt attr with given caption', async () => {
         const imageSource =
           'https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bcedd078-56cd-4137-a28a-af16b5746874/767-50x50.jpg';
+        const blockId = 'ec3b36fd-f77d-46b4-8592-5966488612b1';
 
         nock('https://www.notion.so')
-          .get(`/image/${encodeURIComponent(imageSource)}`)
+          .get(`/image/${encodeURIComponent(imageSource)}?table=block&id=${blockId}`)
           .replyWithFile(200, resolve('__tests__/mocks/img/baseImage.jpeg'), {
             'content-type': 'image/jpeg',
           });
 
         const contents = [
           {
-            id: 'ec3b36fd-f77d-46b4-8592-5966488612b1',
+            id: blockId,
             type: 'image',
             properties: {
               source: [[imageSource]],
@@ -889,6 +890,37 @@ describe('#parse', () => {
         const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe(`<img src="${base64Img}" alt="It is a caption" />`);
+      });
+    });
+
+    describe('When image must have a table and block id attached to url', () => {
+      it('it should attach block id to it', async () => {
+        const imageSource =
+          'https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bcedd078-56cd-4137-a28a-af16b5746874/767-50x50.jpg';
+        const blockId = 'ec3b36fd-f77d-46b4-8592-5966488612b1';
+
+        nock('https://www.notion.so')
+          .get(`/image/${encodeURIComponent(imageSource)}?table=block&id=${blockId}`)
+          .replyWithFile(200, resolve('__tests__/mocks/img/baseImage.jpeg'), {
+            'content-type': 'image/jpeg',
+          });
+
+        const base64ConverterSpy = jest.spyOn(Base64Converter, 'convert');
+        const contents = [
+          {
+            id: blockId,
+            type: 'image',
+            properties: {
+              source: [[imageSource]],
+              caption: [['It is a caption']],
+            },
+          },
+        ];
+
+        await new BlocksToTagInterface(contents).parse();
+        const expectedImageUrl = `https://www.notion.so/image/${encodeURIComponent(imageSource)}?table=block&id=${blockId}`;
+
+        expect(base64ConverterSpy).toBeCalledWith(expectedImageUrl);
       });
     });
   });
