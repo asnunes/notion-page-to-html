@@ -19,7 +19,7 @@ class ImageParser {
       this._block.properties.source[0][0];
     if (!url) return;
 
-    return `https://www.notion.so/image/${encodeURIComponent(url)}`;
+    return `https://www.notion.so/image/${encodeURIComponent(url)}?table=block&id=${this._block.id}`;
   }
 
   get _caption() {
