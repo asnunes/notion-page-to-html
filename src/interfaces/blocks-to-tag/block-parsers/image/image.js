@@ -8,7 +8,7 @@ class ImageParser {
   async parse() {
     if (!this._rawSrc) return '';
 
-    const imageSource = await new Base64Converter(this._rawSrc).convert();
+    const imageSource = await Base64Converter.convert(this._rawSrc);
     return `<img src="${imageSource}" alt="${this._caption}" />`;
   }
 

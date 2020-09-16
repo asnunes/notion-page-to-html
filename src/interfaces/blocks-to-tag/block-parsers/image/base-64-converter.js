@@ -6,7 +6,11 @@ class Base64Converter {
     this._imageSource = imageURL;
   }
 
-  async convert() {
+  static async convert(imageURL) {
+    return new Base64Converter(imageURL)._convert();
+  }
+
+  async _convert() {
     const response = await this._fetchImage();
     const buffer = await response.buffer();
     const format = response.headers.raw()['content-type'];
