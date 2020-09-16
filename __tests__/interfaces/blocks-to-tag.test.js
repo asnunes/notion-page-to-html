@@ -836,18 +836,23 @@ describe('#parse', () => {
   });
 
   describe('When image block is given', () => {
+    beforeEach(() => {
+      const imageSource =
+        'https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bcedd078-56cd-4137-a28a-af16b5746874/767-50x50.jpg';
+      const blockId = 'ec3b36fd-f77d-46b4-8592-5966488612b1';
+
+      nock('https://www.notion.so')
+        .get(`/image/${encodeURIComponent(imageSource)}?table=block&id=${blockId}`)
+        .replyWithFile(200, resolve('__tests__/mocks/img/baseImage.jpeg'), {
+          'content-type': 'image/jpeg',
+        });
+    })
+
     describe('When image has no caption', () => {
       it('returns html with img tag with src as base64', async () => {
         const imageSource =
           'https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bcedd078-56cd-4137-a28a-af16b5746874/767-50x50.jpg';
         const blockId = 'ec3b36fd-f77d-46b4-8592-5966488612b1';
-
-        nock('https://www.notion.so')
-          .get(`/image/${encodeURIComponent(imageSource)}?table=block&id=${blockId}`)
-          .replyWithFile(200, resolve('__tests__/mocks/img/baseImage.jpeg'), {
-            'content-type': 'image/jpeg',
-          });
-
         const contents = [
           {
             id: blockId,
@@ -869,13 +874,6 @@ describe('#parse', () => {
         const imageSource =
           'https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bcedd078-56cd-4137-a28a-af16b5746874/767-50x50.jpg';
         const blockId = 'ec3b36fd-f77d-46b4-8592-5966488612b1';
-
-        nock('https://www.notion.so')
-          .get(`/image/${encodeURIComponent(imageSource)}?table=block&id=${blockId}`)
-          .replyWithFile(200, resolve('__tests__/mocks/img/baseImage.jpeg'), {
-            'content-type': 'image/jpeg',
-          });
-
         const contents = [
           {
             id: blockId,
@@ -898,13 +896,6 @@ describe('#parse', () => {
         const imageSource =
           'https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bcedd078-56cd-4137-a28a-af16b5746874/767-50x50.jpg';
         const blockId = 'ec3b36fd-f77d-46b4-8592-5966488612b1';
-
-        nock('https://www.notion.so')
-          .get(`/image/${encodeURIComponent(imageSource)}?table=block&id=${blockId}`)
-          .replyWithFile(200, resolve('__tests__/mocks/img/baseImage.jpeg'), {
-            'content-type': 'image/jpeg',
-          });
-
         const base64ConverterSpy = jest.spyOn(Base64Converter, 'convert');
         const contents = [
           {
