@@ -1,6 +1,6 @@
 {
   "name": "notion-page-to-html",
-  "version": "0.5.1",
+  "version": "0.6.1",
   "description": "Convert public notion pages to html from notion page id",
   "main": "index.js",
   "scripts": {
