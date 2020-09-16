@@ -1,6 +1,6 @@
 const Base64Converter = require('./base-64-converter');
 
-class DividerParser {
+class ImageParser {
   constructor(block) {
     this._block = block;
   }
@@ -32,4 +32,4 @@ class DividerParser {
   }
 }
 
-module.exports = DividerParser;
+module.exports = ImageParser;
