@@ -846,7 +846,7 @@ describe('#parse', () => {
         .replyWithFile(200, resolve('__tests__/mocks/img/baseImage.jpeg'), {
           'content-type': 'image/jpeg',
         });
-    })
+    });
 
     describe('When image has no caption', () => {
       it('returns html with img tag with src as base64', async () => {
@@ -909,7 +909,9 @@ describe('#parse', () => {
         ];
 
         await new BlocksToTagInterface(contents).parse();
-        const expectedImageUrl = `https://www.notion.so/image/${encodeURIComponent(imageSource)}?table=block&id=${blockId}`;
+        const expectedImageUrl = `https://www.notion.so/image/${encodeURIComponent(
+          imageSource
+        )}?table=block&id=${blockId}`;
 
         expect(base64ConverterSpy).toBeCalledWith(expectedImageUrl);
       });
