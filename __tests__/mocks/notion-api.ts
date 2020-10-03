@@ -1,4 +1,4 @@
-const SUCCESSFUL_PAGE_CHUCK = {
+export const SUCCESSFUL_PAGE_CHUCK = {
   recordMap: {
     block: {
       '4d64bbc0-634d-4758-befa-85c5a3a6c22f': {
@@ -91,7 +91,7 @@ const SUCCESSFUL_PAGE_CHUCK = {
   cursor: { stack: [] },
 };
 
-const SUCCESSFUL_RECORDS = {
+export const SUCCESSFUL_RECORDS = {
   results: [
     {
       role: 'reader',
@@ -107,9 +107,9 @@ const SUCCESSFUL_RECORDS = {
   ],
 };
 
-const NO_PAGE_ACCESS_RECORDS = { results: [{ role: 'none' }] };
+export const NO_PAGE_ACCESS_RECORDS = { results: [{ role: 'none' }] };
 
-const MISSING_CONTENT_RECORDS = {
+export const MISSING_CONTENT_RECORDS = {
   results: [
     {
       role: 'reader',
@@ -124,11 +124,4 @@ const MISSING_CONTENT_RECORDS = {
       },
     },
   ],
-};
-
-module.exports = {
-  SUCCESSFUL_PAGE_CHUCK,
-  SUCCESSFUL_RECORDS,
-  NO_PAGE_ACCESS_RECORDS,
-  MISSING_CONTENT_RECORDS,
 };

@@ -1,4 +1,4 @@
-const FULL_DOCUMENT = `
+export const FULL_DOCUMENT = `
     <!DOCTYPE html>
     <html>
       <head>
@@ -34,7 +34,5 @@ const FULL_DOCUMENT = `
     </html>
 `;
 
-const BODY_ONLY =
+export const BODY_ONLY =
   '<p>Hello World</p><iframe id="ytplayer" type="text/html" width="640" height="360" src="https://www.youtube.com/watch?v=xBFqxBfLJWc" frameborder="0"/>';
-
-module.exports = { FULL_DOCUMENT, BODY_ONLY };

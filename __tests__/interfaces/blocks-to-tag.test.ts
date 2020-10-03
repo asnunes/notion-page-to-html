@@ -1,8 +1,8 @@
-const resolve = require('path').resolve;
-const nock = require('nock');
-const BlocksToTagInterface = require('../../src/interfaces/blocks-to-tag');
-const base64Img = require('../mocks/img/base64');
-const Base64Converter = require('../../src/interfaces/blocks-to-tag/block-parsers/image/base-64-converter');
+import { resolve } from 'path';
+import nock from 'nock';
+import BlocksToTagInterface from '../../src/interfaces/blocks-to-tag';
+import base64Img from '../mocks/img/base64';
+import Base64Converter from '../../src/interfaces/blocks-to-tag/block-parsers/image/base-64-converter';
 
 describe('#parse', () => {
   describe('When only a text block is given', () => {
@@ -139,9 +139,7 @@ describe('#parse', () => {
 
         const html = await new BlocksToTagInterface(contents).parse();
 
-        expect(html).toBe(
-          '<p>Hello <a href="https://www.google.com" target="_blank">World</a></p>'
-        );
+        expect(html).toBe('<p>Hello <a href="https://www.google.com" target="_blank">World</a></p>');
       });
     });
 
@@ -224,12 +222,7 @@ describe('#parse', () => {
             id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
             type: 'text',
             properties: {
-              title: [
-                ['Hello '],
-                ['World ', [['b'], ['i']]],
-                ['and', [['b']]],
-                [' sun', [['b'], ['i']]],
-              ],
+              title: [['Hello '], ['World ', [['b'], ['i']]], ['and', [['b']]], [' sun', [['b'], ['i']]]],
             },
           },
         ];
@@ -237,7 +230,7 @@ describe('#parse', () => {
         const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe(
-          '<p>Hello <em><strong>World </strong></em><strong>and</strong><em><strong> sun</strong></em></p>'
+          '<p>Hello <em><strong>World </strong></em><strong>and</strong><em><strong> sun</strong></em></p>',
         );
       });
     });
@@ -285,12 +278,7 @@ describe('#parse', () => {
             id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
             type: 'header',
             properties: {
-              title: [
-                ['Hello '],
-                ['World ', [['b'], ['i']]],
-                ['and', [['b']]],
-                [' sun', [['b'], ['i']]],
-              ],
+              title: [['Hello '], ['World ', [['b'], ['i']]], ['and', [['b']]], [' sun', [['b'], ['i']]]],
             },
           },
         ];
@@ -298,7 +286,7 @@ describe('#parse', () => {
         const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe(
-          '<h1>Hello <em><strong>World </strong></em><strong>and</strong><em><strong> sun</strong></em></h1>'
+          '<h1>Hello <em><strong>World </strong></em><strong>and</strong><em><strong> sun</strong></em></h1>',
         );
       });
     });
@@ -330,12 +318,7 @@ describe('#parse', () => {
             id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
             type: 'sub_header',
             properties: {
-              title: [
-                ['Hello '],
-                ['World ', [['b'], ['i']]],
-                ['and', [['b']]],
-                [' sun', [['b'], ['i']]],
-              ],
+              title: [['Hello '], ['World ', [['b'], ['i']]], ['and', [['b']]], [' sun', [['b'], ['i']]]],
             },
           },
         ];
@@ -343,7 +326,7 @@ describe('#parse', () => {
         const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe(
-          '<h2>Hello <em><strong>World </strong></em><strong>and</strong><em><strong> sun</strong></em></h2>'
+          '<h2>Hello <em><strong>World </strong></em><strong>and</strong><em><strong> sun</strong></em></h2>',
         );
       });
     });
@@ -375,12 +358,7 @@ describe('#parse', () => {
             id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
             type: 'sub_sub_header',
             properties: {
-              title: [
-                ['Hello '],
-                ['World ', [['b'], ['i']]],
-                ['and', [['b']]],
-                [' sun', [['b'], ['i']]],
-              ],
+              title: [['Hello '], ['World ', [['b'], ['i']]], ['and', [['b']]], [' sun', [['b'], ['i']]]],
             },
           },
         ];
@@ -388,7 +366,7 @@ describe('#parse', () => {
         const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe(
-          '<h3>Hello <em><strong>World </strong></em><strong>and</strong><em><strong> sun</strong></em></h3>'
+          '<h3>Hello <em><strong>World </strong></em><strong>and</strong><em><strong> sun</strong></em></h3>',
         );
       });
     });
@@ -445,12 +423,7 @@ describe('#parse', () => {
             id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
             type: 'bulleted_list',
             properties: {
-              title: [
-                ['Hello '],
-                ['World ', [['b'], ['i']]],
-                ['and', [['b']]],
-                [' sun', [['b'], ['i']]],
-              ],
+              title: [['Hello '], ['World ', [['b'], ['i']]], ['and', [['b']]], [' sun', [['b'], ['i']]]],
             },
           },
         ];
@@ -458,7 +431,7 @@ describe('#parse', () => {
         const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe(
-          '<ul><li>Hello <em><strong>World </strong></em><strong>and</strong><em><strong> sun</strong></em></li></ul>'
+          '<ul><li>Hello <em><strong>World </strong></em><strong>and</strong><em><strong> sun</strong></em></li></ul>',
         );
       });
     });
@@ -515,12 +488,7 @@ describe('#parse', () => {
             id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
             type: 'numbered_list',
             properties: {
-              title: [
-                ['Hello '],
-                ['World ', [['b'], ['i']]],
-                ['and', [['b']]],
-                [' sun', [['b'], ['i']]],
-              ],
+              title: [['Hello '], ['World ', [['b'], ['i']]], ['and', [['b']]], [' sun', [['b'], ['i']]]],
             },
           },
         ];
@@ -528,7 +496,7 @@ describe('#parse', () => {
         const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe(
-          '<ol><li>Hello <em><strong>World </strong></em><strong>and</strong><em><strong> sun</strong></em></li></ol>'
+          '<ol><li>Hello <em><strong>World </strong></em><strong>and</strong><em><strong> sun</strong></em></li></ol>',
         );
       });
     });
@@ -607,7 +575,7 @@ describe('#parse', () => {
       </div><div>
         <input type="checkbox" checked name="d1e33c43-5079-4e66-961a-df032d38d532">
         <label for="d1e33c43-5079-4e66-961a-df032d38d532">This is a test too</label>
-      </div>`
+      </div>`,
         );
       });
     });
@@ -619,12 +587,7 @@ describe('#parse', () => {
             id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
             type: 'numbered_list',
             properties: {
-              title: [
-                ['Hello '],
-                ['World ', [['b'], ['i']]],
-                ['and', [['b']]],
-                [' sun', [['b'], ['i']]],
-              ],
+              title: [['Hello '], ['World ', [['b'], ['i']]], ['and', [['b']]], [' sun', [['b'], ['i']]]],
             },
           },
         ];
@@ -632,7 +595,7 @@ describe('#parse', () => {
         const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe(
-          '<ol><li>Hello <em><strong>World </strong></em><strong>and</strong><em><strong> sun</strong></em></li></ol>'
+          '<ol><li>Hello <em><strong>World </strong></em><strong>and</strong><em><strong> sun</strong></em></li></ol>',
         );
       });
     });
@@ -655,7 +618,7 @@ describe('#parse', () => {
         const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe(
-          `<pre><code class="language-javascript">function test() {\n\tvar isTesting = true;\n\treturn isTesting;\n}</code></pre>`
+          `<pre><code class="language-javascript">function test() {\n\tvar isTesting = true;\n\treturn isTesting;\n}</code></pre>`,
         );
       });
     });
@@ -669,11 +632,7 @@ describe('#parse', () => {
             id: '479c7b34-6c22-4f2d-b947-8f47d02b48d6',
             type: 'code',
             properties: {
-              title: [
-                ['function test() {\n\tvar isTesting = true;\n\treturn '],
-                ['isTesting', [['b']]],
-                [';\n}'],
-              ],
+              title: [['function test() {\n\tvar isTesting = true;\n\treturn '], ['isTesting', [['b']]], [';\n}']],
               language: [['JavaScript']],
             },
           },
@@ -682,7 +641,7 @@ describe('#parse', () => {
         const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe(
-          `<pre><code class="language-javascript">function test() {\n\tvar isTesting = true;\n\treturn isTesting;\n}</code></pre>`
+          `<pre><code class="language-javascript">function test() {\n\tvar isTesting = true;\n\treturn isTesting;\n}</code></pre>`,
         );
       });
     });
@@ -716,12 +675,7 @@ describe('#parse', () => {
             id: 'e0a0cfa3-1f64-438b-ac79-95e5c7ad4565',
             type: 'quote',
             properties: {
-              title: [
-                ['Hello '],
-                ['World ', [['b'], ['i']]],
-                ['and', [['b']]],
-                [' sun', [['b'], ['i']]],
-              ],
+              title: [['Hello '], ['World ', [['b'], ['i']]], ['and', [['b']]], [' sun', [['b'], ['i']]]],
             },
           },
         ];
@@ -729,7 +683,7 @@ describe('#parse', () => {
         const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe(
-          `<blockquote>Hello <em><strong>World </strong></em><strong>and</strong><em><strong> sun</strong></em></blockquote>`
+          `<blockquote>Hello <em><strong>World </strong></em><strong>and</strong><em><strong> sun</strong></em></blockquote>`,
         );
       });
     });
@@ -829,7 +783,7 @@ describe('#parse', () => {
         const html = await new BlocksToTagInterface(contents).parse();
 
         expect(html).toBe(
-          `<iframe id="ytplayer" type="text/html" width="640" height="360" src="https://www.youtube.com/watch?v=8G80nuEyDN4" frameborder="0"/>`
+          `<iframe id="ytplayer" type="text/html" width="640" height="360" src="https://www.youtube.com/watch?v=8G80nuEyDN4" frameborder="0"/>`,
         );
       });
     });
@@ -910,7 +864,7 @@ describe('#parse', () => {
 
         await new BlocksToTagInterface(contents).parse();
         const expectedImageUrl = `https://www.notion.so/image/${encodeURIComponent(
-          imageSource
+          imageSource,
         )}?table=block&id=${blockId}`;
 
         expect(base64ConverterSpy).toBeCalledWith(expectedImageUrl);
