@@ -2,9 +2,11 @@
   "name": "notion-page-to-html",
   "version": "0.6.1",
   "description": "Convert public notion pages to html from notion page id",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "NODE_ENV=test jest --runInBand",
+    "build": "tsc",
     "prepublish": "babel src -d lib"
   },
   "repository": {
@@ -28,7 +30,8 @@
     "@babel/plugin-transform-runtime": "^7.10.5",
     "@babel/preset-env": "^7.10.4",
     "jest": "^26.1.0",
-    "nock": "^13.0.2"
+    "nock": "^13.0.2",
+    "typescript": "^4.0.3"
   },
   "dependencies": {
     "@babel/runtime": "^7.10.5",
