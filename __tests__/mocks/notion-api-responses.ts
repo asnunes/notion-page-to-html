@@ -125,3 +125,36 @@ export const MISSING_CONTENT_RECORDS = {
     },
   ],
 };
+
+export const SINGLE_TEXT_AND_TITLE_NOTION_API_CONTENT_RESPONSE = [
+  {
+    id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
+    type: 'text',
+    title: 'Simple Page Test',
+    properties: { title: [['Hello World']] },
+  },
+];
+
+export const SINGLE_TEXT_WITH_BOLD = [
+  {
+    id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
+    type: 'text',
+    properties: {
+      title: [['Hello '], ['World', [['b']]]],
+    },
+  },
+];
+
+export const TEXT_WITH_VIDEO_NOTION_API_CONTENT_RESPONSE = [
+  {
+    id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
+    type: 'text',
+    title: 'Simple Page Test',
+    properties: { title: [['Hello World']] },
+  },
+  {
+    id: 'dcde43cb-7131-4687-8f22-c9789fa75f46',
+    type: 'video',
+    properties: { source: [['https://www.youtube.com/watch?v=xBFqxBfLJWc']] },
+  },
+];
