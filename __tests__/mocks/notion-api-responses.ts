@@ -145,6 +145,16 @@ export const SINGLE_TEXT_WITH_BOLD = [
   },
 ];
 
+export const SINGLE_TEXT_WITH_BOLD_AND_ITALIC_TOGETHER = [
+  {
+    id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
+    type: 'text',
+    properties: {
+      title: [['Hello '], ['World', [['b'], ['i']]]],
+    },
+  },
+];
+
 export const TEXT_WITH_VIDEO_NOTION_API_CONTENT_RESPONSE = [
   {
     id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
