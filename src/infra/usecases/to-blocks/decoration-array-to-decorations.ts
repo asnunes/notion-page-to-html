@@ -10,11 +10,9 @@ export class DecorationArrayToDecorations {
   toDecorations(): Decoration[] {
     if (!this._decorationsArray) return [] as Decoration[];
 
-    return [
-      {
-        type: fromDecorationArrayTypeToDecorationType[this._decorationsArray[0][0]] || 'plain',
-      },
-    ];
+    return this._decorationsArray.map((decorations) => ({
+      type: fromDecorationArrayTypeToDecorationType[decorations[0]] || 'plain',
+    }));
   }
 }
 
