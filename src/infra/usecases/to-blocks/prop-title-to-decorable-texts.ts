@@ -26,7 +26,7 @@ export class PropTitleToDecorableTexts {
 
     return [
       {
-        type: fromDecorationArrayTypeToDecorationType[decorationsArray[0][0]],
+        type: fromDecorationArrayTypeToDecorationType[decorationsArray[0][0]] || 'plain',
       },
     ];
   }
@@ -34,4 +34,11 @@ export class PropTitleToDecorableTexts {
 
 const fromDecorationArrayTypeToDecorationType: Record<string, DecorationTypes> = {
   b: 'bold',
+  i: 'italic',
+  _: 'underline',
+  s: 'strikethrough',
+  c: 'code',
+  a: 'link',
+  e: 'equation',
+  h: 'color',
 };
