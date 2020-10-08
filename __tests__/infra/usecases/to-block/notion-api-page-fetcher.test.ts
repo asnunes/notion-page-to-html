@@ -1,9 +1,9 @@
 import nock from 'nock';
-import { NotionApiPageFetcher } from '../../../../src/infra/usecases/to-block/notion-api-page-fetcher';
+import { NotionApiPageFetcher } from '../../../../src/infra/usecases/to-notion-api-content-responses/notion-api-page-fetcher';
 import { NodeFetchHttpPostClient } from '../../../../src/infra/usecases/http-post/node-fetch-http-post-client';
-import { IdNormalizer } from '../../../../src/infra/usecases/to-block/id-normalizer';
+import { IdNormalizer } from '../../../../src/infra/usecases/to-notion-api-content-responses/id-normalizer';
 import { MissingContentError, MissingPageIdError, NotionPageAccessError } from '../../../../src/infra/errors';
-import * as NotionApiMocks from '../../../mocks/notion-api';
+import * as NotionApiMocks from '../../../mocks/notion-api-responses';
 
 describe('#getNotionPageContents', () => {
   afterEach(() => {
@@ -25,19 +25,7 @@ describe('#getNotionPageContents', () => {
 
       const response = await apiInterface.getNotionPageContents();
 
-      expect(response).toEqual([
-        {
-          id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
-          type: 'text',
-          title: 'Simple Page Test',
-          properties: { title: [['Hello World']] },
-        },
-        {
-          id: 'dcde43cb-7131-4687-8f22-c9789fa75f46',
-          type: 'video',
-          properties: { source: [['https://www.youtube.com/watch?v=xBFqxBfLJWc']] },
-        },
-      ]);
+      expect(response).toEqual(NotionApiMocks.TEXT_WITH_VIDEO_NOTION_API_CONTENT_RESPONSE);
     });
   });
 
