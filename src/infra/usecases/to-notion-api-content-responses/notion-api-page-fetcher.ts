@@ -1,22 +1,19 @@
 import { HttpPostClient, HttpResponse } from 'data/protocols/http-post';
 import { NotionApiContentResponse } from '../../protocols/notion-api-content-response';
 import { NotionPageIdValidator, PageRecordValidator } from './validation';
-import { IdNormalizer } from './id-normalizer';
 
 const NOTION_API_PATH = 'https://www.notion.so/api/v3/';
 
 export class NotionApiPageFetcher {
   private readonly _httpPostClient: HttpPostClient;
-  private readonly _idNormalizer: IdNormalizer;
   private readonly _notionPageId: string;
 
-  constructor(notionPageId: string | undefined, httpPostClient: HttpPostClient, idNormalizer: IdNormalizer) {
+  constructor(notionPageId: string | undefined, httpPostClient: HttpPostClient) {
     const pageIdError = new NotionPageIdValidator(notionPageId).validate();
     if (pageIdError) throw pageIdError;
 
     this._httpPostClient = httpPostClient;
-    this._idNormalizer = idNormalizer;
-    this._notionPageId = this._idNormalizer.normalizeId(notionPageId || '');
+    this._notionPageId = notionPageId || '';
   }
 
   async getNotionPageContents(): Promise<NotionApiContentResponse[]> {

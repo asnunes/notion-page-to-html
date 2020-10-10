@@ -1,4 +1,4 @@
-import { Validation } from './validation-protocol';
+import { Validation } from '../../../protocols/validation';
 
 import { NotionPageAccessError, MissingContentError } from '../../../errors';
 import { HttpResponse } from 'data/protocols/http-post';

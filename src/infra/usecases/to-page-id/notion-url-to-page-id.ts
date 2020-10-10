@@ -1,13 +1,26 @@
-import { InvalidPageUrlError } from '../../errors';
+import { UrlValidor } from './url-validator';
+import { IdNormalizer } from '../to-page-id/id-normalizer';
+import { NotionApiContentResponsesToBlocks } from '../to-blocks/notion-api-content-response-to-blocks';
 
 export class NotionUrlToPageId {
   private _url: string;
+  private readonly _idNormalizer: IdNormalizer;
 
-  constructor(url: string) {
+  constructor(url: string, idNormalizer: IdNormalizer) {
     this._url = url;
+    this._idNormalizer = idNormalizer;
   }
 
   toPageId(): string {
-    throw new InvalidPageUrlError(this._url);
+    const urlError = new UrlValidor(this._url).validate();
+    if (urlError) throw urlError;
+
+    return this._idNormalizer.normalizeId(this._ununormalizedPageId);
+  }
+
+  private get _ununormalizedPageId(): string {
+    const tail = this._url.split('/').reverse()[0];
+    if (tail.split('-').length === 0) return tail;
+    return tail.split('-').reverse()[0];
   }
 }
