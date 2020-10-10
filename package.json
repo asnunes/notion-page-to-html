@@ -25,11 +25,6 @@
   },
   "homepage": "https://github.com/asnunes/notion-page-to-html#readme",
   "devDependencies": {
-    "@babel/cli": "^7.10.5",
-    "@babel/core": "^7.10.5",
-    "@babel/plugin-transform-runtime": "^7.10.5",
-    "@babel/preset-env": "^7.10.4",
-    "@babel/runtime": "^7.10.5",
     "@types/jest": "^26.0.14",
     "@types/nock": "^11.1.0",
     "@types/node-fetch": "^2.5.7",
@@ -46,18 +41,5 @@
   },
   "dependencies": {
     "node-fetch": "^2.6.1"
-  },
-  "babel": {
-    "presets": [
-      "@babel/preset-env"
-    ],
-    "plugins": [
-      [
-        "@babel/plugin-transform-runtime",
-        {
-          "regenerator": true
-        }
-      ]
-    ]
   }
 }
