@@ -13,9 +13,21 @@ export class NotionApiContentResponsesToBlocks {
     return this._notionApiContentResponses.map((nacr) => ({
       id: nacr.id,
       type: nacr.type,
-      properties: {},
+      properties: this._filteredProperties(nacr),
       children: [] as Block[],
       decorableTexts: new PropTitleToDecorableTexts(nacr.properties.title).toDecorableTexts(),
     }));
+  }
+
+  private _filteredProperties(notionApiContentResponse: NotionApiContentResponse): Record<string, any> {
+    return Object.entries(notionApiContentResponse.properties)
+      .filter(([key]) => key !== 'title')
+      .reduce<Record<string, any>>(
+        (obj, [key, value]) => ({
+          ...obj,
+          [key]: value[0][0],
+        }),
+        {},
+      );
   }
 }
