@@ -111,5 +111,31 @@ describe('#toBlocks', () => {
         ]);
       });
     });
+
+    // TODO: Testar caso para color, equation, link,
+  });
+
+  describe('when page with color text content is given', () => {
+    it('converts to one block with decoration with value', () => {
+      const notionApiContentResponses = NotionApiMocks.SINGLE_TEXT_WITH_COLOR;
+      const notionApiContentResponsesToBlocks = new NotionApiContentResponsesToBlocks(notionApiContentResponses);
+
+      const result = notionApiContentResponsesToBlocks.toBlocks();
+
+      expect(result).toEqual([
+        {
+          id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
+          type: 'text',
+          properties: {},
+          children: [] as Block[],
+          decorableTexts: [
+            {
+              text: 'Hello',
+              decorations: [{ type: 'color', value: 'purple' }],
+            },
+          ],
+        },
+      ]);
+    });
   });
 });
