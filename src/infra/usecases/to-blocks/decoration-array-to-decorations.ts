@@ -10,9 +10,14 @@ export class DecorationArrayToDecorations {
   toDecorations(): Decoration[] {
     if (!this._decorationsArray) return [] as Decoration[];
 
-    return this._decorationsArray.map((decorations) => ({
-      type: fromDecorationArrayTypeToDecorationType[decorations[0]] || 'plain',
-    }));
+    return this._decorationsArray.map((decorations) => {
+      const [type, value] = decorations;
+
+      return {
+        type: fromDecorationArrayTypeToDecorationType[type] || 'plain',
+        ...(value && { value }),
+      };
+    });
   }
 }
 
