@@ -1,7 +1,7 @@
 import nock from 'nock';
 import { resolve } from 'path';
 
-import { Block, DecorationType } from '../../../../src/data/protocols/blocks';
+import { Block, Decoration, DecorationType } from '../../../../src/data/protocols/blocks';
 import { BlocksToHTML } from '../../../../src/data/usecases/blocks-to-html-converter/blocks-to-html-converter';
 import { BlocksDispatcher } from '../../../../src/data/usecases/blocks-to-html-converter/blocks-dispatcher';
 import { ListBlocksWrapper } from '../../../../src/data/usecases/blocks-to-html-converter/list-blocks-wrapper';
@@ -1089,7 +1089,7 @@ describe('#convert', () => {
             decorableTexts: [
               {
                 text: 'This a quote',
-                decorations: [],
+                decorations: [] as Decoration[],
               },
             ],
           },
@@ -1097,7 +1097,7 @@ describe('#convert', () => {
 
         const html = await makeSut(blocks).convert();
 
-        expect(html).toBe(`<blockquote>This a quote</blockquote>`);
+        expect(html).toBe('<blockquote>This a quote</blockquote>');
       });
     });
 

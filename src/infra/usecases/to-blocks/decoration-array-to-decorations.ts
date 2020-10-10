@@ -1,4 +1,4 @@
-import { Decoration, DecorationTypes } from 'data/protocols/blocks';
+import { Decoration, DecorationType } from 'data/protocols/blocks';
 
 export class DecorationArrayToDecorations {
   private readonly _decorationsArray: Array<any>;
@@ -21,7 +21,7 @@ export class DecorationArrayToDecorations {
   }
 }
 
-const fromDecorationArrayTypeToDecorationType: Record<string, DecorationTypes> = {
+const fromDecorationArrayTypeToDecorationType: Record<string, DecorationType> = {
   b: 'bold',
   i: 'italic',
   _: 'underline',

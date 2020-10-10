@@ -4,6 +4,6 @@ export type Block = {
   id: string;
   type: string;
   children: Block[];
-  properties: Record<string, string>;
+  properties: Record<string, any>;
   decorableTexts: DecorableText[];
 };
