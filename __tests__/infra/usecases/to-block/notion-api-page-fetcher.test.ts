@@ -1,7 +1,6 @@
 import nock from 'nock';
 import { NotionApiPageFetcher } from '../../../../src/infra/usecases/to-notion-api-content-responses/notion-api-page-fetcher';
 import { NodeFetchHttpPostClient } from '../../../../src/infra/usecases/http-post/node-fetch-http-post-client';
-import { IdNormalizer } from '../../../../src/infra/usecases/to-notion-api-content-responses/id-normalizer';
 import { MissingContentError, MissingPageIdError, NotionPageAccessError } from '../../../../src/infra/errors';
 import * as NotionApiMocks from '../../../mocks/notion-api-responses';
 
@@ -12,8 +11,7 @@ describe('#getNotionPageContents', () => {
 
   const makeSut = (notionPageId?: string): NotionApiPageFetcher => {
     const httpPostClient = new NodeFetchHttpPostClient();
-    const idNormalizer = new IdNormalizer();
-    return new NotionApiPageFetcher(notionPageId, httpPostClient, idNormalizer);
+    return new NotionApiPageFetcher(notionPageId, httpPostClient);
   };
 
   describe('when notion page id is valid and page is public', () => {
