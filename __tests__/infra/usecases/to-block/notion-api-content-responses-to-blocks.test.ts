@@ -137,7 +137,6 @@ describe('#toBlocks', () => {
     });
   });
 
-  // TODO: Testar caso para color, equation, link,
   describe('when page with equation text content is given', () => {
     it('converts to one block with decoration with value', () => {
       const notionApiContentResponses = NotionApiMocks.SINGLE_TEXT_WITH_EQUATION;
