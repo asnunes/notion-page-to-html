@@ -24,16 +24,19 @@ export class NotionApiPageFetcher {
 
     const chunk = await this._fetchPageChunk();
 
-    const contentIds = pageRecords.data.results[0].value.content;
+    const pageData = pageRecords.data as Record<string, any>;
+    const chunkData = chunk.data as Record<string, any>;
+
+    const contentIds = pageData.results[0].value.content;
     const contents = contentIds
-      .filter((id: string) => !!chunk.data.recordMap?.block[id])
-      .map((id: string) => chunk.data.recordMap?.block[id].value);
+      .filter((id: string) => !!chunkData.recordMap?.block[id])
+      .map((id: string) => chunkData.recordMap?.block[id].value);
 
     return contents.map((c: Record<string, any>, index: number) => ({
       id: c.id,
       ...(index === 0 &&
-        pageRecords.data.results[0].value.properties && {
-          title: pageRecords.data.results[0].value.properties.title[0][0],
+        pageData.results[0].value.properties && {
+          title: pageData.results[0].value.properties.title[0][0],
         }),
       type: c.type,
       properties: c.properties,

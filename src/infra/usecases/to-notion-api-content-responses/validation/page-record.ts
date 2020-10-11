@@ -13,11 +13,13 @@ export class PageRecordValidator implements Validation {
   }
 
   validate(): Error | null {
-    if (this._pageRecord.status === 401 || !this._pageRecord.data.results[0]?.value) {
+    const data = this._pageRecord.data as Record<string, any>;
+
+    if (this._pageRecord.status === 401 || !data.results[0]?.value) {
       return new NotionPageAccessError(this._notionPageId);
     }
 
-    if (!this._pageRecord.data.results[0]?.value?.content) {
+    if (!data.results[0]?.value?.content) {
       return new MissingContentError(this._notionPageId);
     }
 

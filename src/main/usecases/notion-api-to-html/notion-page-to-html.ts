@@ -15,6 +15,7 @@ export class NotionPageToHtml {
   private async _convert(pageURL: string, htmlOptions: HtmlOptions = {}): Promise<string> {
     const pageId = makeNotionUrlToPageIdFactory(pageURL).toPageId();
     const notionApiResponses = await makeNotionApiPageFetcher(pageId).getNotionPageContents();
+    console.log(JSON.stringify(notionApiResponses));
 
     const title = notionApiResponses[0].title || '';
     const blocks = new NotionApiContentResponsesToBlocks(notionApiResponses).toBlocks();
