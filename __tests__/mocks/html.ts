@@ -7,6 +7,7 @@ export const FULL_DOCUMENT = `
     <style>
         body {
           font-family: system-ui, sans-serif;
+          color: #37352F;
         }
         
         img {
@@ -45,6 +46,7 @@ export const DOCUMENT_WITHOUT_TITLE = `
     <style>
         body {
           font-family: system-ui, sans-serif;
+          color: #37352F;
         }
         
         img {
@@ -108,6 +110,7 @@ export const DOCUMENT_METADATA = `
     <style>
         body {
           font-family: system-ui, sans-serif;
+          color: #37352F;
         }
         
         img {
@@ -146,6 +149,7 @@ export const DOCUMENT_WITHOUT_SCRIPTS = `
     <style>
         body {
           font-family: system-ui, sans-serif;
+          color: #37352F;
         }
         
         img {

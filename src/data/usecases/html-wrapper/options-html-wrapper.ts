@@ -61,6 +61,7 @@ export class OptionsHtmlWrapper implements HtmlWrapper {
     <style>
       body {
         font-family: system-ui, sans-serif;
+        color: #37352F;
       }
 
       img {
