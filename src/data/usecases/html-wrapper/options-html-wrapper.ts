@@ -1,3 +1,4 @@
+import format from 'html-format';
 import { HtmlWrapper } from '../../../domain/usecases/html-wrapper';
 import { HtmlOptions } from '../../protocols/html-options/html-options';
 
@@ -10,8 +11,7 @@ export class OptionsHtmlWrapper implements HtmlWrapper {
 
   wrapHtml(title: string, html: string): string {
     if (this._options.bodyContentOnly) return html;
-
-    return `
+    const inindedentedHtml = `\
     <!DOCTYPE html>
     <html>
       ${this.headFromTemplate(title)}
@@ -19,12 +19,14 @@ export class OptionsHtmlWrapper implements HtmlWrapper {
           ${html}
           ${!this._options.excludeScripts ? this.scriptsFromTemplate() : ''}
         </body>
-    </html>
+    </html>\
     `;
+
+    return format(inindedentedHtml);
   }
 
   private headFromTemplate(title: string): string {
-    return `
+    return `\
     <head>
       ${!this._options.excludeMetadata ? '<meta charset="utf-8">' : ''}
       ${!this._options.excludeMetadata ? '<meta name="viewport" content="width=device-width, initial-scale=1">' : ''}
@@ -40,7 +42,7 @@ export class OptionsHtmlWrapper implements HtmlWrapper {
   }
 
   private scriptsFromTemplate(): string {
-    return `
+    return `\
       <script src="https://myCDN.com/prism@v1.x/components/prism-core.min.js"></script>
       <script src="https://myCDN.com/prism@v1.x/plugins/autoloader/prism-autoloader.min.js"></script>
       <script>
@@ -52,12 +54,12 @@ export class OptionsHtmlWrapper implements HtmlWrapper {
       </script>
       <script id="MathJax-script" async
         src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
-      </script>
+      </script>\
     `;
   }
 
   private get _styleTag(): string {
-    return `
+    return `\
     <style>
       body {
         font-family: system-ui, sans-serif;
