@@ -24,13 +24,13 @@ export class ColorDecorationToHtml implements ToHtml {
   }
 
   private get _color(): string {
-    const colorText = this._decoration.value?.split('_')[0] || 'black';
-    return colorTextToHEX[colorText];
+    const colorText = this._decoration.value?.split('_')[0] || '';
+    return colorTextToHEX[colorText] || '#37352F';
   }
 }
 
 const colorTextToHEX: Record<string, string> = {
   purple: '#6940A5',
   yellow: '#E9AB01',
-  black: '#37352F',
+  gray: '#9B9A97',
 };
