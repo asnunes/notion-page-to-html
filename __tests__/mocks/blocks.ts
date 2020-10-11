@@ -1,4 +1,4 @@
-import { Block, DecorationType, Decoration } from '../../src/data/protocols/blocks';
+import { Block, DecorableText, DecorationType, Decoration } from '../../src/data/protocols/blocks';
 
 export const NO_TEXT = [
   {
@@ -66,6 +66,25 @@ export const SINGLE_TEXT_WITH_ITALIC = [
             type: 'italic' as DecorationType,
           },
         ],
+      },
+    ],
+  },
+];
+
+export const SINGLE_TEXT_WITH_BOLD_AND_ITALIC_SEPARATED = [
+  {
+    id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
+    type: 'text',
+    properties: {},
+    children: [] as Block[],
+    decorableTexts: [
+      {
+        text: 'Hello ',
+        decorations: [{ type: 'bold' }],
+      },
+      {
+        text: 'World',
+        decorations: [{ type: 'italic' }],
       },
     ],
   },
@@ -907,6 +926,30 @@ export const YOUTUBE_VIDEO = [
     },
     children: [] as Block[],
     decorableTexts: [],
+  },
+];
+
+export const TEXT_WITH_YOUTUBE_VIDEO = [
+  {
+    id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
+    type: 'text',
+    properties: {},
+    children: [] as Block[],
+    decorableTexts: [
+      {
+        text: 'Hello World',
+        decorations: [] as Decoration[],
+      },
+    ],
+  },
+  {
+    id: 'dcde43cb-7131-4687-8f22-c9789fa75f46',
+    type: 'video',
+    properties: {
+      source: 'https://www.youtube.com/watch?v=xBFqxBfLJWc',
+    },
+    children: [] as Block[],
+    decorableTexts: [] as DecorableText[],
   },
 ];
 

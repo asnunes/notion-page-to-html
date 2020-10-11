@@ -1,5 +1,5 @@
 import * as NotionApiMocks from '../../../mocks/notion-api-responses';
-import { Block, Decoration, DecorableText } from '../../../../src/data/protocols/blocks';
+import * as BlockMocks from '../../../mocks/blocks';
 import { NotionApiContentResponsesToBlocks } from '../../../../src/infra/usecases/to-blocks/notion-api-content-response-to-blocks';
 
 describe('#toBlocks', () => {
@@ -10,20 +10,7 @@ describe('#toBlocks', () => {
 
       const result = notionApiContentResponsesToBlocks.toBlocks();
 
-      expect(result).toEqual([
-        {
-          id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
-          type: 'text',
-          properties: {},
-          children: [] as Block[],
-          decorableTexts: [
-            {
-              text: 'Hello World',
-              decorations: [] as Decoration[],
-            },
-          ],
-        },
-      ]);
+      expect(result).toEqual(BlockMocks.SINGLE_TEXT);
     });
   });
 
@@ -34,24 +21,7 @@ describe('#toBlocks', () => {
 
       const result = notionApiContentResponsesToBlocks.toBlocks();
 
-      expect(result).toEqual([
-        {
-          id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
-          type: 'text',
-          properties: {},
-          children: [] as Block[],
-          decorableTexts: [
-            {
-              text: 'Hello ',
-              decorations: [] as Decoration[],
-            },
-            {
-              text: 'World',
-              decorations: [{ type: 'bold' }],
-            },
-          ],
-        },
-      ]);
+      expect(result).toEqual(BlockMocks.SINGLE_TEXT_WITH_BOLD);
     });
   });
 
@@ -63,24 +33,7 @@ describe('#toBlocks', () => {
 
         const result = notionApiContentResponsesToBlocks.toBlocks();
 
-        expect(result).toEqual([
-          {
-            id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
-            type: 'text',
-            properties: {},
-            children: [] as Block[],
-            decorableTexts: [
-              {
-                text: 'Hello ',
-                decorations: [] as Decoration[],
-              },
-              {
-                text: 'World',
-                decorations: [{ type: 'bold' }, { type: 'italic' }],
-              },
-            ],
-          },
-        ]);
+        expect(result).toEqual(BlockMocks.SINGLE_TEXT_WITH_BOLD_AND_ITALIC);
       });
     });
 
@@ -91,24 +44,7 @@ describe('#toBlocks', () => {
 
         const result = notionApiContentResponsesToBlocks.toBlocks();
 
-        expect(result).toEqual([
-          {
-            id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
-            type: 'text',
-            properties: {},
-            children: [] as Block[],
-            decorableTexts: [
-              {
-                text: 'Hello ',
-                decorations: [{ type: 'bold' }],
-              },
-              {
-                text: 'World',
-                decorations: [{ type: 'italic' }],
-              },
-            ],
-          },
-        ]);
+        expect(result).toEqual(BlockMocks.SINGLE_TEXT_WITH_BOLD_AND_ITALIC_SEPARATED);
       });
     });
   });
@@ -120,20 +56,7 @@ describe('#toBlocks', () => {
 
       const result = notionApiContentResponsesToBlocks.toBlocks();
 
-      expect(result).toEqual([
-        {
-          id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
-          type: 'text',
-          properties: {},
-          children: [] as Block[],
-          decorableTexts: [
-            {
-              text: 'Hello',
-              decorations: [{ type: 'color', value: 'purple' }],
-            },
-          ],
-        },
-      ]);
+      expect(result).toEqual(BlockMocks.SINGLE_TEXT_WITH_COLOR);
     });
   });
 
@@ -144,24 +67,7 @@ describe('#toBlocks', () => {
 
       const result = notionApiContentResponsesToBlocks.toBlocks();
 
-      expect(result).toEqual([
-        {
-          id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
-          type: 'text',
-          properties: {},
-          children: [] as Block[],
-          decorableTexts: [
-            {
-              text: 'Hello World',
-              decorations: [] as Decoration[],
-            },
-            {
-              text: '⁍',
-              decorations: [{ type: 'equation', value: '2x' }],
-            },
-          ],
-        },
-      ]);
+      expect(result).toEqual(BlockMocks.SINGLE_TEXT_WITH_EQUATION_DECORATION);
     });
   });
 
@@ -172,24 +78,7 @@ describe('#toBlocks', () => {
 
       const result = notionApiContentResponsesToBlocks.toBlocks();
 
-      expect(result).toEqual([
-        {
-          id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
-          type: 'text',
-          properties: {},
-          children: [] as Block[],
-          decorableTexts: [
-            {
-              text: 'Hello ',
-              decorations: [] as Decoration[],
-            },
-            {
-              text: 'World',
-              decorations: [{ type: 'link', value: 'https://www.google.com' }],
-            },
-          ],
-        },
-      ]);
+      expect(result).toEqual(BlockMocks.SINGLE_TEXT_WITH_LINK);
     });
   });
 
@@ -200,29 +89,7 @@ describe('#toBlocks', () => {
 
       const result = notionApiContentResponsesToBlocks.toBlocks();
 
-      expect(result).toEqual([
-        {
-          id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
-          type: 'text',
-          properties: {},
-          children: [] as Block[],
-          decorableTexts: [
-            {
-              text: 'Hello World',
-              decorations: [] as Decoration[],
-            },
-          ],
-        },
-        {
-          id: 'dcde43cb-7131-4687-8f22-c9789fa75f46',
-          type: 'video',
-          properties: {
-            source: 'https://www.youtube.com/watch?v=xBFqxBfLJWc',
-          },
-          children: [] as Block[],
-          decorableTexts: [] as DecorableText[],
-        },
-      ]);
+      expect(result).toEqual(BlockMocks.TEXT_WITH_YOUTUBE_VIDEO);
     });
   });
 });
