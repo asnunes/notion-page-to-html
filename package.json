@@ -22,7 +22,7 @@
     "html"
   ],
   "author": "Alexandre Nunes",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/asnunes/notion-page-to-html/issues"
   },
