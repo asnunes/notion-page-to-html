@@ -34,4 +34,15 @@ describe('#convert', () => {
       expect(result).toBe('<span style="color: #6940A5;">Text with color</span>');
     });
   });
+
+  describe('When yellow color is given as background color', () => {
+    it('converts to equivalent hex code and apply style to html', async () => {
+      const text = 'Text with color';
+      const decoration: Decoration = { type: 'color', value: 'yellow_background' };
+
+      const result = await new ColorDecorationToHtml(text, decoration).convert();
+
+      expect(result).toBe('<span style="background-color: #E9AB01;">Text with color</span>');
+    });
+  });
 });
