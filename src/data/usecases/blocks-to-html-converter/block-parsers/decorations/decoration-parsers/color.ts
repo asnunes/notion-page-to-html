@@ -33,4 +33,5 @@ const colorTextToHEX: Record<string, string> = {
   purple: '#6940A5',
   yellow: '#E9AB01',
   gray: '#9B9A97',
+  brown: '#64473A',
 };
