@@ -20,16 +20,16 @@ export class ColorDecorationToHtml implements ToHtml {
 
   private get _style() {
     if (this._isBackground()) return `background-color: ${this._color};`;
-    return `color: ${this._color};`;
+    return `color: ${foregroundColorTextToHEX[this._decoration.value || 'none'] || '#37352F'};`;
   }
 
   private get _color(): string {
     const colorText = this._decoration.value?.split('_')[0] || '';
-    return colorTextToHEX[colorText] || '#37352F';
+    return foregroundColorTextToHEX[colorText] || '#37352F';
   }
 }
 
-const colorTextToHEX: Record<string, string> = {
+const foregroundColorTextToHEX: Record<string, string> = {
   purple: '#6940A5',
   yellow: '#E9AB01',
   gray: '#9B9A97',
@@ -39,4 +39,5 @@ const colorTextToHEX: Record<string, string> = {
   blue: '#0B6E99',
   pink: '#AD1A72',
   red: '#E03E3E',
+  none: '#37352F',
 };
