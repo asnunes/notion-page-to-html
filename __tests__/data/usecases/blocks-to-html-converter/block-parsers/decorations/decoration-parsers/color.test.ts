@@ -44,14 +44,14 @@ describe('#convert', () => {
     });
   });
 
-  describe('When yellow color is given as background color', () => {
+  describe('When yellow color is given as color', () => {
     it('converts to equivalent hex code and apply style to html', async () => {
       const text = 'Text with color';
-      const decoration: Decoration = { type: 'color', value: 'yellow_background' };
+      const decoration: Decoration = { type: 'color', value: 'yellow' };
 
       const result = await new ColorDecorationToHtml(text, decoration).convert();
 
-      expect(result).toBe('<span style="background-color: #E9AB01;">Text with color</span>');
+      expect(result).toBe('<span style="color: #E9AB01;">Text with color</span>');
     });
   });
 
@@ -66,14 +66,14 @@ describe('#convert', () => {
     });
   });
 
-  describe('When brown color is given as background color', () => {
+  describe('When brown color is given as color', () => {
     it('converts to equivalent hex code and apply style to html', async () => {
       const text = 'Text with color';
-      const decoration: Decoration = { type: 'color', value: 'brown_background' };
+      const decoration: Decoration = { type: 'color', value: 'brown' };
 
       const result = await new ColorDecorationToHtml(text, decoration).convert();
 
-      expect(result).toBe('<span style="background-color: #64473A;">Text with color</span>');
+      expect(result).toBe('<span style="color: #64473A;">Text with color</span>');
     });
   });
 
@@ -118,6 +118,28 @@ describe('#convert', () => {
       const result = await new ColorDecorationToHtml(text, decoration).convert();
 
       expect(result).toBe('<span style="color: #E03E3E;">Text with color</span>');
+    });
+  });
+
+  describe('When unknown color is given as foreground color', () => {
+    it('converts to equivalent default foreground color hex code and apply style to html', async () => {
+      const text = 'Text with color';
+      const decoration: Decoration = { type: 'color', value: 'refafad' };
+
+      const result = await new ColorDecorationToHtml(text, decoration).convert();
+
+      expect(result).toBe('<span style="color: #37352F;">Text with color</span>');
+    });
+  });
+
+  describe('When no color value is given as foreground color', () => {
+    it('converts to equivalent default foreground color hex code and apply style to html', async () => {
+      const text = 'Text with color';
+      const decoration: Decoration = { type: 'color' };
+
+      const result = await new ColorDecorationToHtml(text, decoration).convert();
+
+      expect(result).toBe('<span style="color: #37352F;">Text with color</span>');
     });
   });
 });
