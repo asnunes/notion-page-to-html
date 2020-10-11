@@ -19,13 +19,10 @@ export class ColorDecorationToHtml implements ToHtml {
   }
 
   private get _style() {
-    if (this._isBackground()) return `background-color: ${this._color};`;
-    return `color: ${foregroundColorTextToHEX[this._decoration.value || 'none'] || '#37352F'};`;
-  }
+    const textColor = this._decoration.value || 'none';
 
-  private get _color(): string {
-    const colorText = this._decoration.value?.split('_')[0] || '';
-    return foregroundColorTextToHEX[colorText] || '#37352F';
+    if (this._isBackground()) return `background-color: ${backgroundColorTextToHEX[textColor] || '#FFFFFF'};`;
+    return `color: ${foregroundColorTextToHEX[textColor] || '#37352F'};`;
   }
 }
 
@@ -40,4 +37,16 @@ const foregroundColorTextToHEX: Record<string, string> = {
   pink: '#AD1A72',
   red: '#E03E3E',
   none: '#37352F',
+};
+
+const backgroundColorTextToHEX: Record<string, string> = {
+  gray_background: '#E03E3E',
+  brown_background: '#E9E5E3',
+  orange_background: '#FAEBDD',
+  yellow_background: '#FBF3DB',
+  green_background: '#DDEDEA',
+  blue_background: '#DDEBF1',
+  purple_background: '#EAE4F2',
+  pink_background: '#F4DFEB',
+  red_background: '#FBE4E4',
 };
