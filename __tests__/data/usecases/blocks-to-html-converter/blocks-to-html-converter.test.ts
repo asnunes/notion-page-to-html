@@ -7,7 +7,7 @@ import { BlocksToHTML } from '../../../../src/data/usecases/blocks-to-html-conve
 import { BlocksDispatcher } from '../../../../src/data/usecases/blocks-to-html-converter/blocks-dispatcher';
 import { ListBlocksWrapper } from '../../../../src/data/usecases/blocks-to-html-converter/list-blocks-wrapper';
 import { ToHtml } from '../../../../src/domain/usecases/to-html';
-import { Base64Converter } from '../../../../src/data/usecases/blocks-to-html-converter/block-parsers/image/base-64-converter';
+import { Base64Converter } from '../../../../src/utils/base-64-converter';
 import base64Img from '../../../mocks/img/base64';
 
 describe('#convert', () => {
