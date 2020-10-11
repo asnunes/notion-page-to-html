@@ -3,7 +3,7 @@ import { ToHtml } from 'domain/usecases/to-html';
 import { Base64Converter } from './base-64-converter';
 
 export class ImageBlockToHtml implements ToHtml {
-  private _block: Block;
+  private readonly _block: Block;
 
   constructor(block: Block) {
     this._block = block;

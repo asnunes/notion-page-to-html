@@ -2,7 +2,7 @@ import fetch, { Response } from 'node-fetch';
 import { ImageNotFoundError } from '../../../../errors';
 
 export class Base64Converter {
-  private _imageSource: string;
+  private readonly _imageSource: string;
 
   constructor(imageURL: string) {
     this._imageSource = imageURL;
