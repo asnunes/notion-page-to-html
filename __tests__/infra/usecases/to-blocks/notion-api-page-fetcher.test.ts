@@ -18,7 +18,7 @@ describe('#getNotionPageContents', () => {
     it('returns NotionApiContentResponse object with page content when page is valid', async () => {
       nock('https://www.notion.so').post('/api/v3/loadPageChunk').reply(200, NotionApiMocks.SUCCESSFUL_PAGE_CHUCK);
       nock('https://www.notion.so').post('/api/v3/getRecordValues').reply(200, NotionApiMocks.SUCCESSFUL_RECORDS);
-      const notionPageId = '4d64bbc0634d4758befa85c5a3a6c22f';
+      const notionPageId = '4d64bbc0-634d-4758-befa-85c5a3a6c22f';
       const apiInterface = makeSut(notionPageId);
 
       const response = await apiInterface.getNotionPageContents();
