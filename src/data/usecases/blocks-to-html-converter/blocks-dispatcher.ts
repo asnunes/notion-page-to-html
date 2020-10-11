@@ -1,5 +1,5 @@
-import { Block } from 'data/protocols/blocks';
-import { ToHtml, ToHtmlClass } from 'domain/usecases/to-html';
+import { Block } from '../../protocols/blocks';
+import { ToHtml, ToHtmlClass } from '../../../domain/usecases/to-html';
 import * as blockParsers from './block-parsers';
 
 export class BlocksDispatcher {

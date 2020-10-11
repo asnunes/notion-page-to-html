@@ -1,6 +1,6 @@
 import { blockToInnerHtml } from '../../../helpers/block-to-inner-html';
-import { Block } from 'data/protocols/blocks';
-import { ToHtml } from 'domain/usecases/to-html';
+import { Block } from '../../../protocols/blocks';
+import { ToHtml } from '../../../../domain/usecases/to-html';
 
 export class QuoteBlockToHtml implements ToHtml {
   private readonly _block: Block;

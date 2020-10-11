@@ -1,6 +1,5 @@
 import { UrlValidor } from './url-validator';
 import { IdNormalizer } from '../to-page-id/id-normalizer';
-import { NotionApiContentResponsesToBlocks } from '../to-blocks/notion-api-content-response-to-blocks';
 
 export class NotionUrlToPageId {
   private _url: string;

@@ -1,5 +1,4 @@
-import { ToHtml } from 'domain/usecases/to-html';
-
+import { ToHtml } from '../../../../../../domain/usecases/to-html';
 export class UnderlineDecorationToHtml implements ToHtml {
   private readonly _text: string;
 

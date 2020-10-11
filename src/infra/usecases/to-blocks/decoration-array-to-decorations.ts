@@ -1,4 +1,4 @@
-import { Decoration, DecorationType } from 'data/protocols/blocks';
+import { Decoration, DecorationType } from '../../../data/protocols/blocks';
 
 export class DecorationArrayToDecorations {
   private readonly _decorationsArray: Array<any>;

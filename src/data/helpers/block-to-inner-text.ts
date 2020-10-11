@@ -1,4 +1,4 @@
-import { Block } from 'data/protocols/blocks';
+import { Block } from '../../data/protocols/blocks';
 
 export const blockToInnerText = (block: Block): string => {
   const decorableTexts = block.decorableTexts;

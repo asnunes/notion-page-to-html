@@ -1,5 +1,5 @@
-import { Block } from 'data/protocols/blocks';
-import { ToHtml } from 'domain/usecases/to-html';
+import { Block } from '../../../protocols/blocks';
+import { ToHtml } from '../../../../domain/usecases/to-html';
 import { blockToInnerText } from '../../../helpers/block-to-inner-text';
 
 export class EquationBlockToHtml implements ToHtml {

@@ -1,5 +1,5 @@
-import { Block } from 'data/protocols/blocks';
-import { NotionApiContentResponse } from 'infra/protocols/notion-api-content-response';
+import { Block } from '../../../data/protocols/blocks';
+import { NotionApiContentResponse } from '../../protocols/notion-api-content-response';
 import { PropTitleToDecorableTexts } from '../to-blocks/prop-title-to-decorable-texts';
 
 export class NotionApiContentResponsesToBlocks {

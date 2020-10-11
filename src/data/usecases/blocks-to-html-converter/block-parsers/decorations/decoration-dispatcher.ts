@@ -1,5 +1,5 @@
-import { Decoration } from 'data/protocols/blocks/decoration';
-import { ToHtml, ToHtmlClass } from 'domain/usecases/to-html';
+import { Decoration } from '../../../../../data/protocols/blocks/decoration';
+import { ToHtml, ToHtmlClass } from '../../../../../domain/usecases/to-html';
 import * as DecorationParsers from './decoration-parsers';
 
 export class DecoratorDispatcher {

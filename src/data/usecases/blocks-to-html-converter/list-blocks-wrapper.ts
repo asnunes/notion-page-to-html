@@ -1,4 +1,4 @@
-import { Block } from 'data/protocols/blocks';
+import { Block } from '../../protocols/blocks';
 
 export class ListBlocksWrapper {
   wrapLists(blocks: Block[]): Block[] {

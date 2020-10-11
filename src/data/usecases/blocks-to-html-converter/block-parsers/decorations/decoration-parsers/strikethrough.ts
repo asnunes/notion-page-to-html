@@ -1,4 +1,4 @@
-import { ToHtml } from 'domain/usecases/to-html';
+import { ToHtml } from '../../../../../../domain/usecases/to-html';
 
 export class StrikeThroughDecorationToHtml implements ToHtml {
   private readonly _text: string;

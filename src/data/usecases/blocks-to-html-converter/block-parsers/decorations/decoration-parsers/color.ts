@@ -1,5 +1,5 @@
-import { Decoration } from 'data/protocols/blocks/decoration';
-import { ToHtml } from 'domain/usecases/to-html';
+import { Decoration } from '../../../../../../data/protocols/blocks';
+import { ToHtml } from '../../../../../../domain/usecases/to-html';
 
 export class ColorDecorationToHtml implements ToHtml {
   private readonly _text: string;

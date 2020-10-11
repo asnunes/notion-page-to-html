@@ -1,4 +1,4 @@
-import { DecorableText } from 'data/protocols/blocks';
+import { DecorableText } from '../../../data/protocols/blocks';
 import { DecorationArrayToDecorations } from './decoration-array-to-decorations';
 
 export class PropTitleToDecorableTexts {

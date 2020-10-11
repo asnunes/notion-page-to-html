@@ -1,4 +1,4 @@
-import { HttpPostClient, HttpResponse } from 'data/protocols/http-post';
+import { HttpPostClient, HttpResponse } from '../../../data/protocols/http-post';
 import { NotionApiContentResponse } from '../../protocols/notion-api-content-response';
 import { NotionPageIdValidator, PageRecordValidator } from './validation';
 

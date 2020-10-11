@@ -1,4 +1,4 @@
-import { HtmlWrapper } from 'domain/usecases/html-wrapper';
+import { HtmlWrapper } from '../../../domain/usecases/html-wrapper';
 import { HtmlOptions } from '../../protocols/html-options/html-options';
 
 export class OptionsHtmlWrapper implements HtmlWrapper {

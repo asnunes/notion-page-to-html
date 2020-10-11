@@ -1,4 +1,4 @@
-import { ToHtml } from 'domain/usecases/to-html';
+import { ToHtml } from '../../../domain/usecases/to-html';
 import { Block } from '../../protocols/blocks';
 import { BlocksDispatcher } from './blocks-dispatcher';
 import { ListBlocksWrapper } from './list-blocks-wrapper';

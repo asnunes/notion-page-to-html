@@ -1,5 +1,5 @@
-import { Block } from 'data/protocols/blocks';
-import { ToHtml } from 'domain/usecases/to-html';
+import { Block } from '../../../../protocols/blocks';
+import { ToHtml } from '../../../../../domain/usecases/to-html';
 import { Base64Converter } from './base-64-converter';
 
 export class ImageBlockToHtml implements ToHtml {

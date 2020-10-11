@@ -1,4 +1,4 @@
-import { HttpPostClient, HttpResponse } from 'data/protocols/http-post';
+import { HttpPostClient, HttpResponse } from '../../../data/protocols/http-post';
 import fetch from 'node-fetch';
 
 export class NodeFetchHttpPostClient implements HttpPostClient {

@@ -1,4 +1,4 @@
-import { DecorableText } from 'data/protocols/blocks/decorable-text';
+import { DecorableText } from '../../../../../data/protocols/blocks/decorable-text';
 import { DecoratorDispatcher } from './decoration-dispatcher';
 
 export class Decorator {
