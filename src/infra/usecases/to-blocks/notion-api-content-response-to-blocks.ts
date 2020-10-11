@@ -15,11 +15,13 @@ export class NotionApiContentResponsesToBlocks {
       type: nacr.type,
       properties: this._filteredProperties(nacr),
       children: [] as Block[],
-      decorableTexts: new PropTitleToDecorableTexts(nacr.properties.title).toDecorableTexts(),
+      decorableTexts: new PropTitleToDecorableTexts(nacr.properties?.title).toDecorableTexts(),
     }));
   }
 
   private _filteredProperties(notionApiContentResponse: NotionApiContentResponse): Record<string, any> {
+    if (!notionApiContentResponse.properties) return {};
+
     return Object.entries(notionApiContentResponse.properties)
       .filter(([key]) => key !== 'title')
       .reduce<Record<string, any>>(
