@@ -1,7 +1,7 @@
 {
   "name": "notion-page-to-html",
   "version": "0.6.1",
-  "description": "Convert public notion pages to html from url",
+  "description": "It Converts public notion pages to html from url",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
