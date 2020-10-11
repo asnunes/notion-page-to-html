@@ -94,7 +94,7 @@ describe('#convert', () => {
       it('returns html with single p paragraph with span tag and color style inside', async () => {
         const html = await makeSut(BlockMocks.SINGLE_TEXT_WITH_COLOR).convert();
 
-        expect(html).toBe('<p><span style="color: purple;">Hello</span></p>');
+        expect(html).toBe('<p><span style="color: #6940A5;">Hello</span></p>');
       });
     });
 
@@ -102,7 +102,7 @@ describe('#convert', () => {
       it('returns html with single p paragraph with span tag and background color style inside', async () => {
         const html = await makeSut(BlockMocks.SINGLE_TEXT_WITH_COLOR_BACKGROUND).convert();
 
-        expect(html).toBe('<p><span style="background: yellow;">Hello</span></p>');
+        expect(html).toBe('<p><span style="background: #E9AB01;">Hello</span></p>');
       });
     });
 
