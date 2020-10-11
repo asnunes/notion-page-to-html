@@ -76,4 +76,48 @@ describe('#convert', () => {
       expect(result).toBe('<span style="background-color: #64473A;">Text with color</span>');
     });
   });
+
+  describe('When orange color is given as foreground color', () => {
+    it('converts to equivalent hex code and apply style to html', async () => {
+      const text = 'Text with color';
+      const decoration: Decoration = { type: 'color', value: 'orange' };
+
+      const result = await new ColorDecorationToHtml(text, decoration).convert();
+
+      expect(result).toBe('<span style="color: #D9730D;">Text with color</span>');
+    });
+  });
+
+  describe('When green color is given as foreground color', () => {
+    it('converts to equivalent hex code and apply style to html', async () => {
+      const text = 'Text with color';
+      const decoration: Decoration = { type: 'color', value: 'green' };
+
+      const result = await new ColorDecorationToHtml(text, decoration).convert();
+
+      expect(result).toBe('<span style="color: #0F7B6C;">Text with color</span>');
+    });
+  });
+
+  describe('When pink color is given as foreground color', () => {
+    it('converts to equivalent hex code and apply style to html', async () => {
+      const text = 'Text with color';
+      const decoration: Decoration = { type: 'color', value: 'pink' };
+
+      const result = await new ColorDecorationToHtml(text, decoration).convert();
+
+      expect(result).toBe('<span style="color: #AD1A72;">Text with color</span>');
+    });
+  });
+
+  describe('When red color is given as foreground color', () => {
+    it('converts to equivalent hex code and apply style to html', async () => {
+      const text = 'Text with color';
+      const decoration: Decoration = { type: 'color', value: 'red' };
+
+      const result = await new ColorDecorationToHtml(text, decoration).convert();
+
+      expect(result).toBe('<span style="color: #E03E3E;">Text with color</span>');
+    });
+  });
 });
