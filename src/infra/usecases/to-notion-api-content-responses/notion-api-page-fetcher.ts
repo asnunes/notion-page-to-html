@@ -1,6 +1,7 @@
 import { HttpPostClient, HttpResponse } from '../../../data/protocols/http-request';
 import { NotionApiContentResponse } from '../../protocols/notion-api-content-response';
 import { NotionPageIdValidator, PageRecordValidator } from './validation';
+import { FormatFilter } from '../to-blocks/format-filter';
 
 const NOTION_API_PATH = 'https://www.notion.so/api/v3/';
 
@@ -32,15 +33,18 @@ export class NotionApiPageFetcher {
       .filter((id: string) => !!chunkData.recordMap?.block[id])
       .map((id: string) => chunkData.recordMap?.block[id].value);
 
-    return contents.map((c: Record<string, any>, index: number) => ({
-      id: c.id,
-      ...(index === 0 &&
-        pageData.results[0].value.properties && {
-          title: pageData.results[0].value.properties.title[0][0],
-        }),
-      type: c.type,
-      properties: c.properties,
-    }));
+    return contents.map((c: Record<string, any>, index: number) => {
+      const title = index === 0 && pageData.results[0].value.properties?.title[0][0];
+      const format = c.format;
+
+      return {
+        id: c.id,
+        type: c.type,
+        properties: c.properties,
+        ...(title && { title }),
+        ...(format && { format }),
+      };
+    });
   }
 
   private async _fetchRecordValues(): Promise<HttpResponse> {

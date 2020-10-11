@@ -196,6 +196,15 @@ export const SINGLE_TEXT_WITH_LINK = [
   },
 ];
 
+export const SINGLE_TEXT_WITH_FORMAT = [
+  {
+    id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
+    type: 'text',
+    format: { block_color: 'red_background' },
+    properties: { title: [['Hello '], ['World', [['a', 'https://www.google.com']]]] },
+  },
+];
+
 export const TEXT_WITH_VIDEO_NOTION_API_CONTENT_RESPONSE = [
   {
     id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
@@ -206,6 +215,14 @@ export const TEXT_WITH_VIDEO_NOTION_API_CONTENT_RESPONSE = [
   {
     id: 'dcde43cb-7131-4687-8f22-c9789fa75f46',
     type: 'video',
+    format: {
+      block_aspect_ratio: 0.5620608899297423,
+      block_full_width: false,
+      block_page_width: true,
+      block_preserve_scale: true,
+      block_width: 854,
+      display_source: 'https://www.youtube.com/embed/xBFqxBfLJWc?feature=oembed',
+    },
     properties: { source: [['https://www.youtube.com/watch?v=xBFqxBfLJWc']] },
   },
 ];
