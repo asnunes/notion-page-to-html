@@ -3,7 +3,7 @@ import { ToHtml } from 'domain/usecases/to-html';
 import { blockToInnerText } from '../../../helpers/block-to-inner-text';
 
 export class EquationBlockToHtml implements ToHtml {
-  private _block: Block;
+  private readonly _block: Block;
 
   constructor(block: Block) {
     this._block = block;
