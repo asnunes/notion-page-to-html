@@ -1,7 +1,8 @@
 import nock from 'nock';
 import { resolve } from 'path';
 
-import { Block, Decoration, DecorationType } from '../../../../src/data/protocols/blocks';
+import { Block } from '../../../../src/data/protocols/blocks';
+import * as BlockMocks from '../../../mocks/blocks';
 import { BlocksToHTML } from '../../../../src/data/usecases/blocks-to-html-converter/blocks-to-html-converter';
 import { BlocksDispatcher } from '../../../../src/data/usecases/blocks-to-html-converter/blocks-dispatcher';
 import { ListBlocksWrapper } from '../../../../src/data/usecases/blocks-to-html-converter/list-blocks-wrapper';
@@ -19,17 +20,7 @@ describe('#convert', () => {
   describe('When only a text block is given', () => {
     describe('When empty text block is given', () => {
       it('returns empty p tag', async () => {
-        const blocks = [
-          {
-            id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
-            type: 'text',
-            properties: {},
-            children: [] as Block[],
-            decorableTexts: [],
-          },
-        ];
-
-        const html = await makeSut(blocks).convert();
+        const html = await makeSut(BlockMocks.NO_TEXT).convert();
 
         expect(html).toBe('<p></p>');
       });
@@ -37,22 +28,7 @@ describe('#convert', () => {
 
     describe('When single text block is given', () => {
       it('returns html with p tag', async () => {
-        const blocks = [
-          {
-            id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
-            type: 'text',
-            properties: {},
-            children: [] as Block[],
-            decorableTexts: [
-              {
-                text: 'Hello World',
-                decorations: [],
-              },
-            ],
-          },
-        ];
-
-        const html = await makeSut(blocks).convert();
+        const html = await makeSut(BlockMocks.SINGLE_TEXT).convert();
 
         expect(html).toBe('<p>Hello World</p>');
       });
@@ -60,30 +36,7 @@ describe('#convert', () => {
 
     describe('When single line text with bold part', () => {
       it('returns html with single p paragraph with strong tag nested', async () => {
-        const blocks = [
-          {
-            id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
-            type: 'text',
-            properties: {},
-            children: [] as Block[],
-            decorableTexts: [
-              {
-                text: 'Hello ',
-                decorations: [],
-              },
-              {
-                text: 'World',
-                decorations: [
-                  {
-                    type: 'bold' as DecorationType,
-                  },
-                ],
-              },
-            ],
-          },
-        ];
-
-        const html = await makeSut(blocks).convert();
+        const html = await makeSut(BlockMocks.SINGLE_TEXT_WITH_BOLD).convert();
 
         expect(html).toBe('<p>Hello <strong>World</strong></p>');
       });
@@ -91,30 +44,7 @@ describe('#convert', () => {
 
     describe('When single line text with italic part', () => {
       it('returns html with single p paragraph with strong tag nested', async () => {
-        const blocks = [
-          {
-            id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
-            type: 'text',
-            properties: {},
-            children: [] as Block[],
-            decorableTexts: [
-              {
-                text: 'Hello ',
-                decorations: [],
-              },
-              {
-                text: 'World',
-                decorations: [
-                  {
-                    type: 'italic' as DecorationType,
-                  },
-                ],
-              },
-            ],
-          },
-        ];
-
-        const html = await makeSut(blocks).convert();
+        const html = await makeSut(BlockMocks.SINGLE_TEXT_WITH_ITALIC).convert();
 
         expect(html).toBe('<p>Hello <em>World</em></p>');
       });
@@ -122,30 +52,7 @@ describe('#convert', () => {
 
     describe('When single line text with underline part', () => {
       it('returns html with single p paragraph with span tag and underline style nested', async () => {
-        const blocks = [
-          {
-            id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
-            type: 'text',
-            properties: {},
-            children: [] as Block[],
-            decorableTexts: [
-              {
-                text: 'Hello ',
-                decorations: [],
-              },
-              {
-                text: 'World',
-                decorations: [
-                  {
-                    type: 'underline' as DecorationType,
-                  },
-                ],
-              },
-            ],
-          },
-        ];
-
-        const html = await makeSut(blocks).convert();
+        const html = await makeSut(BlockMocks.SINGLE_TEXT_WITH_UNDERLINE).convert();
 
         expect(html).toBe('<p>Hello <span style="text-decoration: underline;">World</span></p>');
       });
@@ -153,30 +60,7 @@ describe('#convert', () => {
 
     describe('When single line text with strikethrough part', () => {
       it('returns html with single p paragraph with del tag inside', async () => {
-        const blocks = [
-          {
-            id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
-            type: 'text',
-            properties: {},
-            children: [] as Block[],
-            decorableTexts: [
-              {
-                text: 'Hello ',
-                decorations: [],
-              },
-              {
-                text: 'World',
-                decorations: [
-                  {
-                    type: 'strikethrough' as DecorationType,
-                  },
-                ],
-              },
-            ],
-          },
-        ];
-
-        const html = await makeSut(blocks).convert();
+        const html = await makeSut(BlockMocks.SINGLE_TEXT_WITH_STRIKETHROUGH).convert();
 
         expect(html).toBe('<p>Hello <del>World</del></p>');
       });
@@ -184,30 +68,7 @@ describe('#convert', () => {
 
     describe('When single line text with code part', () => {
       it('returns html with single p paragraph with code tag inside', async () => {
-        const blocks = [
-          {
-            id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
-            type: 'text',
-            properties: {},
-            children: [] as Block[],
-            decorableTexts: [
-              {
-                text: 'Hello ',
-                decorations: [],
-              },
-              {
-                text: 'myVar',
-                decorations: [
-                  {
-                    type: 'code' as DecorationType,
-                  },
-                ],
-              },
-            ],
-          },
-        ];
-
-        const html = await makeSut(blocks).convert();
+        const html = await makeSut(BlockMocks.SINGLE_TEXT_WITH_CODE_DECORATION).convert();
 
         expect(html).toBe('<p>Hello <code>myVar</code></p>');
       });
@@ -215,31 +76,7 @@ describe('#convert', () => {
 
     describe('When single line text with link part', () => {
       it('returns html with single p paragraph with a tag with given link', async () => {
-        const blocks = [
-          {
-            id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
-            type: 'text',
-            properties: {},
-            children: [] as Block[],
-            decorableTexts: [
-              {
-                text: 'Hello ',
-                decorations: [],
-              },
-              {
-                text: 'World',
-                decorations: [
-                  {
-                    type: 'link' as DecorationType,
-                    value: 'https://www.google.com',
-                  },
-                ],
-              },
-            ],
-          },
-        ];
-
-        const html = await makeSut(blocks).convert();
+        const html = await makeSut(BlockMocks.SINGLE_TEXT_WITH_LINK).convert();
 
         expect(html).toBe('<p>Hello <a href="https://www.google.com" target="_blank">World</a></p>');
       });
@@ -247,31 +84,7 @@ describe('#convert', () => {
 
     describe('When single line text with inline equation part', () => {
       it('returns html with single p paragraph equation wrapped inside $$', async () => {
-        const blocks = [
-          {
-            id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
-            type: 'text',
-            properties: {},
-            children: [] as Block[],
-            decorableTexts: [
-              {
-                text: 'Hello World ',
-                decorations: [],
-              },
-              {
-                text: '⁍',
-                decorations: [
-                  {
-                    type: 'equation' as DecorationType,
-                    value: '2x',
-                  },
-                ],
-              },
-            ],
-          },
-        ];
-
-        const html = await makeSut(blocks).convert();
+        const html = await makeSut(BlockMocks.SINGLE_TEXT_WITH_EQUATION_DECORATION).convert();
 
         expect(html).toBe('<p>Hello World $2x$</p>');
       });
@@ -279,27 +92,7 @@ describe('#convert', () => {
 
     describe('When single line text with color part', () => {
       it('returns html with single p paragraph with span tag and color style inside', async () => {
-        const blocks = [
-          {
-            id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
-            type: 'text',
-            properties: {},
-            children: [] as Block[],
-            decorableTexts: [
-              {
-                text: 'Hello',
-                decorations: [
-                  {
-                    type: 'color' as DecorationType,
-                    value: 'purple',
-                  },
-                ],
-              },
-            ],
-          },
-        ];
-
-        const html = await makeSut(blocks).convert();
+        const html = await makeSut(BlockMocks.SINGLE_TEXT_WITH_COLOR).convert();
 
         expect(html).toBe('<p><span style="color: purple;">Hello</span></p>');
       });
@@ -307,27 +100,7 @@ describe('#convert', () => {
 
     describe('When single line text with color background part', () => {
       it('returns html with single p paragraph with span tag and background color style inside', async () => {
-        const blocks = [
-          {
-            id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
-            type: 'text',
-            properties: {},
-            children: [] as Block[],
-            decorableTexts: [
-              {
-                text: 'Hello',
-                decorations: [
-                  {
-                    type: 'color' as DecorationType,
-                    value: 'yellow_background',
-                  },
-                ],
-              },
-            ],
-          },
-        ];
-
-        const html = await makeSut(blocks).convert();
+        const html = await makeSut(BlockMocks.SINGLE_TEXT_WITH_COLOR_BACKGROUND).convert();
 
         expect(html).toBe('<p><span style="background: yellow;">Hello</span></p>');
       });
@@ -335,33 +108,7 @@ describe('#convert', () => {
 
     describe('When single line text with bold and italic parts together', () => {
       it('returns html with single p paragraph with strong and em tags nested', async () => {
-        const blocks = [
-          {
-            id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
-            type: 'text',
-            properties: {},
-            children: [] as Block[],
-            decorableTexts: [
-              {
-                text: 'Hello ',
-                decorations: [],
-              },
-              {
-                text: 'World',
-                decorations: [
-                  {
-                    type: 'bold' as DecorationType,
-                  },
-                  {
-                    type: 'italic' as DecorationType,
-                  },
-                ],
-              },
-            ],
-          },
-        ];
-
-        const html = await makeSut(blocks).convert();
+        const html = await makeSut(BlockMocks.SINGLE_TEXT_WITH_BOLD_AND_ITALIC).convert();
 
         expect(html).toBe('<p>Hello <em><strong>World</strong></em></p>');
       });
@@ -369,52 +116,7 @@ describe('#convert', () => {
 
     describe('When single line text with bold and italic parts apart', () => {
       it('returns html with single p paragraph with strong and em tags nested', async () => {
-        const blocks = [
-          {
-            id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
-            type: 'text',
-            properties: {},
-            children: [] as Block[],
-            decorableTexts: [
-              {
-                text: 'Hello ',
-                decorations: [],
-              },
-              {
-                text: 'World ',
-                decorations: [
-                  {
-                    type: 'bold' as DecorationType,
-                  },
-                  {
-                    type: 'italic' as DecorationType,
-                  },
-                ],
-              },
-              {
-                text: 'and',
-                decorations: [
-                  {
-                    type: 'bold' as DecorationType,
-                  },
-                ],
-              },
-              {
-                text: ' Sun',
-                decorations: [
-                  {
-                    type: 'bold' as DecorationType,
-                  },
-                  {
-                    type: 'italic' as DecorationType,
-                  },
-                ],
-              },
-            ],
-          },
-        ];
-
-        const html = await makeSut(blocks).convert();
+        const html = await makeSut(BlockMocks.TEXT_WITH_DECORATION).convert();
 
         expect(html).toBe(
           '<p>Hello <em><strong>World </strong></em><strong>and</strong><em><strong> Sun</strong></em></p>',
@@ -424,22 +126,7 @@ describe('#convert', () => {
 
     describe('When multiline text block is given', () => {
       it('returns html with two p tags', async () => {
-        const blocks = [
-          {
-            id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
-            type: 'text',
-            properties: {},
-            children: [] as Block[],
-            decorableTexts: [
-              {
-                text: 'Hello World\nIs everything alright?\nYes, Dude!',
-                decorations: [],
-              },
-            ],
-          },
-        ];
-
-        const html = await makeSut(blocks).convert();
+        const html = await makeSut(BlockMocks.MULTILINE_TEXT).convert();
 
         expect(html).toBe('<p>Hello World</br>Is everything alright?</br>Yes, Dude!</p>');
       });
@@ -449,22 +136,7 @@ describe('#convert', () => {
   describe('When only a h1 title block is given', () => {
     describe('When single block is given', () => {
       it('returns html with h1 tag', async () => {
-        const blocks = [
-          {
-            id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
-            type: 'header',
-            properties: {},
-            children: [] as Block[],
-            decorableTexts: [
-              {
-                text: 'This is a h1 title',
-                decorations: [],
-              },
-            ],
-          },
-        ];
-
-        const html = await makeSut(blocks).convert();
+        const html = await makeSut(BlockMocks.H1_TEXT).convert();
 
         expect(html).toBe('<h1>This is a h1 title</h1>');
       });
@@ -472,52 +144,7 @@ describe('#convert', () => {
 
     describe('When single line header with decoration', () => {
       it('returns html with single h1 with decoration tags inside', async () => {
-        const blocks = [
-          {
-            id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
-            type: 'header',
-            properties: {},
-            children: [] as Block[],
-            decorableTexts: [
-              {
-                text: 'Hello ',
-                decorations: [],
-              },
-              {
-                text: 'World ',
-                decorations: [
-                  {
-                    type: 'bold' as DecorationType,
-                  },
-                  {
-                    type: 'italic' as DecorationType,
-                  },
-                ],
-              },
-              {
-                text: 'and',
-                decorations: [
-                  {
-                    type: 'bold' as DecorationType,
-                  },
-                ],
-              },
-              {
-                text: ' Sun',
-                decorations: [
-                  {
-                    type: 'bold' as DecorationType,
-                  },
-                  {
-                    type: 'italic' as DecorationType,
-                  },
-                ],
-              },
-            ],
-          },
-        ];
-
-        const html = await makeSut(blocks).convert();
+        const html = await makeSut(BlockMocks.H1_TEXT_WITH_DECORATIONS).convert();
 
         expect(html).toBe(
           '<h1>Hello <em><strong>World </strong></em><strong>and</strong><em><strong> Sun</strong></em></h1>',
@@ -529,22 +156,7 @@ describe('#convert', () => {
   describe('When only a h2 title block is given', () => {
     describe('When single block is given', () => {
       it('returns html with h2 tag', async () => {
-        const blocks = [
-          {
-            id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
-            type: 'sub_header',
-            properties: {},
-            children: [] as Block[],
-            decorableTexts: [
-              {
-                text: 'This is a h2 title',
-                decorations: [],
-              },
-            ],
-          },
-        ];
-
-        const html = await makeSut(blocks).convert();
+        const html = await makeSut(BlockMocks.H2_TEXT).convert();
 
         expect(html).toBe('<h2>This is a h2 title</h2>');
       });
@@ -552,52 +164,7 @@ describe('#convert', () => {
 
     describe('When single line h2 with decoration', () => {
       it('returns html with single h1 with decoration tags inside', async () => {
-        const blocks = [
-          {
-            id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
-            type: 'sub_header',
-            properties: {},
-            children: [] as Block[],
-            decorableTexts: [
-              {
-                text: 'Hello ',
-                decorations: [],
-              },
-              {
-                text: 'World ',
-                decorations: [
-                  {
-                    type: 'bold' as DecorationType,
-                  },
-                  {
-                    type: 'italic' as DecorationType,
-                  },
-                ],
-              },
-              {
-                text: 'and',
-                decorations: [
-                  {
-                    type: 'bold' as DecorationType,
-                  },
-                ],
-              },
-              {
-                text: ' Sun',
-                decorations: [
-                  {
-                    type: 'bold' as DecorationType,
-                  },
-                  {
-                    type: 'italic' as DecorationType,
-                  },
-                ],
-              },
-            ],
-          },
-        ];
-
-        const html = await makeSut(blocks).convert();
+        const html = await makeSut(BlockMocks.H2_TEXT_WITH_DECORATIONS).convert();
 
         expect(html).toBe(
           '<h2>Hello <em><strong>World </strong></em><strong>and</strong><em><strong> Sun</strong></em></h2>',
@@ -609,22 +176,7 @@ describe('#convert', () => {
   describe('When only a h3 title block is given', () => {
     describe('When single block is given', () => {
       it('returns html with h3 tag', async () => {
-        const blocks = [
-          {
-            id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
-            type: 'sub_sub_header',
-            properties: {},
-            children: [] as Block[],
-            decorableTexts: [
-              {
-                text: 'This is a h3 title',
-                decorations: [],
-              },
-            ],
-          },
-        ];
-
-        const html = await makeSut(blocks).convert();
+        const html = await makeSut(BlockMocks.H3_TEXT).convert();
 
         expect(html).toBe('<h3>This is a h3 title</h3>');
       });
@@ -632,52 +184,7 @@ describe('#convert', () => {
 
     describe('When single line h3 with decoration', () => {
       it('returns html with single h1 with decoration tags inside', async () => {
-        const blocks = [
-          {
-            id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
-            type: 'sub_sub_header',
-            properties: {},
-            children: [] as Block[],
-            decorableTexts: [
-              {
-                text: 'Hello ',
-                decorations: [],
-              },
-              {
-                text: 'World ',
-                decorations: [
-                  {
-                    type: 'bold' as DecorationType,
-                  },
-                  {
-                    type: 'italic' as DecorationType,
-                  },
-                ],
-              },
-              {
-                text: 'and',
-                decorations: [
-                  {
-                    type: 'bold' as DecorationType,
-                  },
-                ],
-              },
-              {
-                text: ' Sun',
-                decorations: [
-                  {
-                    type: 'bold' as DecorationType,
-                  },
-                  {
-                    type: 'italic' as DecorationType,
-                  },
-                ],
-              },
-            ],
-          },
-        ];
-
-        const html = await makeSut(blocks).convert();
+        const html = await makeSut(BlockMocks.H3_TEXT_WITH_DECORATIONS).convert();
 
         expect(html).toBe(
           '<h3>Hello <em><strong>World </strong></em><strong>and</strong><em><strong> Sun</strong></em></h3>',
@@ -686,25 +193,10 @@ describe('#convert', () => {
     });
   });
 
-  describe('When only an ordered list block is given', () => {
+  describe('When only an unordered list block is given', () => {
     describe('When single block is given', () => {
       it('returns html with ul tag with li tag inside', async () => {
-        const blocks = [
-          {
-            id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
-            type: 'bulleted_list',
-            properties: {},
-            children: [] as Block[],
-            decorableTexts: [
-              {
-                text: 'This is a test',
-                decorations: [],
-              },
-            ],
-          },
-        ];
-
-        const html = await makeSut(blocks).convert();
+        const html = await makeSut(BlockMocks.UNORDERED_LIST_WITH_SINGLE_ITEM).convert();
 
         expect(html).toBe('<ul>\n  <li>This is a test</li>\n</ul>');
       });
@@ -712,87 +204,15 @@ describe('#convert', () => {
 
     describe('When list block with two items is given', () => {
       it('returns html with ul tag with li tag inside', async () => {
-        const blocks = [
-          {
-            id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
-            type: 'bulleted_list',
-            properties: {},
-            children: [] as Block[],
-            decorableTexts: [
-              {
-                text: 'This is a test',
-                decorations: [],
-              },
-            ],
-          },
-          {
-            id: '80d0fc46-5511-4d1d-a4ec-8b2f43d752133',
-            type: 'bulleted_list',
-            properties: {},
-            children: [] as Block[],
-            decorableTexts: [
-              {
-                text: 'This is a test too',
-                decorations: [],
-              },
-            ],
-          },
-        ];
-
-        const html = await makeSut(blocks).convert();
+        const html = await makeSut(BlockMocks.UNORDERED_LIST_WITH_TWO_ITEMS).convert();
 
         expect(html).toBe('<ul>\n  <li>This is a test</li>\n  <li>This is a test too</li>\n</ul>');
       });
     });
 
-    describe('When single line ordered list with decoration', () => {
+    describe('When single line unordered list with decoration', () => {
       it('returns html with ul tag with li tag and decorations tags inside', async () => {
-        const blocks = [
-          {
-            id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
-            type: 'bulleted_list',
-            properties: {},
-            children: [] as Block[],
-            decorableTexts: [
-              {
-                text: 'Hello ',
-                decorations: [],
-              },
-              {
-                text: 'World ',
-                decorations: [
-                  {
-                    type: 'bold' as DecorationType,
-                  },
-                  {
-                    type: 'italic' as DecorationType,
-                  },
-                ],
-              },
-              {
-                text: 'and',
-                decorations: [
-                  {
-                    type: 'bold' as DecorationType,
-                  },
-                ],
-              },
-              {
-                text: ' Sun',
-                decorations: [
-                  {
-                    type: 'bold' as DecorationType,
-                  },
-                  {
-                    type: 'italic' as DecorationType,
-                  },
-                ],
-              },
-            ],
-          },
-        ];
-
-        const html = await makeSut(blocks).convert();
+        const html = await makeSut(BlockMocks.UNORDERED_LIST_WITH_DECORATED_ITEMS).convert();
 
         expect(html).toBe(
           '<ul>\n  <li>Hello <em><strong>World </strong></em><strong>and</strong><em><strong> Sun</strong></em></li>\n</ul>',
@@ -804,22 +224,7 @@ describe('#convert', () => {
   describe('When only an ordered list block is given', () => {
     describe('When single block is given', () => {
       it('returns html with ol tag with li tag inside', async () => {
-        const blocks = [
-          {
-            id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
-            type: 'numbered_list',
-            properties: {},
-            children: [] as Block[],
-            decorableTexts: [
-              {
-                text: 'This is a test',
-                decorations: [],
-              },
-            ],
-          },
-        ];
-
-        const html = await makeSut(blocks).convert();
+        const html = await makeSut(BlockMocks.ORDERED_LIST_WITH_SINGLE_ITEM).convert();
 
         expect(html).toBe('<ol>\n  <li>This is a test</li>\n</ol>');
       });
@@ -827,34 +232,7 @@ describe('#convert', () => {
 
     describe('When list block with two items is given', () => {
       it('returns html with ol tag with li tag inside', async () => {
-        const blocks = [
-          {
-            id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
-            type: 'numbered_list',
-            properties: {},
-            children: [] as Block[],
-            decorableTexts: [
-              {
-                text: 'This is a test',
-                decorations: [],
-              },
-            ],
-          },
-          {
-            id: '80d0fc46-5511-4d1d-a4ec-8b2f43d752133',
-            type: 'numbered_list',
-            properties: {},
-            children: [] as Block[],
-            decorableTexts: [
-              {
-                text: 'This is a test too',
-                decorations: [],
-              },
-            ],
-          },
-        ];
-
-        const html = await makeSut(blocks).convert();
+        const html = await makeSut(BlockMocks.ORDERED_LIST_WITH_TWO_ITEMS).convert();
 
         expect(html).toBe('<ol>\n  <li>This is a test</li>\n  <li>This is a test too</li>\n</ol>');
       });
@@ -862,52 +240,7 @@ describe('#convert', () => {
 
     describe('When single line ordered list with decoration', () => {
       it('returns html with ol tag with li tag and decorations tags inside', async () => {
-        const blocks = [
-          {
-            id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
-            type: 'numbered_list',
-            properties: {},
-            children: [] as Block[],
-            decorableTexts: [
-              {
-                text: 'Hello ',
-                decorations: [],
-              },
-              {
-                text: 'World ',
-                decorations: [
-                  {
-                    type: 'bold' as DecorationType,
-                  },
-                  {
-                    type: 'italic' as DecorationType,
-                  },
-                ],
-              },
-              {
-                text: 'and',
-                decorations: [
-                  {
-                    type: 'bold' as DecorationType,
-                  },
-                ],
-              },
-              {
-                text: ' Sun',
-                decorations: [
-                  {
-                    type: 'bold' as DecorationType,
-                  },
-                  {
-                    type: 'italic' as DecorationType,
-                  },
-                ],
-              },
-            ],
-          },
-        ];
-
-        const html = await makeSut(blocks).convert();
+        const html = await makeSut(BlockMocks.ORDERED_LIST_WITH_DECORATED_ITEMS).convert();
 
         expect(html).toBe(
           '<ol>\n  <li>Hello <em><strong>World </strong></em><strong>and</strong><em><strong> Sun</strong></em></li>\n</ol>',
@@ -919,22 +252,7 @@ describe('#convert', () => {
   describe('When only a to do list block is given', () => {
     describe('When single unchecked block is given', () => {
       it('returns html with a div and unchecked checkbox and label inside', async () => {
-        const blocks = [
-          {
-            id: 'd1e33c43-5079-4e66-961a-df032d38d532',
-            type: 'to_do',
-            properties: {},
-            children: [] as Block[],
-            decorableTexts: [
-              {
-                text: 'This is a test',
-                decorations: [],
-              },
-            ],
-          },
-        ];
-
-        const html = await makeSut(blocks).convert();
+        const html = await makeSut(BlockMocks.TODO).convert();
 
         expect(html).toBe(`<div>
         <input type="checkbox" name="d1e33c43-5079-4e66-961a-df032d38d532">
@@ -945,22 +263,7 @@ describe('#convert', () => {
 
     describe('When single checked block is given', () => {
       it('returns html with a div and checked checkbox and label inside', async () => {
-        const blocks = [
-          {
-            id: 'd1e33c43-5079-4e66-961a-df032d38d532',
-            type: 'to_do',
-            properties: { checked: 'Yes' },
-            children: [] as Block[],
-            decorableTexts: [
-              {
-                text: 'This is a test',
-                decorations: [],
-              },
-            ],
-          },
-        ];
-
-        const html = await makeSut(blocks).convert();
+        const html = await makeSut(BlockMocks.CHECKED_TODO).convert();
 
         expect(html).toBe(`<div>
         <input type="checkbox" checked name="d1e33c43-5079-4e66-961a-df032d38d532">
@@ -971,34 +274,7 @@ describe('#convert', () => {
 
     describe('When to-do block with two items is given', () => {
       it('returns html with two divs and checkbox and label inside', async () => {
-        const blocks = [
-          {
-            id: 'd1e33c43-5079-4e66-961a-df032d2332',
-            type: 'to_do',
-            properties: {},
-            children: [] as Block[],
-            decorableTexts: [
-              {
-                text: 'This is a test',
-                decorations: [],
-              },
-            ],
-          },
-          {
-            id: 'd1e33c43-5079-4e66-961a-df032d38d532',
-            type: 'to_do',
-            properties: { checked: 'Yes' },
-            children: [] as Block[],
-            decorableTexts: [
-              {
-                text: 'This is a test too',
-                decorations: [],
-              },
-            ],
-          },
-        ];
-
-        const html = await makeSut(blocks).convert();
+        const html = await makeSut(BlockMocks.UNCHECKED_AND_CHECKED_TODOS).convert();
 
         expect(html).toBe(
           `<div>
@@ -1016,22 +292,7 @@ describe('#convert', () => {
   describe('When single code block is given', () => {
     describe('When there are no style on code block', () => {
       it('returns html with pre tag and code tag inside', async () => {
-        const blocks = [
-          {
-            id: '479c7b34-6c22-4f2d-b947-8f47d02b48d6',
-            type: 'code',
-            properties: { language: 'JavaScript' },
-            children: [] as Block[],
-            decorableTexts: [
-              {
-                text: 'function test() {\n\tvar isTesting = true;\n\treturn isTesting;\n}',
-                decorations: [],
-              },
-            ],
-          },
-        ];
-
-        const html = await makeSut(blocks).convert();
+        const html = await makeSut(BlockMocks.CODE).convert();
 
         expect(html).toBe(
           `<pre><code class="language-javascript">function test() {\n\tvar isTesting = true;\n\treturn isTesting;\n}</code></pre>`,
@@ -1041,34 +302,7 @@ describe('#convert', () => {
 
     describe('When there are style on code block', () => {
       it('ignores styles and returns html with pre tag and code tag inside', async () => {
-        const blocks = [
-          {
-            id: '479c7b34-6c22-4f2d-b947-8f47d02b48d6',
-            type: 'code',
-            properties: { language: 'JavaScript' },
-            children: [] as Block[],
-            decorableTexts: [
-              {
-                text: 'function test() {\n\tvar isTesting = true;\n\treturn ',
-                decorations: [],
-              },
-              {
-                text: 'isTesting',
-                decorations: [
-                  {
-                    type: 'bold' as DecorationType,
-                  },
-                ],
-              },
-              {
-                text: ';\n}',
-                decorations: [],
-              },
-            ],
-          },
-        ];
-
-        const html = await makeSut(blocks).convert();
+        const html = await makeSut(BlockMocks.CODE_WITH_DECORATION).convert();
 
         expect(html).toBe(
           `<pre><code class="language-javascript">function test() {\n\tvar isTesting = true;\n\treturn isTesting;\n}</code></pre>`,
@@ -1080,22 +314,7 @@ describe('#convert', () => {
   describe('When single quote block is given', () => {
     describe('When there are no style on quote block', () => {
       it('returns html with blockquote tag', async () => {
-        const blocks = [
-          {
-            id: 'e0a0cfa3-1f64-438b-ac79-95e5c7ad4565',
-            type: 'quote',
-            properties: {},
-            children: [] as Block[],
-            decorableTexts: [
-              {
-                text: 'This a quote',
-                decorations: [] as Decoration[],
-              },
-            ],
-          },
-        ];
-
-        const html = await makeSut(blocks).convert();
+        const html = await makeSut(BlockMocks.QUOTE).convert();
 
         expect(html).toBe('<blockquote>This a quote</blockquote>');
       });
@@ -1103,52 +322,7 @@ describe('#convert', () => {
 
     describe('When there are style on quote block', () => {
       it('returns html with blockquote tag and decorations inside', async () => {
-        const blocks = [
-          {
-            id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
-            type: 'quote',
-            properties: {},
-            children: [] as Block[],
-            decorableTexts: [
-              {
-                text: 'Hello ',
-                decorations: [],
-              },
-              {
-                text: 'World ',
-                decorations: [
-                  {
-                    type: 'bold' as DecorationType,
-                  },
-                  {
-                    type: 'italic' as DecorationType,
-                  },
-                ],
-              },
-              {
-                text: 'and',
-                decorations: [
-                  {
-                    type: 'bold' as DecorationType,
-                  },
-                ],
-              },
-              {
-                text: ' Sun',
-                decorations: [
-                  {
-                    type: 'bold' as DecorationType,
-                  },
-                  {
-                    type: 'italic' as DecorationType,
-                  },
-                ],
-              },
-            ],
-          },
-        ];
-
-        const html = await makeSut(blocks).convert();
+        const html = await makeSut(BlockMocks.QUOTE_WITH_DECORATION).convert();
 
         expect(html).toBe(
           `<blockquote>Hello <em><strong>World </strong></em><strong>and</strong><em><strong> Sun</strong></em></blockquote>`,
@@ -1159,41 +333,7 @@ describe('#convert', () => {
 
   describe('When divider block is given', () => {
     it('returns html with hr tag', async () => {
-      const blocks = [
-        {
-          id: 'e0a0cfa3-438b-ac79-95e5c7ad4565',
-          type: 'text',
-          properties: {},
-          children: [] as Block[],
-          decorableTexts: [
-            {
-              text: 'This a text',
-              decorations: [],
-            },
-          ],
-        },
-        {
-          id: 'e0a0cfa3-1f64-438b-ac79-95e5c7ad4565',
-          type: 'divider',
-          properties: {},
-          children: [] as Block[],
-          decorableTexts: [],
-        },
-        {
-          id: 'e0a0cfa3-438b-95e5c7ad4565',
-          type: 'text',
-          properties: {},
-          children: [] as Block[],
-          decorableTexts: [
-            {
-              text: 'This a text too',
-              decorations: [],
-            },
-          ],
-        },
-      ];
-
-      const html = await makeSut(blocks).convert();
+      const html = await makeSut(BlockMocks.TEXT_BETWEEN_DIVIDER).convert();
 
       expect(html).toBe(`<p>This a text</p>\n<hr>\n<p>This a text too</p>`);
     });
@@ -1202,17 +342,7 @@ describe('#convert', () => {
   describe('When equation block is given', () => {
     describe('When there is no equation content', () => {
       it('returns empty string', async () => {
-        const blocks = [
-          {
-            id: '9b01339a-9de6-4eb1-bd7a-4c6d537590c7',
-            type: 'equation',
-            properties: {},
-            children: [] as Block[],
-            decorableTexts: [],
-          },
-        ];
-
-        const html = await makeSut(blocks).convert();
+        const html = await makeSut(BlockMocks.EMPTY_EQUATION).convert();
 
         expect(html).toBe('');
       });
@@ -1220,22 +350,7 @@ describe('#convert', () => {
 
     describe('When there is no equation content', () => {
       it('returns html with div tag and equation class with equation inside', async () => {
-        const blocks = [
-          {
-            id: '9b01339a-9de6-4eb1-bd7a-4c6d537590c7',
-            type: 'equation',
-            properties: {},
-            children: [] as Block[],
-            decorableTexts: [
-              {
-                text: '\\int 2xdx = x^2 + C',
-                decorations: [],
-              },
-            ],
-          },
-        ];
-
-        const html = await makeSut(blocks).convert();
+        const html = await makeSut(BlockMocks.EQUATION).convert();
 
         expect(html).toBe(`<div class="equation">$$\\int 2xdx = x^2 + C$$</div>`);
       });
@@ -1245,19 +360,7 @@ describe('#convert', () => {
   describe('When video block is given', () => {
     describe('When it is not a youtube video', () => {
       it('returns empty string', async () => {
-        const blocks = [
-          {
-            id: 'dcde43cb-7131-4687-8f22-c9789fa75f46',
-            type: 'video',
-            properties: {
-              source: 'https://www.example.com/watch?v=8G80nuEyDN4',
-            },
-            children: [] as Block[],
-            decorableTexts: [],
-          },
-        ];
-
-        const html = await makeSut(blocks).convert();
+        const html = await makeSut(BlockMocks.NO_YOUTUBE_VIDEO).convert();
 
         expect(html).toBe('');
       });
@@ -1265,19 +368,7 @@ describe('#convert', () => {
 
     describe('When it is a youtube video', () => {
       it('returns html with iframe tag', async () => {
-        const blocks = [
-          {
-            id: 'dcde43cb-7131-4687-8f22-c9789fa75f46',
-            type: 'video',
-            properties: {
-              source: 'https://www.youtube.com/watch?v=8G80nuEyDN4',
-            },
-            children: [] as Block[],
-            decorableTexts: [],
-          },
-        ];
-
-        const html = await makeSut(blocks).convert();
+        const html = await makeSut(BlockMocks.YOUTUBE_VIDEO).convert();
 
         expect(html).toBe(
           `<iframe id="ytplayer" type="text/html" width="640" height="360" src="https://www.youtube.com/watch?v=8G80nuEyDN4" frameborder="0"/>`,
@@ -1301,22 +392,7 @@ describe('#convert', () => {
 
     describe('When image has no caption', () => {
       it('returns html with img tag with src as base64', async () => {
-        const imageSource =
-          'https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bcedd078-56cd-4137-a28a-af16b5746874/767-50x50.jpg';
-        const blockId = 'ec3b36fd-f77d-46b4-8592-5966488612b1';
-        const blocks = [
-          {
-            id: blockId,
-            type: 'image',
-            properties: {
-              source: imageSource,
-            },
-            children: [] as Block[],
-            decorableTexts: [],
-          },
-        ];
-
-        const html = await makeSut(blocks).convert();
+        const html = await makeSut(BlockMocks.IMAGE).convert();
 
         expect(html).toBe(`<img src="${base64Img}" alt="" />`);
       });
@@ -1324,23 +400,7 @@ describe('#convert', () => {
 
     describe('When image has caption', () => {
       it('returns html with img tag with src as base64 and alt attr with given caption', async () => {
-        const imageSource =
-          'https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bcedd078-56cd-4137-a28a-af16b5746874/767-50x50.jpg';
-        const blockId = 'ec3b36fd-f77d-46b4-8592-5966488612b1';
-        const blocks = [
-          {
-            id: blockId,
-            type: 'image',
-            properties: {
-              source: imageSource,
-              caption: 'It is a caption',
-            },
-            children: [] as Block[],
-            decorableTexts: [],
-          },
-        ];
-
-        const html = await makeSut(blocks).convert();
+        const html = await makeSut(BlockMocks.IMAGE_WITH_CAPTION).convert();
 
         expect(html).toBe(`<img src="${base64Img}" alt="It is a caption" />`);
       });
@@ -1348,29 +408,13 @@ describe('#convert', () => {
 
     describe('When image must have a table and block id attached to url', () => {
       it('it should attach block id to it', async () => {
-        const imageSource =
-          'https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bcedd078-56cd-4137-a28a-af16b5746874/767-50x50.jpg';
-        const blockId = 'ec3b36fd-f77d-46b4-8592-5966488612b1';
         const base64ConverterSpy = jest.spyOn(Base64Converter, 'convert');
-        const blocks = [
-          {
-            id: blockId,
-            type: 'image',
-            properties: {
-              source: imageSource,
-              caption: 'It is a caption',
-            },
-            children: [] as Block[],
-            decorableTexts: [],
-          },
-        ];
+        const source = BlockMocks.IMAGE_WITH_CAPTION[0].properties.source;
+        const id = BlockMocks.IMAGE_WITH_CAPTION[0].id;
 
-        await makeSut(blocks).convert();
+        await makeSut(BlockMocks.IMAGE_WITH_CAPTION).convert();
 
-        const expectedImageUrl = `https://www.notion.so/image/${encodeURIComponent(
-          imageSource,
-        )}?table=block&id=${blockId}`;
-
+        const expectedImageUrl = `https://www.notion.so/image/${encodeURIComponent(source)}?table=block&id=${id}`;
         expect(base64ConverterSpy).toBeCalledWith(expectedImageUrl);
       });
     });
@@ -1378,22 +422,7 @@ describe('#convert', () => {
 
   describe('When unknown block is given', () => {
     it('returns empty string', async () => {
-      const blocks = [
-        {
-          id: 'd1e33c43-5079-4e66-961a-df032d38d532',
-          type: 'headdfafdafader',
-          properties: {},
-          children: [] as Block[],
-          decorableTexts: [
-            {
-              text: 'What?!',
-              decorations: [],
-            },
-          ],
-        },
-      ];
-
-      const html = await makeSut(blocks).convert();
+      const html = await makeSut(BlockMocks.UNKNOWN).convert();
 
       expect(html).toBe('');
     });
