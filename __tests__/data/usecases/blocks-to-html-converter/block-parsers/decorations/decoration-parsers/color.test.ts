@@ -22,6 +22,15 @@ describe('#convert', () => {
 
       expect(result).toMatch('style="background-color:');
     });
+
+    it('do not preserves color value on style', async () => {
+      const text = 'Text with color';
+      const decoration: Decoration = { type: 'color', value: 'purple_background' };
+
+      const result = await new ColorDecorationToHtml(text, decoration).convert();
+
+      expect(result).not.toMatch('purple_background');
+    });
   });
 
   describe('When purple color is given as foreground color', () => {
