@@ -394,7 +394,13 @@ describe('#convert', () => {
       it('returns html with img tag with src as base64', async () => {
         const html = await makeSut(BlockMocks.IMAGE).convert();
 
-        expect(html).toBe(`<img src="${base64Img}" alt="" />`);
+        expect(html.replace(/\s/g, '')).toBe(
+          `
+        <figure>
+          <img src="${base64Img}" alt="" >
+        </figure>
+        `.replace(/\s/g, ''),
+        );
       });
     });
 
@@ -402,7 +408,14 @@ describe('#convert', () => {
       it('returns html with img tag with src as base64 and alt attr with given caption', async () => {
         const html = await makeSut(BlockMocks.IMAGE_WITH_CAPTION).convert();
 
-        expect(html).toBe(`<img src="${base64Img}" alt="It is a caption" />`);
+        expect(html.replace(/\s/g, '')).toBe(
+          `
+        <figure>
+          <img src="${base64Img}" alt="It is a caption">
+          <figcaption>It is a caption</figcaption>
+        </figure>
+        `.replace(/\s/g, ''),
+        );
       });
     });
 

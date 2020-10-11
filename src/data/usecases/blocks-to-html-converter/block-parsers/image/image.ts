@@ -13,7 +13,14 @@ export class ImageBlockToHtml implements ToHtml {
     if (!this._rawSrc) return '';
 
     const imageSource = await Base64Converter.convert(this._rawSrc);
-    return `<img src="${imageSource}" alt="${this._caption}" />`;
+    const caption = this._caption;
+
+    return `
+    <figure>
+      <img src="${imageSource}" alt="${caption}">
+      ${caption !== '' ? `<figcaption>${caption}</figcaption>` : ''}
+    </figure>
+    `;
   }
 
   private get _rawSrc() {
