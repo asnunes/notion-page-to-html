@@ -5,8 +5,8 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc",
-    "prepublish": "babel src -d lib",
+    "build": "rm -rf ./dist && tsc",
+    "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
     "test:verbose": "jest --passWithNoTests --runInBand",
     "test:staged": "npm test -- --findRelatedTests",
