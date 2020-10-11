@@ -19,7 +19,7 @@ export class ColorDecorationToHtml implements ToHtml {
   }
 
   private get _style() {
-    if (this._isBackground()) return `background: ${this._color};`;
+    if (this._isBackground()) return `background-color: ${this._color};`;
     return `color: ${this._color};`;
   }
 
