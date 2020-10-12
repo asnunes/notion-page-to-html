@@ -603,6 +603,18 @@ describe('#convert', () => {
         </div>`.replace(/\s/g, ''),
         );
       });
+
+      it('it should attach block id to it', async () => {
+        const base64ConverterSpy = jest.spyOn(Base64Converter, 'convert');
+        const blocks = BlockMocks.CALLOUT_WITH_IMAGE;
+        const source = blocks[0].properties.page_icon;
+        const id = blocks[0].id;
+
+        await makeSut(blocks).convert();
+
+        const expectedImageUrl = `https://www.notion.so/image/${encodeURIComponent(source)}?table=block&id=${id}`;
+        expect(base64ConverterSpy).toBeCalledWith(expectedImageUrl);
+      });
     });
 
     describe('with given background and emoji icon', () => {
