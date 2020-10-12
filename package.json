@@ -8,6 +8,7 @@
     "build": "rm -rf ./dist && tsc",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
+    "test:watch": "npm test -- --watch",
     "test:verbose": "jest --passWithNoTests --runInBand",
     "test:staged": "npm test -- --findRelatedTests",
     "test:ci": "npm test -- --coverage"
