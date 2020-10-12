@@ -1,4 +1,3 @@
-import format from 'html-format';
 import { HtmlWrapper } from '../../../domain/usecases/html-wrapper';
 import { HtmlOptions } from '../../protocols/html-options/html-options';
 
@@ -11,7 +10,7 @@ export class OptionsHtmlWrapper implements HtmlWrapper {
 
   wrapHtml(title: string, html: string): string {
     if (this._options.bodyContentOnly) return html;
-    const inindedentedHtml = `\
+    return `\
     <!DOCTYPE html>
     <html>
       ${this.headFromTemplate(title)}
@@ -21,8 +20,6 @@ export class OptionsHtmlWrapper implements HtmlWrapper {
         </body>
     </html>\
     `;
-
-    return format(inindedentedHtml);
   }
 
   private headFromTemplate(title: string): string {
@@ -69,6 +66,34 @@ export class OptionsHtmlWrapper implements HtmlWrapper {
       img {
         max-width: 100%;
         max-height: 70vh;
+      }
+
+      .callout {
+        padding: 16px 16px 16px 12px;
+        display: flex;
+        width: 95%;
+        border-radius: 3px;
+        border-width: 1px;
+        border-style: solid;
+        border-color: transparent;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .callout-emoji {
+        height: 21.6px;
+        width: 21.6px;
+        font-size: 21.6px;
+        line-height: 1.1;
+        margin-left: 0px;
+      }
+
+      .callout p {
+        max-width: 100%;
+        width: 100%;
+        white-space: pre-wrap;
+        word-break: break-word;
+        margin-left: 8px;
       }
     </style>
     `;
