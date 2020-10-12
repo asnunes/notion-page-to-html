@@ -1,6 +1,6 @@
-import { Block } from '../../../../protocols/blocks';
-import { ToHtml } from '../../../../../domain/usecases/to-html';
-import { Base64Converter } from '../../../../../utils/base-64-converter';
+import { Block } from '../../../protocols/blocks';
+import { ToHtml } from '../../../../domain/usecases/to-html';
+import { Base64Converter } from '../../../../utils/base-64-converter';
 
 export class ImageBlockToHtml implements ToHtml {
   private readonly _block: Block;
