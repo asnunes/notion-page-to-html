@@ -580,6 +580,19 @@ describe('#convert', () => {
         );
       });
     });
+
+    describe('with given background and emoji icon', () => {
+      it('converts to callout html', async () => {
+        const html = await makeSut(BlockMocks.CALLOUT_WITH_BACKGROUND).convert();
+
+        expect(html.replace(/\s/g, '')).toBe(
+          `<div class="callout" style="background-color: #FBE4E4; ">
+          <div class="callout-emoji">💡</div>
+          <p>This is a callout</p>
+        </div>`.replace(/\s/g, ''),
+        );
+      });
+    });
   });
 
   describe('When unknown block is given', () => {
