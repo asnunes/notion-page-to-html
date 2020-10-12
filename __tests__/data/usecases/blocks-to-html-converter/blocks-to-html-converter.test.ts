@@ -139,6 +139,14 @@ describe('#convert', () => {
         expect(html).toBe('<p style="background-color: #FBE4E4; ">This is a text with red background</p>');
       });
     });
+
+    describe('When text block has foreground color', () => {
+      it('returns html p tag with style and color prop', async () => {
+        const html = await makeSut(BlockMocks.TEXT_WITH_FORMAT_FOREGROUND).convert();
+
+        expect(html).toBe('<p style="color: #6940A5; ">This is a text with purple color</p>');
+      });
+    });
   });
 
   describe('When only a h1 title block is given', () => {
@@ -167,6 +175,14 @@ describe('#convert', () => {
         expect(html).toBe('<h1 style="background-color: #DDEDEA; ">This is a h1 with red background</h1>');
       });
     });
+
+    describe('When header block has foreground color', () => {
+      it('returns html h1 tag with style and color prop', async () => {
+        const html = await makeSut(BlockMocks.H1_WITH_FORMAT_FOREGROUND).convert();
+
+        expect(html).toBe('<h1 style="color: #E9AB01; ">This is a h1 with yellow color</h1>');
+      });
+    });
   });
 
   describe('When only a h2 title block is given', () => {
@@ -192,7 +208,15 @@ describe('#convert', () => {
       it('returns html h2 tag with style and background-color prop', async () => {
         const html = await makeSut(BlockMocks.H2_WITH_FORMAT).convert();
 
-        expect(html).toBe('<h2 style="background-color: #FBF3DB; ">This is a h2 with red background</h2>');
+        expect(html).toBe('<h2 style="background-color: #FBF3DB; ">This is a h2 with yellow background</h2>');
+      });
+    });
+
+    describe('When sub header block has foreground color', () => {
+      it('returns html h2 tag with style and color prop', async () => {
+        const html = await makeSut(BlockMocks.H2_WITH_FORMAT_FOREGROUND).convert();
+
+        expect(html).toBe('<h2 style="color: #9B9A97; ">This is a h2 with gray color</h2>');
       });
     });
   });
@@ -220,7 +244,15 @@ describe('#convert', () => {
       it('returns html h3 tag with style and background-color prop', async () => {
         const html = await makeSut(BlockMocks.H3_WITH_FORMAT).convert();
 
-        expect(html).toBe('<h3 style="background-color: #FAEBDD; ">This is a h3 with red background</h3>');
+        expect(html).toBe('<h3 style="background-color: #FAEBDD; ">This is a h3 with orange background</h3>');
+      });
+    });
+
+    describe('When sub sub header block has foreground color', () => {
+      it('returns html h3 tag with style and color prop', async () => {
+        const html = await makeSut(BlockMocks.H3_WITH_FORMAT_FOREGROUND).convert();
+
+        expect(html).toBe('<h3 style="color: #64473A; ">This is a h3 with brown color</h3>');
       });
     });
   });
@@ -239,6 +271,14 @@ describe('#convert', () => {
         const html = await makeSut(BlockMocks.UNORDERED_LIST_WITH_SINGLE_ITEM_AND_FORMAT).convert();
 
         expect(html).toBe('<ul>\n  <li style="background-color: #E9E5E3; ">This is a item with background</li>\n</ul>');
+      });
+    });
+
+    describe('When single block is given with foreground color', () => {
+      it('returns html with ul tag with li tag inside and foreground', async () => {
+        const html = await makeSut(BlockMocks.UNORDERED_LIST_WITH_SINGLE_ITEM_AND_FORMAT_FOREGROUND).convert();
+
+        expect(html).toBe('<ul>\n  <li style="color: #D9730D; ">This is a item with color</li>\n</ul>');
       });
     });
 
@@ -271,10 +311,18 @@ describe('#convert', () => {
     });
 
     describe('When single block is given with background color', () => {
-      it('returns html with ul tag with li tag inside and background', async () => {
+      it('returns html with ol tag with li tag inside and background', async () => {
         const html = await makeSut(BlockMocks.ORDERED_LIST_WITH_SINGLE_ITEM_AND_FORMAT).convert();
 
         expect(html).toBe('<ol>\n  <li style="background-color: #E03E3E; ">This is a item with background</li>\n</ol>');
+      });
+    });
+
+    describe('When single block is given with foreground color', () => {
+      it('returns html with ol tag with li tag inside and foreground', async () => {
+        const html = await makeSut(BlockMocks.ORDERED_LIST_WITH_SINGLE_ITEM_AND_FORMAT_FOREGROUND).convert();
+
+        expect(html).toBe('<ol>\n  <li style="color: #0F7B6C; ">This is a item with color</li>\n</ol>');
       });
     });
 
@@ -314,6 +362,17 @@ describe('#convert', () => {
         const html = await makeSut(BlockMocks.TODO_WITH_FORMAT).convert();
 
         expect(html).toBe(`<div style="background-color: #DDEBF1; ">
+        <input type="checkbox" name="d1e33c43-5079-4e66-961a-df032d38d532">
+        <label for="d1e33c43-5079-4e66-961a-df032d38d532">This is a todo with style</label>
+      </div>`);
+      });
+    });
+
+    describe('When single unchecked block with foreground color is given', () => {
+      it('returns html with a div and unchecked checkbox and label inside with style on div', async () => {
+        const html = await makeSut(BlockMocks.TODO_WITH_FORMAT_FOREGROUND).convert();
+
+        expect(html).toBe(`<div style="color: #0B6E99; ">
         <input type="checkbox" name="d1e33c43-5079-4e66-961a-df032d38d532">
         <label for="d1e33c43-5079-4e66-961a-df032d38d532">This is a todo with style</label>
       </div>`);
@@ -394,6 +453,14 @@ describe('#convert', () => {
         const html = await makeSut(BlockMocks.QUOTE_WITH_FORMAT).convert();
 
         expect(html).toBe('<blockquote style="background-color: #EAE4F2; ">This a quote with background</blockquote>');
+      });
+    });
+
+    describe('When there are background color on quote', () => {
+      it('returns html with style with background color prop', async () => {
+        const html = await makeSut(BlockMocks.QUOTE_WITH_FORMAT_FOREGROUND).convert();
+
+        expect(html).toBe('<blockquote style="color: #AD1A72; ">This a quote with color</blockquote>');
       });
     });
   });

@@ -391,6 +391,24 @@ export const TEXT_WITH_FORMAT = [
   },
 ];
 
+export const TEXT_WITH_FORMAT_FOREGROUND = [
+  {
+    id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
+    type: 'text',
+    properties: {},
+    format: {
+      block_color: 'purple',
+    },
+    children: [] as Block[],
+    decorableTexts: [
+      {
+        text: 'This is a text with purple color',
+        decorations: [],
+      },
+    ],
+  },
+];
+
 export const H1_TEXT = [
   {
     id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
@@ -471,6 +489,24 @@ export const H1_WITH_FORMAT = [
   },
 ];
 
+export const H1_WITH_FORMAT_FOREGROUND = [
+  {
+    id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
+    type: 'header',
+    properties: {},
+    format: {
+      block_color: 'yellow',
+    },
+    children: [] as Block[],
+    decorableTexts: [
+      {
+        text: 'This is a h1 with yellow color',
+        decorations: [],
+      },
+    ],
+  },
+];
+
 export const H2_TEXT = [
   {
     id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
@@ -544,7 +580,25 @@ export const H2_WITH_FORMAT = [
     children: [] as Block[],
     decorableTexts: [
       {
-        text: 'This is a h2 with red background',
+        text: 'This is a h2 with yellow background',
+        decorations: [],
+      },
+    ],
+  },
+];
+
+export const H2_WITH_FORMAT_FOREGROUND = [
+  {
+    id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
+    type: 'sub_header',
+    properties: {},
+    format: {
+      block_color: 'gray',
+    },
+    children: [] as Block[],
+    decorableTexts: [
+      {
+        text: 'This is a h2 with gray color',
         decorations: [],
       },
     ],
@@ -624,7 +678,25 @@ export const H3_WITH_FORMAT = [
     children: [] as Block[],
     decorableTexts: [
       {
-        text: 'This is a h3 with red background',
+        text: 'This is a h3 with orange background',
+        decorations: [],
+      },
+    ],
+  },
+];
+
+export const H3_WITH_FORMAT_FOREGROUND = [
+  {
+    id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
+    type: 'sub_sub_header',
+    properties: {},
+    format: {
+      block_color: 'brown',
+    },
+    children: [] as Block[],
+    decorableTexts: [
+      {
+        text: 'This is a h3 with brown color',
         decorations: [],
       },
     ],
@@ -659,6 +731,24 @@ export const UNORDERED_LIST_WITH_SINGLE_ITEM_AND_FORMAT = [
     decorableTexts: [
       {
         text: 'This is a item with background',
+        decorations: [],
+      },
+    ],
+  },
+];
+
+export const UNORDERED_LIST_WITH_SINGLE_ITEM_AND_FORMAT_FOREGROUND = [
+  {
+    id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
+    type: 'bulleted_list',
+    properties: {},
+    format: {
+      block_color: 'orange',
+    },
+    children: [] as Block[],
+    decorableTexts: [
+      {
+        text: 'This is a item with color',
         decorations: [],
       },
     ],
@@ -774,6 +864,24 @@ export const ORDERED_LIST_WITH_SINGLE_ITEM_AND_FORMAT = [
   },
 ];
 
+export const ORDERED_LIST_WITH_SINGLE_ITEM_AND_FORMAT_FOREGROUND = [
+  {
+    id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
+    type: 'numbered_list',
+    properties: {},
+    format: {
+      block_color: 'green',
+    },
+    children: [] as Block[],
+    decorableTexts: [
+      {
+        text: 'This is a item with color',
+        decorations: [],
+      },
+    ],
+  },
+];
+
 export const ORDERED_LIST_WITH_TWO_ITEMS = [
   {
     id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
@@ -872,6 +980,24 @@ export const TODO_WITH_FORMAT = [
     properties: {},
     format: {
       block_color: 'blue_background',
+    },
+    children: [] as Block[],
+    decorableTexts: [
+      {
+        text: 'This is a todo with style',
+        decorations: [],
+      },
+    ],
+  },
+];
+
+export const TODO_WITH_FORMAT_FOREGROUND = [
+  {
+    id: 'd1e33c43-5079-4e66-961a-df032d38d532',
+    type: 'to_do',
+    properties: {},
+    format: {
+      block_color: 'blue',
     },
     children: [] as Block[],
     decorableTexts: [
@@ -1000,6 +1126,24 @@ export const QUOTE_WITH_FORMAT = [
     decorableTexts: [
       {
         text: 'This a quote with background',
+        decorations: [] as Decoration[],
+      },
+    ],
+  },
+];
+
+export const QUOTE_WITH_FORMAT_FOREGROUND = [
+  {
+    id: 'e0a0cfa3-1f64-438b-ac79-95e5c7ad4565',
+    type: 'quote',
+    properties: {},
+    format: {
+      block_color: 'pink',
+    },
+    children: [] as Block[],
+    decorableTexts: [
+      {
+        text: 'This a quote with color',
         decorations: [] as Decoration[],
       },
     ],
