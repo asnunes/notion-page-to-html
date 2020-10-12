@@ -234,6 +234,14 @@ describe('#convert', () => {
       });
     });
 
+    describe('When single block is given with background color', () => {
+      it('returns html with ul tag with li tag inside', async () => {
+        const html = await makeSut(BlockMocks.UNORDERED_LIST_WITH_SINGLE_ITEM_AND_FORMAT).convert();
+
+        expect(html).toBe('<ul>\n  <li style="background-color: #E9E5E3; ">This is a item with background</li>\n</ul>');
+      });
+    });
+
     describe('When list block with two items is given', () => {
       it('returns html with ul tag with li tag inside', async () => {
         const html = await makeSut(BlockMocks.UNORDERED_LIST_WITH_TWO_ITEMS).convert();

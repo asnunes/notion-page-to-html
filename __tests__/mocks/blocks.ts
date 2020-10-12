@@ -647,6 +647,24 @@ export const UNORDERED_LIST_WITH_SINGLE_ITEM = [
   },
 ];
 
+export const UNORDERED_LIST_WITH_SINGLE_ITEM_AND_FORMAT = [
+  {
+    id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
+    type: 'bulleted_list',
+    properties: {},
+    format: {
+      block_color: 'brown_background',
+    },
+    children: [] as Block[],
+    decorableTexts: [
+      {
+        text: 'This is a item with background',
+        decorations: [],
+      },
+    ],
+  },
+];
+
 export const UNORDERED_LIST_WITH_TWO_ITEMS = [
   {
     id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
