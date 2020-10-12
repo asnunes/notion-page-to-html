@@ -159,6 +159,14 @@ describe('#convert', () => {
         );
       });
     });
+
+    describe('When header block has background color', () => {
+      it('returns html h1 tag with style and background-color prop', async () => {
+        const html = await makeSut(BlockMocks.H1_WITH_FORMAT).convert();
+
+        expect(html).toBe('<h1 style="background-color: #DDEDEA; ">This is a h1 with red background</h1>');
+      });
+    });
   });
 
   describe('When only a h2 title block is given', () => {
