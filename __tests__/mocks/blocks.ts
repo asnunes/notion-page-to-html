@@ -1357,6 +1357,22 @@ export const CALLOUT = [
   },
 ];
 
+export const CALLOUT_WITH_IMAGE = [
+  {
+    id: '16431c64-3bf0-481f-a29f-d544780d84f3',
+    type: 'callout',
+    properties: { page_icon: 'https://example.com/image.png' },
+    format: {},
+    children: [] as Block[],
+    decorableTexts: [
+      {
+        text: 'This is a callout',
+        decorations: [],
+      },
+    ],
+  },
+];
+
 export const CALLOUT_WITH_BACKGROUND = [
   {
     id: '16431c64-3bf0-481f-a29f-d544780d84f3',

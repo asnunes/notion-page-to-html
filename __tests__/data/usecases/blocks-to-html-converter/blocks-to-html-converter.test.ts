@@ -581,6 +581,30 @@ describe('#convert', () => {
       });
     });
 
+    describe('with default background and image icon', () => {
+      beforeEach(() => {
+        const imageSource = 'https://example.com/image.png';
+        const blockId = '16431c64-3bf0-481f-a29f-d544780d84f3';
+
+        nock('https://www.notion.so')
+          .get(`/image/${encodeURIComponent(imageSource)}?table=block&id=${blockId}`)
+          .replyWithFile(200, resolve('__tests__/mocks/img/baseImage.jpeg'), {
+            'content-type': 'image/jpeg',
+          });
+      });
+
+      it('converts to callout html and image to base64', async () => {
+        const html = await makeSut(BlockMocks.CALLOUT_WITH_IMAGE).convert();
+
+        expect(html.replace(/\s/g, '')).toBe(
+          `<div class="callout">
+          <div class="callout-image"><img src="${base64Img}" alt="callout icon"></div>
+          <p>This is a callout</p>
+        </div>`.replace(/\s/g, ''),
+        );
+      });
+    });
+
     describe('with given background and emoji icon', () => {
       it('converts to callout html', async () => {
         const html = await makeSut(BlockMocks.CALLOUT_WITH_BACKGROUND).convert();

@@ -14,6 +14,34 @@ export const FULL_DOCUMENT = `
           max-width: 100%;
           max-height: 70vh;
         }
+
+        .callout {
+          padding: 16px 16px 16px 12px;
+          display: flex;
+          width: 95%;
+          border-radius: 3px;
+          border-width: 1px;
+          border-style: solid;
+          border-color: transparent;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .callout-emoji {
+            height: 21.6px;
+            width: 21.6px;
+            font-size: 21.6px;
+            line-height: 1.1;
+            margin-left: 0px;
+        }
+
+        .callout p {
+            max-width: 100%;
+            width: 100%;
+            white-space: pre-wrap;
+            word-break: break-word;
+            margin-left: 8px;
+        }
     </style>
     <title>Simple Page Test</title>
     <link href="https://myCDN.com/prism@v1.x/themes/prism.css" rel="stylesheet">
@@ -52,6 +80,34 @@ export const DOCUMENT_WITHOUT_TITLE = `
         img {
           max-width: 100%;
           max-height: 70vh;
+        }
+
+        .callout {
+          padding: 16px 16px 16px 12px;
+          display: flex;
+          width: 95%;
+          border-radius: 3px;
+          border-width: 1px;
+          border-style: solid;
+          border-color: transparent;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .callout-emoji {
+            height: 21.6px;
+            width: 21.6px;
+            font-size: 21.6px;
+            line-height: 1.1;
+            margin-left: 0px;
+        }
+
+        .callout p {
+            max-width: 100%;
+            width: 100%;
+            white-space: pre-wrap;
+            word-break: break-word;
+            margin-left: 8px;
         }
     </style>
     <link href="https://myCDN.com/prism@v1.x/themes/prism.css" rel="stylesheet">
@@ -117,6 +173,34 @@ export const DOCUMENT_METADATA = `
           max-width: 100%;
           max-height: 70vh;
         }
+
+        .callout {
+          padding: 16px 16px 16px 12px;
+          display: flex;
+          width: 95%;
+          border-radius: 3px;
+          border-width: 1px;
+          border-style: solid;
+          border-color: transparent;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .callout-emoji {
+            height: 21.6px;
+            width: 21.6px;
+            font-size: 21.6px;
+            line-height: 1.1;
+            margin-left: 0px;
+        }
+
+        .callout p {
+            max-width: 100%;
+            width: 100%;
+            white-space: pre-wrap;
+            word-break: break-word;
+            margin-left: 8px;
+        }
     </style>
     <title>Simple Page Test</title>
     <link href="https://myCDN.com/prism@v1.x/themes/prism.css" rel="stylesheet">
@@ -155,6 +239,34 @@ export const DOCUMENT_WITHOUT_SCRIPTS = `
         img {
           max-width: 100%;
           max-height: 70vh;
+        }
+
+        .callout {
+          padding: 16px 16px 16px 12px;
+          display: flex;
+          width: 95%;
+          border-radius: 3px;
+          border-width: 1px;
+          border-style: solid;
+          border-color: transparent;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .callout-emoji {
+            height: 21.6px;
+            width: 21.6px;
+            font-size: 21.6px;
+            line-height: 1.1;
+            margin-left: 0px;
+        }
+
+        .callout p {
+            max-width: 100%;
+            width: 100%;
+            white-space: pre-wrap;
+            word-break: break-word;
+            margin-left: 8px;
         }
     </style>
     <title>Simple Page Test</title>
