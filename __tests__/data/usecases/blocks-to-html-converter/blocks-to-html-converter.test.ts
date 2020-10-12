@@ -235,7 +235,7 @@ describe('#convert', () => {
     });
 
     describe('When single block is given with background color', () => {
-      it('returns html with ul tag with li tag inside', async () => {
+      it('returns html with ul tag with li tag inside and background', async () => {
         const html = await makeSut(BlockMocks.UNORDERED_LIST_WITH_SINGLE_ITEM_AND_FORMAT).convert();
 
         expect(html).toBe('<ul>\n  <li style="background-color: #E9E5E3; ">This is a item with background</li>\n</ul>');
@@ -267,6 +267,14 @@ describe('#convert', () => {
         const html = await makeSut(BlockMocks.ORDERED_LIST_WITH_SINGLE_ITEM).convert();
 
         expect(html).toBe('<ol>\n  <li>This is a test</li>\n</ol>');
+      });
+    });
+
+    describe('When single block is given with background color', () => {
+      it('returns html with ul tag with li tag inside and background', async () => {
+        const html = await makeSut(BlockMocks.ORDERED_LIST_WITH_SINGLE_ITEM_AND_FORMAT).convert();
+
+        expect(html).toBe('<ol>\n  <li style="background-color: #E03E3E; ">This is a item with background</li>\n</ol>');
       });
     });
 
