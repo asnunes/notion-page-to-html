@@ -309,6 +309,17 @@ describe('#convert', () => {
       });
     });
 
+    describe('When single unchecked block with background color is given', () => {
+      it('returns html with a div and unchecked checkbox and label inside with style on div', async () => {
+        const html = await makeSut(BlockMocks.TODO_WITH_FORMAT).convert();
+
+        expect(html).toBe(`<div style="background-color: #DDEBF1; ">
+        <input type="checkbox" name="d1e33c43-5079-4e66-961a-df032d38d532">
+        <label for="d1e33c43-5079-4e66-961a-df032d38d532">This is a todo with style</label>
+      </div>`);
+      });
+    });
+
     describe('When single checked block is given', () => {
       it('returns html with a div and checked checkbox and label inside', async () => {
         const html = await makeSut(BlockMocks.CHECKED_TODO).convert();

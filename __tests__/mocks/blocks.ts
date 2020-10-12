@@ -865,6 +865,24 @@ export const TODO = [
   },
 ];
 
+export const TODO_WITH_FORMAT = [
+  {
+    id: 'd1e33c43-5079-4e66-961a-df032d38d532',
+    type: 'to_do',
+    properties: {},
+    format: {
+      block_color: 'blue_background',
+    },
+    children: [] as Block[],
+    decorableTexts: [
+      {
+        text: 'This is a todo with style',
+        decorations: [],
+      },
+    ],
+  },
+];
+
 export const CHECKED_TODO = [
   {
     id: 'd1e33c43-5079-4e66-961a-df032d38d532',
