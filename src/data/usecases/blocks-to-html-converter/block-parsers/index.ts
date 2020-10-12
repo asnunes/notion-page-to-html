@@ -1,5 +1,6 @@
 export * from './image';
 export * from './list';
+export * from './callout';
 export * from './code';
 export * from './divider';
 export * from './equation';
