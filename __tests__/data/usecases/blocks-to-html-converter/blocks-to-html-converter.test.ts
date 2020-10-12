@@ -567,6 +567,21 @@ describe('#convert', () => {
     });
   });
 
+  describe('When callout block is given', () => {
+    describe('with default background and emoji icon', () => {
+      it('converts to callout html', async () => {
+        const html = await makeSut(BlockMocks.CALLOUT).convert();
+
+        expect(html.replace(/\s/g, '')).toBe(
+          `<div class="callout">
+          <div class="callout-emoji">💡</div>
+          <p>This is a callout</p>
+        </div>`.replace(/\s/g, ''),
+        );
+      });
+    });
+  });
+
   describe('When unknown block is given', () => {
     it('returns empty string', async () => {
       const html = await makeSut(BlockMocks.UNKNOWN).convert();
