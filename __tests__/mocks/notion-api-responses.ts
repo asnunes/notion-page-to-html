@@ -205,6 +205,15 @@ export const SINGLE_TEXT_WITH_FORMAT = [
   },
 ];
 
+export const CALLOUT_WITH_PAGE_ICON = [
+  {
+    id: '16431c64-3bf0-481f-a29f-d544780d84f3',
+    type: 'callout',
+    properties: { title: [['This is a callout']] },
+    format: { page_icon: '💡' },
+  },
+];
+
 export const TEXT_WITH_VIDEO_NOTION_API_CONTENT_RESPONSE = [
   {
     id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',

@@ -93,6 +93,17 @@ describe('#toBlocks', () => {
     });
   });
 
+  describe('when page with page_icon in format is given', () => {
+    it('passes format prop to properties', () => {
+      const notionApiContentResponses = NotionApiMocks.CALLOUT_WITH_PAGE_ICON;
+      const notionApiContentResponsesToBlocks = new NotionApiContentResponsesToBlocks(notionApiContentResponses);
+
+      const result = notionApiContentResponsesToBlocks.toBlocks();
+
+      expect(result).toEqual(BlockMocks.CALLOUT);
+    });
+  });
+
   describe('when page with youtube link', () => {
     it('converts to one block with decoration with value', () => {
       const notionApiContentResponses = NotionApiMocks.TEXT_WITH_VIDEO_NOTION_API_CONTENT_RESPONSE;
