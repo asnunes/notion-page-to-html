@@ -215,6 +215,14 @@ describe('#convert', () => {
         );
       });
     });
+
+    describe('When sub header block has background color', () => {
+      it('returns html h3 tag with style and background-color prop', async () => {
+        const html = await makeSut(BlockMocks.H3_WITH_FORMAT).convert();
+
+        expect(html).toBe('<h3 style="background-color: #FAEBDD; ">This is a h3 with red background</h3>');
+      });
+    });
   });
 
   describe('When only an unordered list block is given', () => {

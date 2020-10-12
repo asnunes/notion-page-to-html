@@ -613,6 +613,24 @@ export const H3_TEXT_WITH_DECORATIONS = [
   },
 ];
 
+export const H3_WITH_FORMAT = [
+  {
+    id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
+    type: 'sub_sub_header',
+    properties: {},
+    format: {
+      block_color: 'orange_background',
+    },
+    children: [] as Block[],
+    decorableTexts: [
+      {
+        text: 'This is a h3 with red background',
+        decorations: [],
+      },
+    ],
+  },
+];
+
 export const UNORDERED_LIST_WITH_SINGLE_ITEM = [
   {
     id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
