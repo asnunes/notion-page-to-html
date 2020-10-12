@@ -533,6 +533,24 @@ export const H2_TEXT_WITH_DECORATIONS = [
   },
 ];
 
+export const H2_WITH_FORMAT = [
+  {
+    id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
+    type: 'sub_header',
+    properties: {},
+    format: {
+      block_color: 'yellow_background',
+    },
+    children: [] as Block[],
+    decorableTexts: [
+      {
+        text: 'This is a h2 with red background',
+        decorations: [],
+      },
+    ],
+  },
+];
+
 export const H3_TEXT = [
   {
     id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',

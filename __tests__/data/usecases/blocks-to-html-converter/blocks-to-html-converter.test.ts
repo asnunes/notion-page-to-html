@@ -187,6 +187,14 @@ describe('#convert', () => {
         );
       });
     });
+
+    describe('When sub header block has background color', () => {
+      it('returns html h2 tag with style and background-color prop', async () => {
+        const html = await makeSut(BlockMocks.H2_WITH_FORMAT).convert();
+
+        expect(html).toBe('<h2 style="background-color: #FBF3DB; ">This is a h2 with red background</h2>');
+      });
+    });
   });
 
   describe('When only a h3 title block is given', () => {
