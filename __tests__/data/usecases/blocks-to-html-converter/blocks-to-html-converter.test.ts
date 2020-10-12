@@ -131,6 +131,14 @@ describe('#convert', () => {
         expect(html).toBe('<p>Hello World</br>Is everything alright?</br>Yes, Dude!</p>');
       });
     });
+
+    describe('When multiline text block is given', () => {
+      it('returns html with two p tags', async () => {
+        const html = await makeSut(BlockMocks.TEXT_WITH_FORMAT).convert();
+
+        expect(html).toBe('<p style="background-color: #FBE4E4; ">This is a text with red background</p>');
+      });
+    });
   });
 
   describe('When only a h1 title block is given', () => {
