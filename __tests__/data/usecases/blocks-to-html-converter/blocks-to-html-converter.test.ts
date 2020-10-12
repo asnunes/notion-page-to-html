@@ -132,8 +132,8 @@ describe('#convert', () => {
       });
     });
 
-    describe('When multiline text block is given', () => {
-      it('returns html with two p tags', async () => {
+    describe('When text block has background color', () => {
+      it('returns html p tag with style and background-color prop', async () => {
         const html = await makeSut(BlockMocks.TEXT_WITH_FORMAT).convert();
 
         expect(html).toBe('<p style="background-color: #FBE4E4; ">This is a text with red background</p>');
