@@ -1,5 +1,5 @@
 import { Format } from 'data/protocols/blocks/format';
-import { backgroundColorToHex } from '../../helpers/color-to-hex';
+import { foregroundColorToHex, backgroundColorToHex } from '../../helpers/color-to-hex';
 
 export class FormatToStyle {
   private readonly _format: Format;
@@ -13,8 +13,25 @@ export class FormatToStyle {
 
     const styleProps = [];
     const blockColor = this._format.block_color;
-    if (blockColor) styleProps.push(`background-color: ${backgroundColorToHex(blockColor)}; `);
+    if (blockColor) styleProps.push(new BlockColorToProp(blockColor).toStyle());
 
     return ` style="${styleProps.join('')}"`;
+  }
+}
+
+class BlockColorToProp {
+  private readonly _blockColor: string;
+
+  constructor(blockColor: string) {
+    this._blockColor = blockColor;
+  }
+
+  toStyle(): string {
+    if (this._isBackground()) return `background-color: ${backgroundColorToHex(this._blockColor)}; `;
+    return `color: ${foregroundColorToHex(this._blockColor)}; `;
+  }
+
+  private _isBackground(): boolean {
+    return !!this._blockColor?.includes('background');
   }
 }
