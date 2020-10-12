@@ -988,6 +988,24 @@ export const QUOTE = [
   },
 ];
 
+export const QUOTE_WITH_FORMAT = [
+  {
+    id: 'e0a0cfa3-1f64-438b-ac79-95e5c7ad4565',
+    type: 'quote',
+    properties: {},
+    format: {
+      block_color: 'purple_background',
+    },
+    children: [] as Block[],
+    decorableTexts: [
+      {
+        text: 'This a quote with background',
+        decorations: [] as Decoration[],
+      },
+    ],
+  },
+];
+
 export const QUOTE_WITH_DECORATION = [
   {
     id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',

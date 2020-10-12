@@ -388,6 +388,14 @@ describe('#convert', () => {
         );
       });
     });
+
+    describe('When there are background color on quote', () => {
+      it('returns html with style with background color prop', async () => {
+        const html = await makeSut(BlockMocks.QUOTE_WITH_FORMAT).convert();
+
+        expect(html).toBe('<blockquote style="background-color: #EAE4F2; ">This a quote with background</blockquote>');
+      });
+    });
   });
 
   describe('When divider block is given', () => {
