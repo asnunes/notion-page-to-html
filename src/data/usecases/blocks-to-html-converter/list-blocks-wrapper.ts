@@ -31,6 +31,7 @@ export class ListBlocksWrapper {
       id: `${childBlock.id}-parent`,
       type: 'list',
       properties: {},
+      format: {},
       children: [childBlock],
       decorableTexts: [],
     };
