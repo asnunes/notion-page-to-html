@@ -8,3 +8,10 @@ export const blocksToHtml = async (blocks: Block[]): Promise<string> => {
   const html = await blocksToHtmlConverter.convert();
   return Promise.resolve(html);
 };
+
+export const indentBlocksToHtml = async (blocks: Block[]): Promise<string> => {
+  if (blocks.length === 0) return Promise.resolve('');
+
+  const html = await blocksToHtml(blocks);
+  return Promise.resolve(`<div class="indented">${html}</div>`);
+};
