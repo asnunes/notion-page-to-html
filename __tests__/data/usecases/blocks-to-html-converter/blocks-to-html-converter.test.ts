@@ -35,7 +35,7 @@ describe('#convert', () => {
     });
 
     describe('When single text block has children', () => {
-      it('returns div html with p tag and children blocks inside', async () => {
+      it('returns html with p tag and children blocks inside', async () => {
         const html = await makeSut(BlockMocks.SINGLE_TEXT_WITH_CHILDREN).convert();
 
         expect(html.replace(/\s/g, '')).toBe(
@@ -278,6 +278,25 @@ describe('#convert', () => {
         const html = await makeSut(BlockMocks.UNORDERED_LIST_WITH_SINGLE_ITEM).convert();
 
         expect(html).toBe('<ul>\n  <li>This is a test</li>\n</ul>');
+      });
+    });
+
+    describe('When block has children', () => {
+      it('returns html with ul and li tags and children blocks inside', async () => {
+        const html = await makeSut(BlockMocks.UNORDERED_LIST_WITH_CHILDREN).convert();
+
+        expect(html.replace(/\s/g, '')).toBe(
+          `<ul>
+            <li>Hello World
+              <div class="indented">
+                <ul>
+                  <li>This is a child</li>
+                  <li>This is a child too</li>
+                </ul>
+              </div>
+            </li>
+          </ul>`.replace(/\s/g, ''),
+        );
       });
     });
 
