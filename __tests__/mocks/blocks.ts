@@ -1102,6 +1102,49 @@ export const TODO = [
   },
 ];
 
+export const TODO_WITH_CHILDREN = [
+  {
+    id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
+    type: 'to_do',
+    properties: {},
+    format: {},
+    children: [
+      {
+        id: '80d0fc46-5511-4d1d-a4ec-8b2f41214426',
+        type: 'to_do',
+        properties: {},
+        format: {},
+        children: [] as Block[],
+        decorableTexts: [
+          {
+            text: 'This is a child',
+            decorations: [],
+          },
+        ],
+      },
+      {
+        id: '80d0fc46-5511-4d1d-a4ec-8b1212114426',
+        type: 'to_do',
+        properties: { checked: 'Yes' },
+        format: {},
+        children: [] as Block[],
+        decorableTexts: [
+          {
+            text: 'This is a child too',
+            decorations: [],
+          },
+        ],
+      },
+    ] as Block[],
+    decorableTexts: [
+      {
+        text: 'Hello World',
+        decorations: [],
+      },
+    ],
+  },
+];
+
 export const TODO_WITH_FORMAT = [
   {
     id: 'd1e33c43-5079-4e66-961a-df032d38d532',

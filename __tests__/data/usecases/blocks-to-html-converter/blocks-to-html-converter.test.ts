@@ -410,6 +410,31 @@ describe('#convert', () => {
       });
     });
 
+    describe('When block has children', () => {
+      it('returns html with todo and children blocks inside', async () => {
+        const html = await makeSut(BlockMocks.TODO_WITH_CHILDREN).convert();
+
+        expect(html.replace(/\s/g, '')).toBe(
+          `
+          <div>
+            <input type="checkbox" name="80d0fc46-5511-4d1d-a4ec-8b2f43d75226">
+            <label for="80d0fc46-5511-4d1d-a4ec-8b2f43d75226">Hello World</label>
+            <div class="indented">
+              <div>
+                <input type="checkbox" name="80d0fc46-5511-4d1d-a4ec-8b2f41214426">
+                <label for="80d0fc46-5511-4d1d-a4ec-8b2f41214426">This is a child</label>
+              </div>
+              <div>
+                <input type="checkbox" checked name="80d0fc46-5511-4d1d-a4ec-8b1212114426">
+                <label for="80d0fc46-5511-4d1d-a4ec-8b1212114426">This is a child too</label>
+              </div>
+            </div>
+          </div>
+          `.replace(/\s/g, ''),
+        );
+      });
+    });
+
     describe('When single unchecked block with background color is given', () => {
       it('returns html with a div and unchecked checkbox and label inside with style on div', async () => {
         const html = await makeSut(BlockMocks.TODO_WITH_FORMAT).convert();
