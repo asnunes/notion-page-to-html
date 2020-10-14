@@ -28,21 +28,28 @@ export class NotionApiPageFetcher {
     const pageData = pageRecords.data as Record<string, any>;
     const chunkData = chunk.data as Record<string, any>;
 
-    const contentIds = pageData.results[0].value.content;
+    const contentIds = [pageData.results[0].value.id];
+    return this._mapContentsIdToContent(contentIds, chunkData, pageData);
+  }
+
+  private _mapContentsIdToContent(
+    contentIds: string[],
+    chunkData: Record<string, any>,
+    pageData: Record<string, any>,
+  ): NotionApiContentResponse[] {
     const contents = contentIds
       .filter((id: string) => !!chunkData.recordMap?.block[id])
       .map((id: string) => chunkData.recordMap?.block[id].value);
 
-    return contents.map((c: Record<string, any>, index: number) => {
-      const title = index === 0 && pageData.results[0].value.properties?.title[0][0];
+    return contents.map((c: Record<string, any>) => {
       const format = c.format;
 
       return {
         id: c.id,
         type: c.type,
         properties: c.properties,
-        ...(title && { title }),
         ...(format && { format }),
+        contents: this._mapContentsIdToContent(c.content || [], chunkData, pageData),
       };
     });
   }

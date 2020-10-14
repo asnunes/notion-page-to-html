@@ -1,14 +1,14 @@
 import { ToHtml } from '../../../domain/usecases/to-html';
 import { Block } from '../../protocols/blocks';
-import { BlocksDispatcher } from './blocks-dispatcher';
+import { BlockDispatcher } from './block-dispatcher';
 import { ListBlocksWrapper } from './list-blocks-wrapper';
 
 export class BlocksToHTML implements ToHtml {
   private _blocks: Block[];
-  private _dispatcher: BlocksDispatcher;
+  private _dispatcher: BlockDispatcher;
   private _listBlocksWrapper: ListBlocksWrapper;
 
-  constructor(blocks: Block[], dispatcher: BlocksDispatcher, listBlocksWrapper: ListBlocksWrapper) {
+  constructor(blocks: Block[], dispatcher: BlockDispatcher, listBlocksWrapper: ListBlocksWrapper) {
     this._dispatcher = dispatcher;
     this._listBlocksWrapper = listBlocksWrapper;
     this._blocks = this._wrapLists(blocks);

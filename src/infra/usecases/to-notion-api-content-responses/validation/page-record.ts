@@ -15,7 +15,7 @@ export class PageRecordValidator implements Validation {
   validate(): Error | null {
     const data = this._pageRecord.data as Record<string, any>;
 
-    if (this._pageRecord.status === 401 || !data.results[0]?.value) {
+    if (this._pageRecord.status === 401 || !data.results?.[0]?.value) {
       return new NotionPageAccessError(this._notionPageId);
     }
 

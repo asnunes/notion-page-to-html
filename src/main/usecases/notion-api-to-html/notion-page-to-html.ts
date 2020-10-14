@@ -15,9 +15,11 @@ export class NotionPageToHtml {
   private async _convert(pageURL: string, htmlOptions: HtmlOptions = {}): Promise<string> {
     const pageId = makeNotionUrlToPageIdFactory(pageURL).toPageId();
     const notionApiResponses = await makeNotionApiPageFetcher(pageId).getNotionPageContents();
-
-    const title = notionApiResponses[0].title || '';
     const blocks = new NotionApiContentResponsesToBlocks(notionApiResponses).toBlocks();
+
+    if (blocks.length === 0) return Promise.resolve('');
+
+    const title = blocks[0].decorableTexts[0]?.text || '';
     const htmlBody = await makeBlocksToHtml(blocks).convert();
 
     return new OptionsHtmlWrapper(htmlOptions).wrapHtml(title, htmlBody);

@@ -2,7 +2,7 @@ import { Block } from '../../protocols/blocks';
 import { ToHtml, ToHtmlClass } from '../../../domain/usecases/to-html';
 import * as blockParsers from './block-parsers';
 
-export class BlocksDispatcher {
+export class BlockDispatcher {
   dispatch(block: Block): ToHtml {
     const ToHtmlConverter = fromBlockToHtmlConverter[block.type] || blockParsers.UnknownBlockToHtml;
     return new ToHtmlConverter(block);
@@ -23,4 +23,5 @@ const fromBlockToHtmlConverter: Record<string, ToHtmlClass> = {
   video: blockParsers.YouTubeVideoBlockToHtml,
   image: blockParsers.ImageBlockToHtml,
   callout: blockParsers.CalloutBlockToHtml,
+  page: blockParsers.PageBlockToHtml,
 };

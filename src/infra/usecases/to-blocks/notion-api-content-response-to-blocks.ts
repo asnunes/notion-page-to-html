@@ -17,7 +17,7 @@ export class NotionApiContentResponsesToBlocks {
       type: nacr.type,
       format: new FormatFilter(nacr.format).filter(),
       properties: new PropertiesParser(nacr.format, nacr.properties).parse(),
-      children: [] as Block[],
+      children: new NotionApiContentResponsesToBlocks(nacr.contents).toBlocks(),
       decorableTexts: new PropTitleToDecorableTexts(nacr.properties?.title).toDecorableTexts(),
     }));
   }
