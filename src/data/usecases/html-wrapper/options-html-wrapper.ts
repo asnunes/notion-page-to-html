@@ -95,6 +95,10 @@ export class OptionsHtmlWrapper implements HtmlWrapper {
         word-break: break-word;
         margin-left: 8px;
       }
+
+      .indented {
+        padding-left: 1.5em;
+      }
     </style>
     `;
   }

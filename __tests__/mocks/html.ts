@@ -42,6 +42,10 @@ export const FULL_DOCUMENT = `
             word-break: break-word;
             margin-left: 8px;
         }
+
+        .indented {
+          padding-left: 1.5em;
+        }
     </style>
     <title>Simple Page Test</title>
     <link href="https://myCDN.com/prism@v1.x/themes/prism.css" rel="stylesheet">
@@ -108,6 +112,10 @@ export const DOCUMENT_WITHOUT_TITLE = `
             white-space: pre-wrap;
             word-break: break-word;
             margin-left: 8px;
+        }
+        
+        .indented {
+          padding-left: 1.5em;
         }
     </style>
     <link href="https://myCDN.com/prism@v1.x/themes/prism.css" rel="stylesheet">
@@ -201,6 +209,10 @@ export const DOCUMENT_METADATA = `
             word-break: break-word;
             margin-left: 8px;
         }
+
+        .indented {
+          padding-left: 1.5em;
+        }
     </style>
     <title>Simple Page Test</title>
     <link href="https://myCDN.com/prism@v1.x/themes/prism.css" rel="stylesheet">
@@ -267,6 +279,10 @@ export const DOCUMENT_WITHOUT_SCRIPTS = `
             white-space: pre-wrap;
             word-break: break-word;
             margin-left: 8px;
+        }
+
+        .indented {
+          padding-left: 1.5em;
         }
     </style>
     <title>Simple Page Test</title>
