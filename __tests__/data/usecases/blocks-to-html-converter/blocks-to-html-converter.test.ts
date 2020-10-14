@@ -4,7 +4,7 @@ import { resolve } from 'path';
 import { Block } from '../../../../src/data/protocols/blocks';
 import * as BlockMocks from '../../../mocks/blocks';
 import { BlocksToHTML } from '../../../../src/data/usecases/blocks-to-html-converter/blocks-to-html-converter';
-import { BlocksDispatcher } from '../../../../src/data/usecases/blocks-to-html-converter/blocks-dispatcher';
+import { BlockDispatcher } from '../../../../src/data/usecases/blocks-to-html-converter/block-dispatcher';
 import { ListBlocksWrapper } from '../../../../src/data/usecases/blocks-to-html-converter/list-blocks-wrapper';
 import { ToHtml } from '../../../../src/domain/usecases/to-html';
 import { Base64Converter } from '../../../../src/utils/base-64-converter';
@@ -12,7 +12,7 @@ import base64Img from '../../../mocks/img/base64';
 
 describe('#convert', () => {
   const makeSut = (blocks: Block[]): ToHtml => {
-    const blockDispatcher = new BlocksDispatcher();
+    const blockDispatcher = new BlockDispatcher();
     const listBlocksWrapper = new ListBlocksWrapper();
     return new BlocksToHTML(blocks, blockDispatcher, listBlocksWrapper);
   };

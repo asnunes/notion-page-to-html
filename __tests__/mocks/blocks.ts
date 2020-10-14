@@ -1288,27 +1288,36 @@ export const YOUTUBE_VIDEO = [
 
 export const TEXT_WITH_YOUTUBE_VIDEO = [
   {
-    id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
-    type: 'text',
+    id: '4d64bbc0-634d-4758-befa-85c5a3a6c22f',
+    type: 'page',
     properties: {},
     format: {},
-    children: [] as Block[],
-    decorableTexts: [
+    decorableTexts: [{ text: 'Simple Page Test', decorations: [] }],
+    children: [
       {
-        text: 'Hello World',
-        decorations: [] as Decoration[],
+        id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
+        type: 'text',
+        properties: {},
+        format: {},
+        children: [] as Block[],
+        decorableTexts: [
+          {
+            text: 'Hello World',
+            decorations: [] as Decoration[],
+          },
+        ],
+      },
+      {
+        id: 'dcde43cb-7131-4687-8f22-c9789fa75f46',
+        type: 'video',
+        properties: {
+          source: 'https://www.youtube.com/watch?v=xBFqxBfLJWc',
+        },
+        format: {},
+        children: [] as Block[],
+        decorableTexts: [] as DecorableText[],
       },
     ],
-  },
-  {
-    id: 'dcde43cb-7131-4687-8f22-c9789fa75f46',
-    type: 'video',
-    properties: {
-      source: 'https://www.youtube.com/watch?v=xBFqxBfLJWc',
-    },
-    format: {},
-    children: [] as Block[],
-    decorableTexts: [] as DecorableText[],
   },
 ];
 

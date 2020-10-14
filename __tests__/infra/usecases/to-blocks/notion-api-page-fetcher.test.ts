@@ -25,6 +25,22 @@ describe('#getNotionPageContents', () => {
 
       expect(response).toEqual(NotionApiMocks.TEXT_WITH_VIDEO_NOTION_API_CONTENT_RESPONSE);
     });
+
+    it('passes its children', async () => {
+      nock('https://www.notion.so')
+        .post('/api/v3/loadPageChunk')
+        .reply(200, NotionApiMocks.SUCCESSFUL_PAGE_CHUCK_WITH_CHILDREN);
+      nock('https://www.notion.so')
+        .post('/api/v3/getRecordValues')
+        .reply(200, NotionApiMocks.SUCCESSFUL_RECORDS_WITH_CHILDREN);
+
+      const notionPageId = '4d64bbc0-634d-4758-befa-85c5a3a6c22f';
+      const apiInterface = makeSut(notionPageId);
+
+      const response = await apiInterface.getNotionPageContents();
+
+      expect(response).toEqual(NotionApiMocks.LIST_WITH_CHILDREN_RESPONSE);
+    });
   });
 
   describe('when notion page id is missing', () => {
