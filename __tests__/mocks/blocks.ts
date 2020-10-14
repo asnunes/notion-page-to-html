@@ -932,6 +932,49 @@ export const ORDERED_LIST_WITH_SINGLE_ITEM = [
   },
 ];
 
+export const ORDERED_LIST_WITH_CHILDREN = [
+  {
+    id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
+    type: 'numbered_list',
+    properties: {},
+    format: {},
+    children: [
+      {
+        id: '80d0fc46-5511-4d1d-a4ec-8b2f41214426',
+        type: 'numbered_list',
+        properties: {},
+        format: {},
+        children: [] as Block[],
+        decorableTexts: [
+          {
+            text: 'This is a child',
+            decorations: [],
+          },
+        ],
+      },
+      {
+        id: '80d0fc46-5511-4d1d-a4ec-8b1212114426',
+        type: 'numbered_list',
+        properties: {},
+        format: {},
+        children: [] as Block[],
+        decorableTexts: [
+          {
+            text: 'This is a child too',
+            decorations: [],
+          },
+        ],
+      },
+    ] as Block[],
+    decorableTexts: [
+      {
+        text: 'Hello World',
+        decorations: [],
+      },
+    ],
+  },
+];
+
 export const ORDERED_LIST_WITH_SINGLE_ITEM_AND_FORMAT = [
   {
     id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',

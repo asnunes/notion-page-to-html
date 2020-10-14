@@ -344,6 +344,25 @@ describe('#convert', () => {
       });
     });
 
+    describe('When block has children', () => {
+      it('returns html with ul and li tags and children blocks inside', async () => {
+        const html = await makeSut(BlockMocks.ORDERED_LIST_WITH_CHILDREN).convert();
+
+        expect(html.replace(/\s/g, '')).toBe(
+          `<ol>
+            <li>Hello World
+              <div class="indented">
+                <ol>
+                  <li>This is a child</li>
+                  <li>This is a child too</li>
+                </ol>
+              </div>
+            </li>
+          </ol>`.replace(/\s/g, ''),
+        );
+      });
+    });
+
     describe('When single block is given with background color', () => {
       it('returns html with ol tag with li tag inside and background', async () => {
         const html = await makeSut(BlockMocks.ORDERED_LIST_WITH_SINGLE_ITEM_AND_FORMAT).convert();
