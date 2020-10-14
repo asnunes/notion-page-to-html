@@ -27,6 +27,49 @@ export const SINGLE_TEXT = [
   },
 ];
 
+export const SINGLE_TEXT_WITH_CHILDREN = [
+  {
+    id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
+    type: 'text',
+    properties: {},
+    format: {},
+    children: [
+      {
+        id: '80d0fc46-5511-4d1d-a4ec-8b2f41214426',
+        type: 'text',
+        properties: {},
+        format: {},
+        children: [] as Block[],
+        decorableTexts: [
+          {
+            text: 'This is a child',
+            decorations: [],
+          },
+        ],
+      },
+      {
+        id: '80d0fc46-5511-4d1d-a4ec-8b1212114426',
+        type: 'text',
+        properties: {},
+        format: {},
+        children: [] as Block[],
+        decorableTexts: [
+          {
+            text: 'This is a child too',
+            decorations: [],
+          },
+        ],
+      },
+    ] as Block[],
+    decorableTexts: [
+      {
+        text: 'Hello World',
+        decorations: [],
+      },
+    ],
+  },
+];
+
 export const SINGLE_TEXT_WITH_BOLD = [
   {
     id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',

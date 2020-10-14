@@ -34,6 +34,21 @@ describe('#convert', () => {
       });
     });
 
+    describe('When single text block has children', () => {
+      it('returns div html with p tag and children blocks inside', async () => {
+        const html = await makeSut(BlockMocks.SINGLE_TEXT_WITH_CHILDREN).convert();
+
+        expect(html.replace(/\s/g, '')).toBe(
+          `<p>Hello World
+            <div class="indented">
+              <p>This is a child</p>
+              <p>This is a child too</p>
+            </div>
+          </p>`.replace(/\s/g, ''),
+        );
+      });
+    });
+
     describe('When single line text with bold part', () => {
       it('returns html with single p paragraph with strong tag nested', async () => {
         const html = await makeSut(BlockMocks.SINGLE_TEXT_WITH_BOLD).convert();
