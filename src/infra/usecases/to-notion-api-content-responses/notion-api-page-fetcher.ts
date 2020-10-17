@@ -1,7 +1,6 @@
 import { HttpPostClient, HttpResponse } from '../../../data/protocols/http-request';
 import { NotionApiContentResponse } from '../../protocols/notion-api-content-response';
 import { NotionPageIdValidator, PageRecordValidator } from './validation';
-import { FormatFilter } from '../to-blocks/format-filter';
 
 const NOTION_API_PATH = 'https://www.notion.so/api/v3/';
 
