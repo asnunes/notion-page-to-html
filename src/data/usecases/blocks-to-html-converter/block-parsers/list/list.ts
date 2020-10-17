@@ -11,17 +11,14 @@ export class ListBlockToHtml implements ToHtml {
 
   async convert(): Promise<string> {
     const tag: string = fromTypeToTag[this._block.children[0].type] || fromTypeToTag.bulleted_list;
+    const innerHtml = await this._itemsHtml();
 
-    return this._fromTemplate(tag, await this._itemsHtml());
+    return Promise.resolve(`<${tag}>\n  ${innerHtml}\n</${tag}>`);
   }
 
   private async _itemsHtml(): Promise<string> {
     const items = await Promise.all(this._block.children.map(async (c) => new ListItemToHtml(c).convert()));
     return Promise.resolve(items.join('\n  '));
-  }
-
-  private _fromTemplate(tag: string, innerHtml: string): string {
-    return `<${tag}>\n  ${innerHtml}\n</${tag}>`;
   }
 }
 
