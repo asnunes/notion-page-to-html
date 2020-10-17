@@ -37,7 +37,7 @@ describe('#toPageProps', () => {
 
         const result = await pageBlockToPageProps.toPageProps();
 
-        expect(result).toEqual({ title: 'Page Title', coverImageSrc: base64Img });
+        expect(result).toEqual({ title: 'Page Title', coverImageSrc: base64Img, coverImagePosition: 40 });
       });
     });
 
@@ -55,7 +55,7 @@ describe('#toPageProps', () => {
 
         const result = await pageBlockToPageProps.toPageProps();
 
-        expect(result).toEqual({ title: 'Page Title', coverImageSrc: base64Img });
+        expect(result).toEqual({ title: 'Page Title', coverImageSrc: base64Img, coverImagePosition: 40 });
       });
     });
 
