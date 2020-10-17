@@ -20,12 +20,10 @@ export class NotionPageToHtml {
 
     if (blocks.length === 0) return Promise.resolve('');
 
-    const pageProp = await new PageBlockToPageProps(blocks[0]).toPageProps();
-
-    const title = pageProp.title;
     const htmlBody = await makeBlocksToHtml(blocks).convert();
 
-    return new OptionsHtmlWrapper(htmlOptions).wrapHtml(title, htmlBody);
+    const pageProps = await new PageBlockToPageProps(blocks[0]).toPageProps();
+    return new OptionsHtmlWrapper(htmlOptions).wrapHtml(pageProps, htmlBody);
   }
 
   private async _parse(pageURL: string, includeFullDocument = true): Promise<string> {

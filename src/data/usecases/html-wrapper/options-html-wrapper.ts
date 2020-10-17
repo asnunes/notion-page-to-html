@@ -1,3 +1,4 @@
+import { PageProps } from 'data/protocols/page-props';
 import { HtmlWrapper } from '../../../domain/usecases/html-wrapper';
 import { HtmlOptions } from '../../protocols/html-options/html-options';
 
@@ -8,14 +9,16 @@ export class OptionsHtmlWrapper implements HtmlWrapper {
     this._options = options;
   }
 
-  wrapHtml(title: string, html: string): string {
+  wrapHtml(pageProps: PageProps, html: string): string {
     if (this._options.bodyContentOnly) return html;
+    const title = pageProps.title;
+
     return `\
     <!DOCTYPE html>
     <html>
       ${this._headFromTemplate(title)}
         <body>
-          ${!this._options.excludeHeaderFromBody ? this._headerFromTemplate(title) : ''}
+          ${!this._options.excludeHeaderFromBody ? this._headerFromTemplate(pageProps) : ''}
           ${html}
           ${!this._options.excludeScripts ? this._scriptsFromTemplate() : ''}
         </body>
@@ -56,10 +59,13 @@ export class OptionsHtmlWrapper implements HtmlWrapper {
     `;
   }
 
-  private _headerFromTemplate(title: string): string {
+  private _headerFromTemplate(pageProps: PageProps): string {
+    const { title, coverImageSrc } = pageProps;
+
     return `\
       <header>
         <h1 class="page-title">${title}</h1>
+        ${coverImageSrc ? `<img class="page-cover-image" src="${coverImageSrc}">` : ''}
       </header>
     `;
   }
