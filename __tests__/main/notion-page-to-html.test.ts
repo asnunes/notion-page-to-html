@@ -34,12 +34,12 @@ describe('#convert', () => {
       });
     });
 
-    describe('When excludeTitle is given', () => {
+    describe('When excludeTitleFromHead is given', () => {
       it('returns without title', async () => {
         const url = `https://www.notion.so/asnunes/Simple-Page-Text-${pageId}`;
 
         const response = await NotionPageToHtml.convert(url, {
-          excludeTitle: true,
+          excludeTitleFromHead: true,
         });
 
         expect(response.replace(/\s/g, '')).toEqual(HTML_RESPONSES.DOCUMENT_WITHOUT_TITLE.replace(/\s/g, ''));
@@ -79,6 +79,20 @@ describe('#convert', () => {
         });
 
         expect(response.replace(/\s/g, '')).toEqual(HTML_RESPONSES.DOCUMENT_WITHOUT_SCRIPTS.replace(/\s/g, ''));
+      });
+    });
+
+    describe('When excludeHeaderFromBody is given', () => {
+      it('returns body content only without header', async () => {
+        const url = `https://www.notion.so/asnunes/Simple-Page-Text-${pageId}`;
+
+        const response = await NotionPageToHtml.convert(url, {
+          excludeHeaderFromBody: true,
+        });
+
+        expect(response.replace(/\s/g, '')).toEqual(
+          HTML_RESPONSES.FULL_DOCUMENT_WITHOUT_HEADER_IN_BODY.replace(/\s/g, ''),
+        );
       });
     });
 
