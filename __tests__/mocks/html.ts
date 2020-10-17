@@ -48,12 +48,12 @@ export const FULL_DOCUMENT = `
         }
     </style>
     <title>Simple Page Test</title>
-    <link href="https://myCDN.com/prism@v1.x/themes/prism.css" rel="stylesheet">
+    <link href="https://unpkg.com/prismjs@1.22.0/themes/prism.css" rel="stylesheet">
   </head>
   <body>
     <p>Hello World</p>
-    <script src="https://myCDN.com/prism@v1.x/components/prism-core.min.js"></script>
-    <script src="https://myCDN.com/prism@v1.x/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://unpkg.com/prismjs@1.22.0/components/prism-core.min.js"></script>
+    <script src="https://unpkg.com/prismjs@1.22.0/plugins/autoloader/prism-autoloader.min.js"></script>
     <script>
     MathJax = {
       tex: {
@@ -117,12 +117,12 @@ export const DOCUMENT_WITHOUT_TITLE = `
           padding-left: 1.5em;
         }
     </style>
-    <link href="https://myCDN.com/prism@v1.x/themes/prism.css" rel="stylesheet">
+    <link href="https://unpkg.com/prismjs@1.22.0/themes/prism.css" rel="stylesheet">
   </head>
   <body>
     <p>Hello World</p>
-    <script src="https://myCDN.com/prism@v1.x/components/prism-core.min.js"></script>
-    <script src="https://myCDN.com/prism@v1.x/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://unpkg.com/prismjs@1.22.0/components/prism-core.min.js"></script>
+    <script src="https://unpkg.com/prismjs@1.22.0/plugins/autoloader/prism-autoloader.min.js"></script>
     <script>
     MathJax = {
       tex: {
@@ -144,12 +144,12 @@ export const DOCUMENT_WITHOUT_CSS = `
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Simple Page Test</title>
-    <link href="https://myCDN.com/prism@v1.x/themes/prism.css" rel="stylesheet">
+    <link href="https://unpkg.com/prismjs@1.22.0/themes/prism.css" rel="stylesheet">
   </head>
   <body>
     <p>Hello World</p>
-    <script src="https://myCDN.com/prism@v1.x/components/prism-core.min.js"></script>
-    <script src="https://myCDN.com/prism@v1.x/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://unpkg.com/prismjs@1.22.0/components/prism-core.min.js"></script>
+    <script src="https://unpkg.com/prismjs@1.22.0/plugins/autoloader/prism-autoloader.min.js"></script>
     <script>
     MathJax = {
       tex: {
@@ -212,12 +212,12 @@ export const DOCUMENT_METADATA = `
         }
     </style>
     <title>Simple Page Test</title>
-    <link href="https://myCDN.com/prism@v1.x/themes/prism.css" rel="stylesheet">
+    <link href="https://unpkg.com/prismjs@1.22.0/themes/prism.css" rel="stylesheet">
   </head>
   <body>
     <p>Hello World</p>
-    <script src="https://myCDN.com/prism@v1.x/components/prism-core.min.js"></script>
-    <script src="https://myCDN.com/prism@v1.x/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://unpkg.com/prismjs@1.22.0/components/prism-core.min.js"></script>
+    <script src="https://unpkg.com/prismjs@1.22.0/plugins/autoloader/prism-autoloader.min.js"></script>
     <script>
     MathJax = {
       tex: {

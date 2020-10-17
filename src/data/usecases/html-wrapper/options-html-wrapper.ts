@@ -31,7 +31,7 @@ export class OptionsHtmlWrapper implements HtmlWrapper {
       ${!this._options.excludeTitle ? `<title>${title}</title>` : ''}
       ${
         !this._options.excludeScripts
-          ? '<link href="https://myCDN.com/prism@v1.x/themes/prism.css" rel="stylesheet">'
+          ? '<link href="https://unpkg.com/prismjs@1.22.0/themes/prism.css" rel="stylesheet">'
           : ''
       }
     </head>
@@ -40,8 +40,8 @@ export class OptionsHtmlWrapper implements HtmlWrapper {
 
   private scriptsFromTemplate(): string {
     return `\
-      <script src="https://myCDN.com/prism@v1.x/components/prism-core.min.js"></script>
-      <script src="https://myCDN.com/prism@v1.x/plugins/autoloader/prism-autoloader.min.js"></script>
+      <script src="https://unpkg.com/prismjs@1.22.0/components/prism-core.min.js"></script>
+      <script src="https://unpkg.com/prismjs@1.22.0/plugins/autoloader/prism-autoloader.min.js"></script>
       <script>
       MathJax = {
         tex: {
