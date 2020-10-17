@@ -486,7 +486,7 @@ describe('#convert', () => {
   });
 
   describe('When single code block is given', () => {
-    describe('When there are no style on code block', () => {
+    describe('When there is no style on code block', () => {
       it('returns html with pre tag and code tag inside', async () => {
         const html = await makeSut(BlockMocks.CODE).convert();
 
@@ -496,7 +496,7 @@ describe('#convert', () => {
       });
     });
 
-    describe('When there are style on code block', () => {
+    describe('When there is style on code block', () => {
       it('ignores styles and returns html with pre tag and code tag inside', async () => {
         const html = await makeSut(BlockMocks.CODE_WITH_DECORATION).convert();
 
@@ -508,7 +508,7 @@ describe('#convert', () => {
   });
 
   describe('When single quote block is given', () => {
-    describe('When there are no style on quote block', () => {
+    describe('When there is no style on quote block', () => {
       it('returns html with blockquote tag', async () => {
         const html = await makeSut(BlockMocks.QUOTE).convert();
 
@@ -516,7 +516,7 @@ describe('#convert', () => {
       });
     });
 
-    describe('When there are style on quote block', () => {
+    describe('When there is style on quote block', () => {
       it('returns html with blockquote tag and decorations inside', async () => {
         const html = await makeSut(BlockMocks.QUOTE_WITH_DECORATION).convert();
 
@@ -526,7 +526,7 @@ describe('#convert', () => {
       });
     });
 
-    describe('When there are background color on quote', () => {
+    describe('When there is background color on quote', () => {
       it('returns html with style with background color prop', async () => {
         const html = await makeSut(BlockMocks.QUOTE_WITH_FORMAT).convert();
 
@@ -534,7 +534,7 @@ describe('#convert', () => {
       });
     });
 
-    describe('When there are background color on quote', () => {
+    describe('When there is background color on quote', () => {
       it('returns html with style with background color prop', async () => {
         const html = await makeSut(BlockMocks.QUOTE_WITH_FORMAT_FOREGROUND).convert();
 
@@ -628,6 +628,46 @@ describe('#convert', () => {
         </figure>
         `.replace(/\s/g, ''),
         );
+      });
+    });
+
+    describe('When detail block is given', () => {
+      describe('When there are no style on block', () => {
+        it('returns empty string', async () => {
+          const html = await makeSut(BlockMocks.DETAILS).convert();
+
+          expect(html.replace(/\s/g, '')).toBe(
+            `
+            <details open="">
+              <summary>This is a detail</summary>
+              <div class="indented">
+                <p>
+                  Hello World
+                </p>
+              </div>
+            </details>
+        `.replace(/\s/g, ''),
+          );
+        });
+      });
+
+      describe('When there is style block', () => {
+        it('returns html with blockquote tag and decorations inside', async () => {
+          const html = await makeSut(BlockMocks.DETAILS_WITH_DECORATION).convert();
+
+          expect(html.replace(/\s/g, '')).toBe(
+            `
+            <details open="">
+              <summary>Hello <em><strong>World </strong></em><strong>and</strong><em><strong> Sun</strong></em></summary>
+              <div class="indented">
+                <p>
+                  Hello World
+                </p>
+              </div>
+            </details>
+        `.replace(/\s/g, ''),
+          );
+        });
       });
     });
 

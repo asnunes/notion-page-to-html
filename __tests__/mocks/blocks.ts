@@ -1570,6 +1570,114 @@ export const CALLOUT_WITH_BACKGROUND = [
   },
 ];
 
+export const DETAILS_WITH_DECORATION = [
+  {
+    id: '4d64bbc0-634d-4758-befa-85c5a3a6c22f',
+    type: 'page',
+    properties: {},
+    format: {},
+    decorableTexts: [{ text: 'Simple Page Test', decorations: [] }],
+    children: [
+      {
+        id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
+        type: 'toggle',
+        properties: {},
+        format: {},
+        children: [
+          {
+            id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
+            type: 'text',
+            properties: {},
+            format: {},
+            children: [] as Block[],
+            decorableTexts: [
+              {
+                text: 'Hello World',
+                decorations: [],
+              },
+            ],
+          },
+        ],
+        decorableTexts: [
+          {
+            text: 'Hello ',
+            decorations: [],
+          },
+          {
+            text: 'World ',
+            decorations: [
+              {
+                type: 'bold' as DecorationType,
+              },
+              {
+                type: 'italic' as DecorationType,
+              },
+            ],
+          },
+          {
+            text: 'and',
+            decorations: [
+              {
+                type: 'bold' as DecorationType,
+              },
+            ],
+          },
+          {
+            text: ' Sun',
+            decorations: [
+              {
+                type: 'bold' as DecorationType,
+              },
+              {
+                type: 'italic' as DecorationType,
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+];
+
+export const DETAILS = [
+  {
+    id: '4d64bbc0-634d-4758-befa-85c5a3a6c22f',
+    type: 'page',
+    properties: {},
+    format: {},
+    decorableTexts: [{ text: 'Simple Page Test', decorations: [] }],
+    children: [
+      {
+        id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
+        type: 'toggle',
+        properties: {},
+        format: {},
+        children: [
+          {
+            id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
+            type: 'text',
+            properties: {},
+            format: {},
+            children: [] as Block[],
+            decorableTexts: [
+              {
+                text: 'Hello World',
+                decorations: [],
+              },
+            ],
+          },
+        ],
+        decorableTexts: [
+          {
+            text: 'This is a detail',
+            decorations: [] as Decoration[],
+          },
+        ],
+      },
+    ],
+  },
+];
+
 export const UNKNOWN = [
   {
     id: 'd1e33c43-5079-4e66-961a-df032d38d532',
