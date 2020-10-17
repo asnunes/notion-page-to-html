@@ -669,6 +669,25 @@ describe('#convert', () => {
           );
         });
       });
+
+      describe('When there is background color', () => {
+        it('returns html with background color for the intire block', async () => {
+          const html = await makeSut(BlockMocks.DETAILS_WITH_BG).convert();
+
+          expect(html.replace(/\s/g, '')).toBe(
+            `
+            <details open="" style="background-color: #FBE4E4; ">
+              <summary>This is a detail</summary>
+              <div class="indented">
+                <p>
+                  Hello World
+                </p>
+              </div>
+            </details>
+        `.replace(/\s/g, ''),
+          );
+        });
+      });
     });
 
     describe('When image must have a table and block id attached to url', () => {
