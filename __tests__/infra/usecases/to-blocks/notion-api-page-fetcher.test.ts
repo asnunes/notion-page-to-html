@@ -26,7 +26,7 @@ describe('#getNotionPageContents', () => {
       expect(response).toEqual(NotionApiMocks.TEXT_WITH_VIDEO_NOTION_API_CONTENT_RESPONSE);
     });
 
-    it('passes its children', async () => {
+    it('passes its children when it is available', async () => {
       nock('https://www.notion.so')
         .post('/api/v3/loadPageChunk')
         .reply(200, NotionApiMocks.SUCCESSFUL_PAGE_CHUCK_WITH_CHILDREN);
@@ -40,6 +40,27 @@ describe('#getNotionPageContents', () => {
       const response = await apiInterface.getNotionPageContents();
 
       expect(response).toEqual(NotionApiMocks.LIST_WITH_CHILDREN_RESPONSE);
+    });
+
+    describe('when children is not available on page chunk but it is available by request', () => {
+      it('get out block from new request and passes in content', async () => {
+        nock('https://www.notion.so')
+          .post('/api/v3/loadPageChunk')
+          .reply(200, NotionApiMocks.SUCCESSFUL_PAGE_CHUCK_WITH_CHILDREN_NOT_IN_CHUNK);
+        nock('https://www.notion.so')
+          .post('/api/v3/syncRecordValues')
+          .reply(200, NotionApiMocks.SUCCESSFUL_SYNC_RECORD_VALUE);
+        nock('https://www.notion.so')
+          .post('/api/v3/getRecordValues')
+          .reply(200, NotionApiMocks.SUCCESSFUL_RECORDS_WITH_CHILDREN);
+
+        const notionPageId = '4d64bbc0-634d-4758-befa-85c5a3a6c22f';
+        const apiInterface = makeSut(notionPageId);
+
+        const response = await apiInterface.getNotionPageContents();
+
+        expect(response).toEqual(NotionApiMocks.DETAILS_RESPONSE);
+      });
     });
   });
 

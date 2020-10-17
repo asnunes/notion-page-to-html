@@ -205,6 +205,123 @@ export const SUCCESSFUL_PAGE_CHUCK_WITH_CHILDREN = {
   cursor: { stack: [] },
 };
 
+export const SUCCESSFUL_PAGE_CHUCK_WITH_CHILDREN_NOT_IN_CHUNK = {
+  recordMap: {
+    block: {
+      '4d64bbc0-634d-4758-befa-85c5a3a6c22f': {
+        role: 'editor',
+        value: {
+          id: '4d64bbc0-634d-4758-befa-85c5a3a6c22f',
+          version: 356,
+          type: 'page',
+          properties: { title: [['Simple Page Text 2']] },
+          content: ['9dfff855-7aed-4a99-8e60-2e1384399200'],
+          format: {},
+          permissions: [
+            { role: 'editor', type: 'user_permission', user_id: 'user_id' },
+            { role: 'reader', type: 'public_permission' },
+          ],
+          created_time: 1595516162445,
+          last_edited_time: 1602862020000,
+          parent_id: '159177ec-0fb0-469e-a900-1a662b145a04',
+          parent_table: 'space',
+          alive: true,
+          created_by_table: 'notion_user',
+          created_by_id: 'user_id',
+          last_edited_by_table: 'notion_user',
+          last_edited_by_id: 'user_id',
+          shard_id: 285188,
+          space_id: '159177ec-0fb0-469e-a900-1a662b145a04',
+        },
+      },
+      '9dfff855-7aed-4a99-8e60-2e1384399200': {
+        role: 'editor',
+        value: {
+          id: '9dfff855-7aed-4a99-8e60-2e1384399200',
+          version: 40,
+          type: 'toggle',
+          properties: { title: [['Isso é um detail']] },
+          content: ['12cfada5-6686-4561-9c4f-177b3be4b422'],
+          created_time: 1602689700000,
+          last_edited_time: 1602861180000,
+          parent_id: '4d64bbc0-634d-4758-befa-85c5a3a6c22f',
+          parent_table: 'block',
+          alive: true,
+          created_by_table: 'notion_user',
+          created_by_id: 'use_id',
+          last_edited_by_table: 'notion_user',
+          last_edited_by_id: 'use_id',
+          shard_id: 285188,
+          space_id: '159177ec-0fb0-469e-a900-1a662b145a04',
+        },
+      },
+    },
+    space: {
+      '159177ec-0fb0-469e-a900-1a662b145a04': {
+        role: 'editor',
+        value: {
+          id: '159177ec-0fb0-469e-a900-1a662b145a04',
+          version: 173,
+          name: 'workspace_name',
+          domain: 'domais',
+          permissions: [{ role: 'editor', type: 'user_permission', user_id: 'user_id' }],
+          icon: 'https://lh3.googleusercontent.com/a-/AOh14GjqdgJy-51RgCHKPgIMrNaIX0y4QUAL6Mz9OFS4=s100',
+          beta_enabled: false,
+          pages: [
+            'b0e76ef7-ec48-4aeb-9877-3b7907f4335c',
+            '8cb60e50-7dec-4a8c-9032-e6c30a8ec642',
+            'c1665d8e-8d20-4b32-9a44-320428580441',
+            '98c36805-bd5f-448f-b199-7fbff24d9963',
+            'a8624141-f0bd-4e41-9f02-83bbc7fc2b4a',
+            'b2115542-dfaa-4599-8ba9-77d467a33f94',
+            '739c26a3-770d-44e7-b652-70b3a5ae0220',
+            'c215286e-fd31-4d74-9266-e832603a3e8e',
+            '5ca7e1ba-65f4-422d-a274-529f8f8ec664',
+            '4d64bbc0-634d-4758-befa-85c5a3a6c22f',
+            'f9466b44-33b3-4cb2-9083-b820ead2c4fd',
+          ],
+          created_time: 1591708116643,
+          last_edited_time: 1602476700000,
+          created_by_table: 'notion_user',
+          created_by_id: 'user_id',
+          last_edited_by_table: 'notion_user',
+          last_edited_by_id: 'user_id',
+          shard_id: 285188,
+          plan_type: 'personal',
+          invite_link_code: '09cb83f87702b6ce2be323132a369b69e23085b3',
+          invite_link_enabled: true,
+        },
+      },
+    },
+  },
+  cursor: { stack: [] },
+};
+
+export const SUCCESSFUL_SYNC_RECORD_VALUE = {
+  recordMap: {
+    block: {
+      '12cfada5-6686-4561-9c4f-177b3be4b422': {
+        role: 'editor',
+        value: {
+          id: '12cfada5-6686-4561-9c4f-177b3be4b422',
+          version: 27,
+          type: 'text',
+          properties: { title: [['Lide com isso!']] },
+          created_time: 1602861180000,
+          last_edited_time: 1602861180000,
+          parent_id: '9dfff855-7aed-4a99-8e60-2e1384399200',
+          parent_table: 'block',
+          alive: true,
+          created_by_table: 'notion_user',
+          created_by_id: '408c862f-f07b-4036-b414-1ae5c5ce57b3',
+          last_edited_by_table: 'notion_user',
+          last_edited_by_id: '408c862f-f07b-4036-b414-1ae5c5ce57b3',
+        },
+      },
+    },
+  },
+};
+
 export const SUCCESSFUL_RECORDS_WITH_CHILDREN = {
   results: [
     {
@@ -401,6 +518,30 @@ export const LIST_WITH_CHILDREN_RESPONSE = [
                 contents: [],
               },
             ],
+          },
+        ],
+      },
+    ],
+  },
+];
+
+export const DETAILS_RESPONSE = [
+  {
+    id: '4d64bbc0-634d-4758-befa-85c5a3a6c22f',
+    type: 'page',
+    properties: { title: [['Simple Page Text 2']] },
+    format: {},
+    contents: [
+      {
+        id: '9dfff855-7aed-4a99-8e60-2e1384399200',
+        type: 'toggle',
+        properties: { title: [['Isso é um detail']] },
+        contents: [
+          {
+            id: '12cfada5-6686-4561-9c4f-177b3be4b422',
+            type: 'text',
+            properties: { title: [['Lide com isso!']] },
+            contents: [],
           },
         ],
       },
