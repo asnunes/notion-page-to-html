@@ -36,11 +36,11 @@ describe('#toPageProps', () => {
       });
 
       it('return base64 image in coverImageSrc prop', async () => {
-        const pageBlockToPageProps = new PageBlockToPageProps(Blocks.PAGE_WITH_TITLE_AND_COVER_IMAGE);
+        const pageBlockToPageProps = new PageBlockToPageProps(Blocks.PAGE_WITH_TITLE_AND_COVER_IMAGE[0]);
 
         const result = await pageBlockToPageProps.toPageProps();
 
-        expect(result).toEqual({ title: 'Simple Page Title', coverImageSrc: base64Img });
+        expect(result).toEqual({ title: 'Page Title', coverImageSrc: base64Img });
       });
     });
   });

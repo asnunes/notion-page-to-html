@@ -114,4 +114,15 @@ describe('#toBlocks', () => {
       expect(result).toEqual(BlockMocks.PAGE_WITH_YOUTUBE_VIDEO);
     });
   });
+
+  describe('when page with page cover and page cover position is given', () => {
+    it('converts to page block with page_cover and page_conver_position in format prop', () => {
+      const notionApiContentResponses = NotionApiMocks.SINGLE_PAGE_WITH_COVER_IMAGE;
+      const notionApiContentResponsesToBlocks = new NotionApiContentResponsesToBlocks(notionApiContentResponses);
+
+      const result = notionApiContentResponsesToBlocks.toBlocks();
+
+      expect(result).toEqual(BlockMocks.PAGE_WITH_TITLE_AND_COVER_IMAGE);
+    });
+  });
 });
