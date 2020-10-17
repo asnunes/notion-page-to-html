@@ -1,14 +1,14 @@
 import { Block } from '../../protocols/blocks';
 import { PageProps } from '../../protocols/page-props';
 
-export class PageBlockToPageProp {
+export class PageBlockToPageProps {
   private readonly _pageBlock: Block;
 
   constructor(pageBlock: Block) {
     this._pageBlock = pageBlock;
   }
 
-  toPageProp(): PageProps {
+  toPageProps(): PageProps {
     const title = new PageBlockToTitle(this._pageBlock).toTitle();
 
     return {

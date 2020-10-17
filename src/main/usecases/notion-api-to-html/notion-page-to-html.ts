@@ -1,4 +1,4 @@
-import { PageBlockToPageProp } from '../../../data/usecases/page-block-to-page-props';
+import { PageBlockToPageProps } from '../../../data/usecases/page-block-to-page-props';
 import { HtmlOptions } from '../../../data/protocols/html-options/html-options';
 import { OptionsHtmlWrapper } from '../../../data/usecases/html-wrapper/options-html-wrapper';
 import { NotionApiContentResponsesToBlocks } from '../../../infra/usecases/to-blocks/notion-api-content-response-to-blocks';
@@ -20,7 +20,7 @@ export class NotionPageToHtml {
 
     if (blocks.length === 0) return Promise.resolve('');
 
-    const pageProp = new PageBlockToPageProp(blocks[0]).toPageProp();
+    const pageProp = new PageBlockToPageProps(blocks[0]).toPageProps();
 
     const title = pageProp.title;
     const htmlBody = await makeBlocksToHtml(blocks).convert();

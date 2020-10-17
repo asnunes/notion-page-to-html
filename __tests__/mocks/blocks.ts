@@ -1756,3 +1756,26 @@ export const UNKNOWN = [
     ],
   },
 ];
+
+export const PAGE_WITH_TITLE = {
+  id: '4d64bbc0-634d-4758-befa-85c5a3a6c22f',
+  type: 'page',
+  properties: {},
+  format: {},
+  decorableTexts: [{ text: 'Simple Page Title', decorations: [] }],
+  children: [
+    {
+      id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',
+      type: 'text',
+      properties: {},
+      format: {},
+      children: [] as Block[],
+      decorableTexts: [
+        {
+          text: 'Hello World',
+          decorations: [],
+        },
+      ],
+    },
+  ],
+};
