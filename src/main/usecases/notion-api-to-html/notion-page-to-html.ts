@@ -20,7 +20,7 @@ export class NotionPageToHtml {
 
     if (blocks.length === 0) return Promise.resolve('');
 
-    const pageProp = new PageBlockToPageProps(blocks[0]).toPageProps();
+    const pageProp = await new PageBlockToPageProps(blocks[0]).toPageProps();
 
     const title = pageProp.title;
     const htmlBody = await makeBlocksToHtml(blocks).convert();

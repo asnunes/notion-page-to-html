@@ -1,5 +1,5 @@
 export type PageProps = {
   title: string;
-  imageSrc?: string;
+  coverImageSrc?: string;
   icon?: string;
 };
