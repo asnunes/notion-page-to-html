@@ -48,6 +48,13 @@ const STYLE_TAG = `\
     margin-top: 0;
     margin-bottom: 0.75em;
   }
+  
+  .page-cover-image {
+    display: block;
+    object-fit: cover;
+    width: 100%;
+    height: 30vh;
+  }
 
   h1 {
     font-size: 1.875rem;
@@ -62,13 +69,6 @@ const STYLE_TAG = `\
   h3 {
     font-size: 1.25rem;
     margin-top: 1.25rem;
-  }
-
-  .page-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-top: 0;
-    margin-bottom: 0.75em;
   }
 
   .callout {
@@ -107,8 +107,8 @@ const STYLE_TAG = `\
 
 const HEADER = `\
 <header>
+  <img class="page-cover-image" src="${base64}" style="object-position:center 40%">
   <h1 class="page-title">Simple Page Test</h1>
-  <img class="page-cover-image" src="${base64}">
 </header>
 `;
 

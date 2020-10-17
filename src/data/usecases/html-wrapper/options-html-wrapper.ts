@@ -60,12 +60,18 @@ export class OptionsHtmlWrapper implements HtmlWrapper {
   }
 
   private _headerFromTemplate(pageProps: PageProps): string {
-    const { title, coverImageSrc } = pageProps;
+    const { title, coverImageSrc, coverImagePosition } = pageProps;
 
     return `\
       <header>
+        ${
+          coverImageSrc
+            ? `<img class="page-cover-image" src="${coverImageSrc}" style="object-position:center ${
+                coverImagePosition || 0
+              }%">`
+            : ''
+        }
         <h1 class="page-title">${title}</h1>
-        ${coverImageSrc ? `<img class="page-cover-image" src="${coverImageSrc}">` : ''}
       </header>
     `;
   }
@@ -120,6 +126,13 @@ export class OptionsHtmlWrapper implements HtmlWrapper {
         margin-bottom: 0.75em;
       }
 
+      .page-cover-image {
+        display: block;
+        object-fit: cover;
+        width: 100%;
+        height: 30vh;
+      }    
+
       h1 {
         font-size: 1.875rem;
         margin-top: 1.875rem;
@@ -133,13 +146,6 @@ export class OptionsHtmlWrapper implements HtmlWrapper {
       h3 {
         font-size: 1.25rem;
         margin-top: 1.25rem;
-      }
-
-      .page-title {
-        font-size: 2.5rem;
-        font-weight: 700;
-        margin-top: 0;
-        margin-bottom: 0.75em;
       }
 
       .callout {

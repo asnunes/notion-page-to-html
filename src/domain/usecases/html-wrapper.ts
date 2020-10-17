@@ -1,3 +1,5 @@
+import { PageProps } from '../../data/protocols/page-props';
+
 export interface HtmlWrapper {
-  wrapHtml(title: string, html: string): string;
+  wrapHtml(pageProps: PageProps, html: string): string;
 }
