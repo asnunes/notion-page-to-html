@@ -32,26 +32,69 @@ export class NotionApiPageFetcher {
     return this._mapContentsIdToContent(contentIds, chunkData, pageData);
   }
 
-  private _mapContentsIdToContent(
+  private async _mapContentsIdToContent(
     contentIds: string[],
     chunkData: Record<string, any>,
     pageData: Record<string, any>,
-  ): NotionApiContentResponse[] {
-    const contents = contentIds
+  ): Promise<NotionApiContentResponse[]> {
+    const contentsNotInChunk = await this._contentsNotInChunk(contentIds, chunkData, pageData);
+    const contentsInChunk = await this._contentsInChunk(contentIds, chunkData, pageData);
+    const unorderedContents = contentsInChunk.concat(contentsNotInChunk).filter((c) => !!contentIds.includes(c.id));
+
+    return unorderedContents.sort((a, b) => contentIds.indexOf(a.id) - contentIds.indexOf(b.id));
+  }
+
+  private async _contentsNotInChunk(
+    contentIds: string[],
+    chunkData: Record<string, any>,
+    pageData: Record<string, any>,
+  ): Promise<NotionApiContentResponse[]> {
+    const contentsIdsNotInChunk = contentIds.filter((id: string) => !chunkData.recordMap?.block[id]);
+    const contentsNotInChunkRecords = await this._fetchRecordValuesByContentIds(contentsIdsNotInChunk);
+    const dataNotInChunk = contentsIdsNotInChunk
+      .map((id) => {
+        const data = contentsNotInChunkRecords.data as Record<string, any>;
+        return data.recordMap?.block[id].value;
+      })
+      .filter((d) => !!d);
+
+    return Promise.all(
+      dataNotInChunk.map(async (c: Record<string, any>) => {
+        const format = c.format;
+
+        return {
+          id: c.id,
+          type: c.type,
+          properties: c.properties,
+          ...(format && { format }),
+          contents: await this._mapContentsIdToContent(c.content || [], chunkData, pageData),
+        };
+      }),
+    );
+  }
+
+  private async _contentsInChunk(
+    contentIds: string[],
+    chunkData: Record<string, any>,
+    pageData: Record<string, any>,
+  ): Promise<NotionApiContentResponse[]> {
+    const dataInChunk = contentIds
       .filter((id: string) => !!chunkData.recordMap?.block[id])
       .map((id: string) => chunkData.recordMap?.block[id].value);
 
-    return contents.map((c: Record<string, any>) => {
-      const format = c.format;
+    return Promise.all(
+      dataInChunk.map(async (c: Record<string, any>) => {
+        const format = c.format;
 
-      return {
-        id: c.id,
-        type: c.type,
-        properties: c.properties,
-        ...(format && { format }),
-        contents: this._mapContentsIdToContent(c.content || [], chunkData, pageData),
-      };
-    });
+        return {
+          id: c.id,
+          type: c.type,
+          properties: c.properties,
+          ...(format && { format }),
+          contents: await this._mapContentsIdToContent(c.content || [], chunkData, pageData),
+        };
+      }),
+    );
   }
 
   private async _fetchRecordValues(): Promise<HttpResponse> {
@@ -74,6 +117,22 @@ export class NotionApiPageFetcher {
       },
       chunkNumber: 0,
       verticalColumns: false,
+    });
+  }
+
+  private async _fetchRecordValuesByContentIds(contentIds: string[]): Promise<HttpResponse> {
+    if (contentIds.length === 0)
+      return {
+        status: 200,
+        data: {},
+      };
+
+    return this._httpPostClient.post(NOTION_API_PATH + 'syncRecordValues', {
+      requests: contentIds.map((id) => ({
+        id,
+        table: 'block',
+        version: -1,
+      })),
     });
   }
 }
