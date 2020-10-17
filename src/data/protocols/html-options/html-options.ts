@@ -1,7 +1,8 @@
 export type HtmlOptions = {
-  excludeTitle?: boolean;
+  excludeTitleFromHead?: boolean;
   excludeCSS?: boolean;
   excludeMetadata?: boolean;
   excludeScripts?: boolean;
+  excludeHeaderFromBody?: boolean;
   bodyContentOnly?: boolean;
 };

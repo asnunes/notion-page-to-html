@@ -13,22 +13,23 @@ export class OptionsHtmlWrapper implements HtmlWrapper {
     return `\
     <!DOCTYPE html>
     <html>
-      ${this.headFromTemplate(title)}
+      ${this._headFromTemplate(title)}
         <body>
+          ${!this._options.excludeHeaderFromBody ? this._headerFromTemplate(title) : ''}
           ${html}
-          ${!this._options.excludeScripts ? this.scriptsFromTemplate() : ''}
+          ${!this._options.excludeScripts ? this._scriptsFromTemplate() : ''}
         </body>
     </html>\
     `;
   }
 
-  private headFromTemplate(title: string): string {
+  private _headFromTemplate(title: string): string {
     return `\
     <head>
       ${!this._options.excludeMetadata ? '<meta charset="utf-8">' : ''}
       ${!this._options.excludeMetadata ? '<meta name="viewport" content="width=device-width, initial-scale=1">' : ''}
       ${!this._options.excludeCSS ? this._styleTag : ''}
-      ${!this._options.excludeTitle ? `<title>${title}</title>` : ''}
+      ${!this._options.excludeTitleFromHead ? `<title>${title}</title>` : ''}
       ${
         !this._options.excludeScripts
           ? '<link href="https://unpkg.com/prismjs@1.22.0/themes/prism.css" rel="stylesheet">'
@@ -38,7 +39,7 @@ export class OptionsHtmlWrapper implements HtmlWrapper {
     `;
   }
 
-  private scriptsFromTemplate(): string {
+  private _scriptsFromTemplate(): string {
     return `\
       <script src="https://unpkg.com/prismjs@1.22.0/components/prism-core.min.js"></script>
       <script src="https://unpkg.com/prismjs@1.22.0/plugins/autoloader/prism-autoloader.min.js"></script>
@@ -55,17 +56,84 @@ export class OptionsHtmlWrapper implements HtmlWrapper {
     `;
   }
 
+  private _headerFromTemplate(title: string): string {
+    return `\
+      <header>
+        <h1 class="page-title">${title}</h1>
+      </header>
+    `;
+  }
+
   private get _styleTag(): string {
     return `\
     <style>
+      html {
+        -webkit-print-color-adjust: exact;
+      }
+      * {
+        box-sizing: border-box;
+        -webkit-print-color-adjust: exact;
+      }
+    
+      html,
       body {
+        margin: 0;
+        padding: 0;
+        line-height: 1.5;
+        white-space: pre-wrap;
         font-family: system-ui, sans-serif;
         color: #37352F;
+      }
+    
+      @media only screen {
+        body {
+          margin: 2em auto;
+          max-width: 900px;
+          color: rgb(55, 53, 47);
+        }
       }
 
       img {
         max-width: 100%;
         max-height: 70vh;
+      }
+
+      h1,
+      h2,
+      h3 {
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        font-weight: 600;
+        margin-bottom: 0;
+      }
+
+      .page-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-top: 0;
+        margin-bottom: 0.75em;
+      }
+
+      h1 {
+        font-size: 1.875rem;
+        margin-top: 1.875rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+        margin-top: 1.5rem;
+      }
+
+      h3 {
+        font-size: 1.25rem;
+        margin-top: 1.25rem;
+      }
+
+      .page-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-top: 0;
+        margin-bottom: 0.75em;
       }
 
       .callout {
