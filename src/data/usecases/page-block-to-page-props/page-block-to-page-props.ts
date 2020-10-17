@@ -40,9 +40,16 @@ export class PageBlockToCoverImageSource {
   }
 
   async toImageCover(): Promise<string | null> {
-    const imageSourceTail = this._pageBlock.format.page_cover;
-    if (!imageSourceTail) return Promise.resolve(null);
+    const pageCover = this._pageBlock.format.page_cover;
+    if (!pageCover || !this._isImageURL(pageCover)) return Promise.resolve(null);
 
-    return Base64Converter.convert('https://www.notion.so' + imageSourceTail);
+    let head = '';
+    if (pageCover.startsWith('/')) head = 'https://www.notion.so';
+
+    return Base64Converter.convert(head + pageCover);
+  }
+
+  private _isImageURL(url: string): boolean {
+    return /(?:([^:\/?#]+):)?(?:\/\/([^/?#]*))?([^?#]*\.(?:jpg|gif|png|jpeg))(?:\?([^#]*))?(?:#(.*))?/gi.test(url);
   }
 }
