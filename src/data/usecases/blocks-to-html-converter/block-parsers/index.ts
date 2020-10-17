@@ -10,6 +10,7 @@ export * from './sub-header';
 export * from './sub-sub-header';
 export * from './text';
 export * from './to-do';
+export * from './toggle';
 export * from './page';
 export * from './unknown';
 export * from './youtube-video';

@@ -23,5 +23,6 @@ const fromBlockToHtmlConverter: Record<string, ToHtmlClass> = {
   video: blockParsers.YouTubeVideoBlockToHtml,
   image: blockParsers.ImageBlockToHtml,
   callout: blockParsers.CalloutBlockToHtml,
+  toggle: blockParsers.ToggleBlockToHtml,
   page: blockParsers.PageBlockToHtml,
 };
