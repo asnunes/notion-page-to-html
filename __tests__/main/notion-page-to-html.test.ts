@@ -1,4 +1,5 @@
 import nock from 'nock';
+import { resolve } from 'path';
 import { NotionPageToHtml } from '../../src/main/usecases/notion-api-to-html/notion-page-to-html';
 import { InvalidPageUrlError } from '../../src/infra/errors/invalid-page-url';
 import * as NotionApiMocks from '../mocks/notion-api-responses';
@@ -14,6 +15,12 @@ describe('#convert', () => {
         .reply(200, NotionApiMocks.SUCCESSFUL_PAGE_CHUCK);
 
       nock('https://www.notion.so').post('/api/v3/getRecordValues').reply(200, NotionApiMocks.SUCCESSFUL_RECORDS);
+
+      nock('https://www.example.com')
+        .get('/image.png')
+        .replyWithFile(200, resolve('__tests__/mocks/img/baseImage.jpeg'), {
+          'content-type': 'image/jpeg',
+        });
     });
 
     describe('When no options is given', () => {

@@ -8,6 +8,7 @@ export const SUCCESSFUL_PAGE_CHUCK = {
           version: 31,
           type: 'page',
           properties: { title: [['Simple Page Test']] },
+          format: { page_cover: 'https://www.example.com/image.png', page_cover_position: 1 },
           content: ['80d0fc46-5511-4d1d-a4ec-8b2f43d75226'],
           permissions: [{ role: 'reader', type: 'public_permission', allow_duplicate: false }],
           created_time: 1595516162445,
@@ -454,6 +455,7 @@ export const TEXT_NOTION_API_CONTENT_RESPONSE = [
     id: '4d64bbc0-634d-4758-befa-85c5a3a6c22f',
     type: 'page',
     properties: { title: [['Simple Page Test']] },
+    format: { page_cover: 'https://www.example.com/image.png', page_cover_position: 1 },
     contents: [
       {
         id: '80d0fc46-5511-4d1d-a4ec-8b2f43d75226',

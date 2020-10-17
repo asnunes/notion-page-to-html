@@ -1,3 +1,5 @@
+import base64 from './img/base64';
+
 const STYLE_TAG = `\
 <style>
   html {
@@ -106,6 +108,7 @@ const STYLE_TAG = `\
 const HEADER = `\
 <header>
   <h1 class="page-title">Simple Page Test</h1>
+  <img class="page-cover-image" src="${base64}">
 </header>
 `;
 
