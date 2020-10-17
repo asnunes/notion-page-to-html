@@ -52,7 +52,6 @@ export const FULL_DOCUMENT = `
   </head>
   <body>
     <p>Hello World</p>
-    <iframe id="ytplayer" type="text/html" width="640" height="360" src="https://www.youtube.com/watch?v=xBFqxBfLJWc" frameborder="0"/>
     <script src="https://myCDN.com/prism@v1.x/components/prism-core.min.js"></script>
     <script src="https://myCDN.com/prism@v1.x/plugins/autoloader/prism-autoloader.min.js"></script>
     <script>
@@ -122,7 +121,6 @@ export const DOCUMENT_WITHOUT_TITLE = `
   </head>
   <body>
     <p>Hello World</p>
-    <iframe id="ytplayer" type="text/html" width="640" height="360" src="https://www.youtube.com/watch?v=xBFqxBfLJWc" frameborder="0"/>
     <script src="https://myCDN.com/prism@v1.x/components/prism-core.min.js"></script>
     <script src="https://myCDN.com/prism@v1.x/plugins/autoloader/prism-autoloader.min.js"></script>
     <script>
@@ -150,7 +148,6 @@ export const DOCUMENT_WITHOUT_CSS = `
   </head>
   <body>
     <p>Hello World</p>
-    <iframe id="ytplayer" type="text/html" width="640" height="360" src="https://www.youtube.com/watch?v=xBFqxBfLJWc" frameborder="0"/>
     <script src="https://myCDN.com/prism@v1.x/components/prism-core.min.js"></script>
     <script src="https://myCDN.com/prism@v1.x/plugins/autoloader/prism-autoloader.min.js"></script>
     <script>
@@ -219,7 +216,6 @@ export const DOCUMENT_METADATA = `
   </head>
   <body>
     <p>Hello World</p>
-    <iframe id="ytplayer" type="text/html" width="640" height="360" src="https://www.youtube.com/watch?v=xBFqxBfLJWc" frameborder="0"/>
     <script src="https://myCDN.com/prism@v1.x/components/prism-core.min.js"></script>
     <script src="https://myCDN.com/prism@v1.x/plugins/autoloader/prism-autoloader.min.js"></script>
     <script>
@@ -289,10 +285,8 @@ export const DOCUMENT_WITHOUT_SCRIPTS = `
   </head>
   <body>
     <p>Hello World</p>
-    <iframe id="ytplayer" type="text/html" width="640" height="360" src="https://www.youtube.com/watch?v=xBFqxBfLJWc" frameborder="0"/>
   </body>
 </html>
 `;
 
-export const BODY_ONLY =
-  '<p>Hello World</p>\n<iframe id="ytplayer" type="text/html" width="640" height="360" src="https://www.youtube.com/watch?v=xBFqxBfLJWc" frameborder="0"/>';
+export const BODY_ONLY = `<p>Hello World</p>`;

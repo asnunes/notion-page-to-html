@@ -23,7 +23,7 @@ describe('#getNotionPageContents', () => {
 
       const response = await apiInterface.getNotionPageContents();
 
-      expect(response).toEqual(NotionApiMocks.TEXT_WITH_VIDEO_NOTION_API_CONTENT_RESPONSE);
+      expect(response).toEqual(NotionApiMocks.TEXT_NOTION_API_CONTENT_RESPONSE);
     });
 
     it('passes its children when it is available', async () => {

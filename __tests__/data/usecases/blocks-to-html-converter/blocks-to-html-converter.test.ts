@@ -579,11 +579,18 @@ describe('#convert', () => {
     });
 
     describe('When it is a youtube video', () => {
-      it('returns html with iframe tag', async () => {
+      it('returns html with iframe tag and embed id', async () => {
         const html = await makeSut(BlockMocks.YOUTUBE_VIDEO).convert();
 
-        expect(html).toBe(
-          `<iframe id="ytplayer" type="text/html" width="640" height="360" src="https://www.youtube.com/watch?v=8G80nuEyDN4" frameborder="0"/>`,
+        expect(html.replace(/\s/g, '')).toBe(
+          `<iframe
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/xBFqxBfLJWc"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>`.replace(/\s/g, ''),
         );
       });
     });

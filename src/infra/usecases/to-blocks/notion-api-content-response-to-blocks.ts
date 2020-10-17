@@ -12,6 +12,8 @@ export class NotionApiContentResponsesToBlocks {
   }
 
   toBlocks(): Block[] {
+    if (!this._notionApiContentResponses) return [];
+
     return this._notionApiContentResponses.map((nacr) => ({
       id: nacr.id,
       type: nacr.type,

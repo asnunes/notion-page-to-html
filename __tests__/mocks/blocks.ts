@@ -1450,7 +1450,7 @@ export const YOUTUBE_VIDEO = [
     id: 'dcde43cb-7131-4687-8f22-c9789fa75f46',
     type: 'video',
     properties: {
-      source: 'https://www.youtube.com/watch?v=8G80nuEyDN4',
+      source: 'https://www.youtube.com/watch?v=xBFqxBfLJWc',
     },
     format: {},
     children: [] as Block[],
@@ -1479,6 +1479,28 @@ export const TEXT_WITH_YOUTUBE_VIDEO = [
           },
         ],
       },
+      {
+        id: 'dcde43cb-7131-4687-8f22-c9789fa75f46',
+        type: 'video',
+        properties: {
+          source: 'https://www.youtube.com/watch?v=xBFqxBfLJWc',
+        },
+        format: {},
+        children: [] as Block[],
+        decorableTexts: [] as DecorableText[],
+      },
+    ],
+  },
+];
+
+export const PAGE_WITH_YOUTUBE_VIDEO = [
+  {
+    id: '4d64bbc0-634d-4758-befa-85c5a3a6c22f',
+    type: 'page',
+    properties: {},
+    format: {},
+    decorableTexts: [{ text: 'Simple Page Test', decorations: [] }],
+    children: [
       {
         id: 'dcde43cb-7131-4687-8f22-c9789fa75f46',
         type: 'video',

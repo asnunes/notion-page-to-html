@@ -106,12 +106,12 @@ describe('#toBlocks', () => {
 
   describe('when page with youtube link', () => {
     it('converts to one block with decoration with value', () => {
-      const notionApiContentResponses = NotionApiMocks.TEXT_WITH_VIDEO_NOTION_API_CONTENT_RESPONSE;
+      const notionApiContentResponses = NotionApiMocks.VIDEO_NOTION_API_CONTENT_RESPONSE;
       const notionApiContentResponsesToBlocks = new NotionApiContentResponsesToBlocks(notionApiContentResponses);
 
       const result = notionApiContentResponsesToBlocks.toBlocks();
 
-      expect(result).toEqual(BlockMocks.TEXT_WITH_YOUTUBE_VIDEO);
+      expect(result).toEqual(BlockMocks.PAGE_WITH_YOUTUBE_VIDEO);
     });
   });
 });

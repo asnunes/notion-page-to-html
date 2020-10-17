@@ -9,11 +9,24 @@ export class YouTubeVideoBlockToHtml implements ToHtml {
   }
 
   async convert(): Promise<string> {
-    if (!this._block.properties || !this._src || !this._src.includes('youtube.com')) return '';
-    return `<iframe id="ytplayer" type="text/html" width="640" height="360" src="${this._src}" frameborder="0"/>`;
+    const id = this._youtubeId;
+    if (!id) return '';
+    return `<iframe
+    width="560"
+    height="315"
+    src="https://www.youtube.com/embed/${id}"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+  ></iframe>`;
+  }
+
+  private get _youtubeId(): string | void {
+    const youtubeIdMatcher = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/gi;
+    return youtubeIdMatcher.exec(this._src)?.[1];
   }
 
   private get _src() {
-    return this._block.properties.source;
+    return this._block.properties?.source;
   }
 }
