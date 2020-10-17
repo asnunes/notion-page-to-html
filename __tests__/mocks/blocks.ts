@@ -1813,3 +1813,25 @@ export const PAGE_WITH_TITLE_AND_COVER_IMAGE = [
     children: [],
   },
 ];
+
+export const PAGE_WITH_TITLE_AND_COVER_IMAGE_NOT_FROM_NOTION = [
+  {
+    id: '4d64bbc0-634d-4758-befa-85c5a3a6c22f',
+    type: 'page',
+    properties: {},
+    format: { page_cover: 'https://www.example.com/some_image.png', page_cover_position: 1 },
+    decorableTexts: [{ text: 'Page Title', decorations: [] }],
+    children: [],
+  },
+];
+
+export const PAGE_WITH_TITLE_AND_INVALID_COVER_IMAGE = [
+  {
+    id: '4d64bbc0-634d-4758-befa-85c5a3a6c22f',
+    type: 'page',
+    properties: {},
+    format: { page_cover: 'https://www.example.com/s.html', page_cover_position: 1 },
+    decorableTexts: [{ text: 'Page Title', decorations: [] }],
+    children: [],
+  },
+];

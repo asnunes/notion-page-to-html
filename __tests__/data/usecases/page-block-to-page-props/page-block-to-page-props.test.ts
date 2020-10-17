@@ -27,20 +27,45 @@ describe('#toPageProps', () => {
 
   describe('when page has title and cover image', () => {
     describe('when image is from notion', () => {
-      beforeEach(() => {
+      it('return base64 image in coverImageSrc prop', async () => {
         nock('https://www.notion.so')
           .get('/images/page-cover/solid_blue.png')
           .replyWithFile(200, resolve('__tests__/mocks/img/baseImage.jpeg'), {
             'content-type': 'image/jpeg',
           });
-      });
-
-      it('return base64 image in coverImageSrc prop', async () => {
         const pageBlockToPageProps = new PageBlockToPageProps(Blocks.PAGE_WITH_TITLE_AND_COVER_IMAGE[0]);
 
         const result = await pageBlockToPageProps.toPageProps();
 
         expect(result).toEqual({ title: 'Page Title', coverImageSrc: base64Img });
+      });
+    });
+
+    describe('when image is not from notion', () => {
+      it('return base64 image in coverImageSrc prop', async () => {
+        nock('https://www.example.com')
+          .get('/some_image.png')
+          .replyWithFile(200, resolve('__tests__/mocks/img/baseImage.jpeg'), {
+            'content-type': 'image/jpeg',
+          });
+
+        const pageBlockToPageProps = new PageBlockToPageProps(
+          Blocks.PAGE_WITH_TITLE_AND_COVER_IMAGE_NOT_FROM_NOTION[0],
+        );
+
+        const result = await pageBlockToPageProps.toPageProps();
+
+        expect(result).toEqual({ title: 'Page Title', coverImageSrc: base64Img });
+      });
+    });
+
+    describe('when image url is not valid', () => {
+      it('return base64 image in coverImageSrc prop', async () => {
+        const pageBlockToPageProps = new PageBlockToPageProps(Blocks.PAGE_WITH_TITLE_AND_INVALID_COVER_IMAGE[0]);
+
+        const result = await pageBlockToPageProps.toPageProps();
+
+        expect(result).toEqual({ title: 'Page Title' });
       });
     });
   });
