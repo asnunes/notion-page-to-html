@@ -11,11 +11,11 @@ export class PageBlockToPageProps {
 
   async toPageProps(): Promise<PageProps> {
     const title = new PageBlockToTitle(this._pageBlock).toTitle();
-    const coverImageSrc = await new PageBlockToCoverImageSource(this._pageBlock).toImageCover();
+    const coverImage = await new PageBlockToCoverImageSource(this._pageBlock).toImageCover();
 
     return Promise.resolve({
       title,
-      ...(coverImageSrc && { coverImageSrc }),
+      ...(coverImage && { coverImageSrc: coverImage.base64, coverImagePosition: coverImage.position }),
     });
   }
 }
@@ -32,6 +32,11 @@ export class PageBlockToTitle {
   }
 }
 
+type ImageCover = {
+  base64: string;
+  position: number;
+};
+
 export class PageBlockToCoverImageSource {
   private readonly _pageBlock: Block;
 
@@ -39,17 +44,24 @@ export class PageBlockToCoverImageSource {
     this._pageBlock = pageBlock;
   }
 
-  async toImageCover(): Promise<string | null> {
+  async toImageCover(): Promise<ImageCover | null> {
     const pageCover = this._pageBlock.format.page_cover;
     if (!pageCover || !this._isImageURL(pageCover)) return Promise.resolve(null);
 
     let head = '';
     if (pageCover.startsWith('/')) head = 'https://www.notion.so';
 
-    return Base64Converter.convert(head + pageCover);
+    const base64 = await Base64Converter.convert(head + pageCover);
+    const position = this._pageCoverPositionToPositionCenter(this._pageBlock.format.page_cover_position || 0.6);
+
+    return { base64, position };
   }
 
   private _isImageURL(url: string): boolean {
     return /(?:([^:\/?#]+):)?(?:\/\/([^/?#]*))?([^?#]*\.(?:jpg|gif|png|jpeg))(?:\?([^#]*))?(?:#(.*))?/gi.test(url);
+  }
+
+  private _pageCoverPositionToPositionCenter(coverPosition: number): number {
+    return (1 - coverPosition) * 100;
   }
 }
