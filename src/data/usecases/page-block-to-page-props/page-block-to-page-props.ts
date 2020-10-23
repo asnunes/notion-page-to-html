@@ -20,7 +20,7 @@ export class PageBlockToPageProps {
   }
 }
 
-export class PageBlockToTitle {
+class PageBlockToTitle {
   private readonly _pageBlock: Block;
 
   constructor(pageBlock: Block) {
@@ -37,7 +37,7 @@ type ImageCover = {
   position: number;
 };
 
-export class PageBlockToCoverImageSource {
+class PageBlockToCoverImageSource {
   private readonly _pageBlock: Block;
 
   constructor(pageBlock: Block) {
