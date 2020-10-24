@@ -1,6 +1,7 @@
 import { PageProps } from 'data/protocols/page-props';
 import { HtmlWrapper } from '../../../domain/usecases/html-wrapper';
 import { HtmlOptions } from '../../protocols/html-options/html-options';
+import { HeaderFromTemplate } from './header-from-template';
 
 export class OptionsHtmlWrapper implements HtmlWrapper {
   private readonly _options: HtmlOptions;
@@ -60,20 +61,7 @@ export class OptionsHtmlWrapper implements HtmlWrapper {
   }
 
   private _headerFromTemplate(pageProps: PageProps): string {
-    const { title, coverImageSrc, coverImagePosition } = pageProps;
-
-    return `\
-      <header>
-        ${
-          coverImageSrc
-            ? `<img class="page-cover-image" src="${coverImageSrc}" style="object-position:center ${
-                coverImagePosition || 0
-              }%">`
-            : ''
-        }
-        <h1 class="page-title">${title}</h1>
-      </header>
-    `;
+    return new HeaderFromTemplate(pageProps).toHeader();
   }
 
   private get _styleTag(): string {
