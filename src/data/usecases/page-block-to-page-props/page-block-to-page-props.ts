@@ -12,10 +12,12 @@ export class PageBlockToPageProps {
   async toPageProps(): Promise<PageProps> {
     const title = new PageBlockToTitle(this._pageBlock).toTitle();
     const coverImage = await new PageBlockToCoverImageSource(this._pageBlock).toImageCover();
+    const icon = await new PageBlockToIcon(this._pageBlock).toIcon();
 
     return Promise.resolve({
       title,
       ...(coverImage && { coverImageSrc: coverImage.base64, coverImagePosition: coverImage.position }),
+      ...(icon && { icon }),
     });
   }
 }
@@ -63,5 +65,20 @@ class PageBlockToCoverImageSource {
 
   private _pageCoverPositionToPositionCenter(coverPosition: number): number {
     return (1 - coverPosition) * 100;
+  }
+}
+
+class PageBlockToIcon {
+  private readonly _pageBlock: Block;
+
+  constructor(pageBlock: Block) {
+    this._pageBlock = pageBlock;
+  }
+
+  async toIcon(): Promise<string | null> {
+    const icon = this._pageBlock.format.page_icon;
+    if (!icon) return Promise.resolve(null);
+
+    return icon;
   }
 }
