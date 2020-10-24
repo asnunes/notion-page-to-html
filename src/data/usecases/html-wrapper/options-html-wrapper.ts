@@ -114,12 +114,39 @@ export class OptionsHtmlWrapper implements HtmlWrapper {
         margin-bottom: 0.75em;
       }
 
+      .icon {
+        display: inline-block;
+        max-width: 1.2em;
+        max-height: 1.2em;
+        text-decoration: none;
+        vertical-align: text-bottom;
+        margin-right: 0.5em;
+      }
+
+      img.icon {
+        border-radius: 3px;
+      }
+      
       .page-cover-image {
         display: block;
         object-fit: cover;
         width: 100%;
         height: 30vh;
-      }    
+      }
+
+      .page-header-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+      
+      .page-header-icon-with-cover {
+        margin-top: -0.72em;
+        margin-left: 0.07em;
+      }
+      
+      .page-header-icon img {
+        border-radius: 3px;
+      } 
 
       h1 {
         font-size: 1.875rem;
