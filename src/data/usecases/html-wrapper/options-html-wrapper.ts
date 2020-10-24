@@ -21,7 +21,7 @@ export class OptionsHtmlWrapper implements HtmlWrapper {
     <html>
       ${this._headFromTemplate(title)}
         <body>
-          ${!this._options.excludeHeaderFromBody ? this._headerFromTemplate(pageProps) : ''}
+          ${!this._options.excludeHeaderFromBody ? new HeaderFromTemplate(pageProps).toHeader() : ''}
           ${html}
           ${!this._options.excludeScripts ? SCRIPTS : ''}
         </body>
@@ -43,9 +43,5 @@ export class OptionsHtmlWrapper implements HtmlWrapper {
       }
     </head>
     `;
-  }
-
-  private _headerFromTemplate(pageProps: PageProps): string {
-    return new HeaderFromTemplate(pageProps).toHeader();
   }
 }
