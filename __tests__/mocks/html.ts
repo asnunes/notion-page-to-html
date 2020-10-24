@@ -108,6 +108,9 @@ const STYLE_TAG = `\
 const HEADER = `\
 <header>
   <img class="page-cover-image" src="${base64}" style="object-position:center 40%">
+  <div class="page-header-icon page-header-icon-with-cover">
+    <span class="icon">🤴</span>
+  </div>
   <h1 class="page-title">Simple Page Test</h1>
 </header>
 `;
@@ -269,3 +272,51 @@ export const FULL_DOCUMENT_WITHOUT_HEADER_IN_BODY = `
 `;
 
 export const BODY_ONLY = `<p>Hello World</p>`;
+
+export const HEADER_WITH_TITLE_ONLY = `\
+<header>
+  <h1 class="page-title">This is a title</h1>
+</header>
+`;
+
+export const HEADER_WITH_TITLE_AND_COVER_IMAGE = `\
+<header>
+  <img class="page-cover-image" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD" style="object-position:center 15%">
+  <h1 class="page-title">This is a title</h1>
+</header>
+`;
+
+export const HEADER_WITH_TITLE_AND_COVER_IMAGE_WITHOUT_POSITION = `\
+<header>
+  <img class="page-cover-image" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD" style="object-position:center 0%">
+  <h1 class="page-title">This is a title</h1>
+</header>
+`;
+
+export const HEADER_WITH_TITLE_COVER_IMAGE_AND_IMAGE_ICON = `\
+<header>
+  <img class="page-cover-image" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD" style="object-position:center 0%">
+  <div class="page-header-icon page-header-icon-with-cover">
+    <img class="icon" src="data:image/jpeg;base64,/4QDeRXhpZgAASUkqAAgAAAAGABIBAwA">
+  </div>
+  <h1 class="page-title">This is a title</h1>
+</header>
+`;
+
+export const HEADER_WITH_TITLE_AND_IMAGE_ICON = `\
+<header>
+  <div class="page-header-icon">
+    <img class="icon" src="data:image/jpeg;base64,/4QDeRXhpZgAASUkqAAgAAAAGABIBAwA">
+  </div>
+  <h1 class="page-title">This is a title</h1>
+</header>
+`;
+
+export const HEADER_WITH_TITLE_AND_EMOJI_ICON = `\
+<header>
+  <div class="page-header-icon">
+    <span class="icon">🤴</span>
+  </div>
+  <h1 class="page-title">This is a title</h1>
+</header>
+`;

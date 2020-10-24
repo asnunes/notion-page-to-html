@@ -11,6 +11,7 @@ export class HeaderFromTemplate {
     return `\
       <header>
         ${this._coverImageHtml}
+        ${this._iconHtml}
         ${this._titleHtml}
       </header>\
     `;
@@ -30,9 +31,11 @@ export class HeaderFromTemplate {
     const { coverImageSrc, icon } = this._pageProps;
     if (!icon) return '';
 
-    return `<div class="page-header-icon ${
-      coverImageSrc ? 'page-header-icon-with-cover' : ''
-    }"><img class="icon" src="${icon}"></div>`;
+    const imageCoverSrcClassName = coverImageSrc ? 'page-header-icon-with-cover' : '';
+
+    if (!icon.startsWith('data:image/'))
+      return `<div class="page-header-icon ${imageCoverSrcClassName}"><span class="icon">${icon}</span></div>`;
+    return `<div class="page-header-icon ${imageCoverSrcClassName}"><img class="icon" src="${icon}"></div>`;
   }
 
   private get _titleHtml(): string {
