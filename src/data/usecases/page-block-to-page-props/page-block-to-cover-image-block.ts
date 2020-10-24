@@ -10,7 +10,7 @@ export class PageBlockToCoverImageSource {
   }
 
   async toImageCover(): Promise<ImageCover | null> {
-    const pageCover = this._pageBlock.format.page_cover;
+    const pageCover = this._pageBlock.properties.page_cover;
     if (!pageCover || !this._isImageURL(pageCover)) return Promise.resolve(null);
 
     let head = '';

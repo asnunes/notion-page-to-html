@@ -125,4 +125,15 @@ describe('#toBlocks', () => {
       expect(result).toEqual(BlockMocks.PAGE_WITH_TITLE_AND_COVER_IMAGE);
     });
   });
+
+  describe('when page with page icon is given', () => {
+    it('converts to page block with page_icon in format prop', () => {
+      const notionApiContentResponses = NotionApiMocks.SINGLE_PAGE_WITH_ICON;
+      const notionApiContentResponsesToBlocks = new NotionApiContentResponsesToBlocks(notionApiContentResponses);
+
+      const result = notionApiContentResponsesToBlocks.toBlocks();
+
+      expect(result).toEqual(BlockMocks.PAGE_WITH_TITLE_AND_ICON);
+    });
+  });
 });

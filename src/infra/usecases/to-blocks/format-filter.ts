@@ -6,7 +6,7 @@ export class FormatFilter {
   }
 
   filter(): Record<string, any> {
-    const presentAcceptableKeys = Object.keys(this._format).filter((k) => acceptableKeys.includes(k));
+    const presentAcceptableKeys = Object.keys(this._format).filter((k) => ACCEPTABLE_KEYS.includes(k));
     return presentAcceptableKeys.reduce<Record<string, any>>((filteredFormat, key) => {
       return {
         ...filteredFormat,
@@ -16,4 +16,4 @@ export class FormatFilter {
   }
 }
 
-const acceptableKeys: string[] = ['block_color', 'page_cover', 'page_cover_position'];
+const ACCEPTABLE_KEYS: string[] = ['block_color', 'page_cover_position'];

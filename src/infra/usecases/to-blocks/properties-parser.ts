@@ -9,7 +9,7 @@ export class PropertiesParser {
 
   parse(): Record<string, any> {
     const avaliableKeys = Object.keys({ ...this._format, ...this._properties }).filter((k) =>
-      keysToPreserve.includes(k),
+      KEYS_TO_PRESERVE.includes(k),
     );
 
     return avaliableKeys.reduce<Record<string, any>>(
@@ -22,4 +22,4 @@ export class PropertiesParser {
   }
 }
 
-const keysToPreserve = ['source', 'caption', 'language', 'checked', 'page_icon'];
+const KEYS_TO_PRESERVE = ['source', 'caption', 'language', 'checked', 'page_icon', 'page_cover'];

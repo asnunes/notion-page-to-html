@@ -84,7 +84,7 @@ describe('#toPageProps', () => {
 
     describe('when icon is an image url', () => {
       const block = Blocks.PAGE_WITH_TITLE_AND_IMAGE_ICON[0];
-      const imageSource = block.format.page_icon;
+      const imageSource = block.properties.page_icon;
 
       beforeEach(() => {
         nock('https://www.notion.so')
@@ -104,8 +104,6 @@ describe('#toPageProps', () => {
 
       it('attaches block id to image url on base64 convertion', async () => {
         const base64ConverterSpy = jest.spyOn(Base64Converter, 'convert');
-        const block = Blocks.PAGE_WITH_TITLE_AND_IMAGE_ICON[0];
-        const imageSource = block.format.page_icon;
         const pageBlockToPageProps = new PageBlockToPageProps(block);
 
         await pageBlockToPageProps.toPageProps();

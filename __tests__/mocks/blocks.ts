@@ -1807,8 +1807,19 @@ export const PAGE_WITH_TITLE_AND_COVER_IMAGE = [
   {
     id: '4d64bbc0-634d-4758-befa-85c5a3a6c22f',
     type: 'page',
-    properties: {},
-    format: { page_cover: '/images/page-cover/solid_blue.png', page_cover_position: 0.6 },
+    properties: { page_cover: '/images/page-cover/solid_blue.png' },
+    format: { page_cover_position: 0.6 },
+    decorableTexts: [{ text: 'Page Title', decorations: [] }],
+    children: [],
+  },
+];
+
+export const PAGE_WITH_TITLE_AND_ICON = [
+  {
+    id: '4d64bbc0-634d-4758-befa-85c5a3a6c22f',
+    type: 'page',
+    properties: { page_icon: '🤴' },
+    format: {},
     decorableTexts: [{ text: 'Page Title', decorations: [] }],
     children: [],
   },
@@ -1818,8 +1829,8 @@ export const PAGE_WITH_TITLE_AND_COVER_IMAGE_NOT_FROM_NOTION = [
   {
     id: '4d64bbc0-634d-4758-befa-85c5a3a6c22f',
     type: 'page',
-    properties: {},
-    format: { page_cover: 'https://www.example.com/some_image.png', page_cover_position: 0.6 },
+    properties: { page_cover: 'https://www.example.com/some_image.png' },
+    format: { page_cover_position: 0.6 },
     decorableTexts: [{ text: 'Page Title', decorations: [] }],
     children: [],
   },
@@ -1829,8 +1840,8 @@ export const PAGE_WITH_TITLE_AND_INVALID_COVER_IMAGE = [
   {
     id: '4d64bbc0-634d-4758-befa-85c5a3a6c22f',
     type: 'page',
-    properties: {},
-    format: { page_cover: 'https://www.example.com/s.html', page_cover_position: 0.6 },
+    properties: { page_cover: 'https://www.example.com/s.html' },
+    format: { page_cover_position: 0.6 },
     decorableTexts: [{ text: 'Page Title', decorations: [] }],
     children: [],
   },
@@ -1840,8 +1851,8 @@ export const PAGE_WITH_TITLE_AND_EMOJI_ICON = [
   {
     id: '4d64bbc0-634d-4758-befa-85c5a3a6c22f',
     type: 'page',
-    properties: {},
-    format: { page_icon: '🤴' },
+    properties: { page_icon: '🤴' },
+    format: {},
     decorableTexts: [{ text: 'Page Title', decorations: [] }],
     children: [],
   },
@@ -1851,8 +1862,8 @@ export const PAGE_WITH_TITLE_AND_IMAGE_ICON = [
   {
     id: '4d64bbc0-634d-4758-befa-85c5a3a6c22f',
     type: 'page',
-    properties: {},
-    format: { page_icon: 'https://www.example.com/some_image.png' },
+    properties: { page_icon: 'https://www.example.com/some_image.png' },
+    format: {},
     decorableTexts: [{ text: 'Page Title', decorations: [] }],
     children: [],
   },

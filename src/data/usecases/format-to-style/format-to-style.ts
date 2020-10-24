@@ -9,12 +9,11 @@ export class FormatToStyle {
   }
 
   toStyle(): string {
-    if (Object.keys(this._format).length === 0) return '';
-
     const styleProps = [];
     const blockColor = this._format.block_color;
     if (blockColor) styleProps.push(new BlockColorToProp(blockColor).toStyle());
 
+    if (styleProps.length === 0) return '';
     return ` style="${styleProps.join('')}"`;
   }
 }

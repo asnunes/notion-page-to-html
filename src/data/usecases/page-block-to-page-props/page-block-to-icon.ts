@@ -9,7 +9,7 @@ export class PageBlockToIcon {
   }
 
   async toIcon(): Promise<string | null> {
-    const icon = this._pageBlock.format.page_icon;
+    const icon = this._pageBlock.properties.page_icon;
     if (!icon) return Promise.resolve(null);
     if (!icon.startsWith('http')) return icon;
 
@@ -17,6 +17,3 @@ export class PageBlockToIcon {
     return Base64Converter.convert(url);
   }
 }
-
-// https://www.notion.so/image/https%3A%2F%2Fwww.example.com%2Fsome_image.png?table=block&id=4d64bbc0-634d-4758-befa-85c5a3a6c22f
-// https://www.notion.so/image/https%3A%2F%2Fwww.example.com%2Fsome_image.png?table=block&id=4d64bbc0-634d-4758-befa-85c5a3a6c22f
