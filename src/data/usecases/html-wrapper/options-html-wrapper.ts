@@ -2,7 +2,8 @@ import { PageProps } from 'data/protocols/page-props';
 import { HtmlWrapper } from '../../../domain/usecases/html-wrapper';
 import { HtmlOptions } from '../../protocols/html-options/html-options';
 import { HeaderFromTemplate } from './header-from-template';
-import { STYLE } from './style';
+import { SCRIPTS } from './scripts';
+import { STYLE } from './styles';
 
 export class OptionsHtmlWrapper implements HtmlWrapper {
   private readonly _options: HtmlOptions;
@@ -22,7 +23,7 @@ export class OptionsHtmlWrapper implements HtmlWrapper {
         <body>
           ${!this._options.excludeHeaderFromBody ? this._headerFromTemplate(pageProps) : ''}
           ${html}
-          ${!this._options.excludeScripts ? this._scriptsFromTemplate() : ''}
+          ${!this._options.excludeScripts ? SCRIPTS : ''}
         </body>
     </html>\
     `;
@@ -41,23 +42,6 @@ export class OptionsHtmlWrapper implements HtmlWrapper {
           : ''
       }
     </head>
-    `;
-  }
-
-  private _scriptsFromTemplate(): string {
-    return `\
-      <script src="https://unpkg.com/prismjs@1.22.0/components/prism-core.min.js"></script>
-      <script src="https://unpkg.com/prismjs@1.22.0/plugins/autoloader/prism-autoloader.min.js"></script>
-      <script>
-      MathJax = {
-        tex: {
-          inlineMath: [['$', '$']]
-        }
-      };
-      </script>
-      <script id="MathJax-script" async
-        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
-      </script>\
     `;
   }
 
