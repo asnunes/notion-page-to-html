@@ -403,10 +403,16 @@ describe('#convert', () => {
       it('returns html with a div and unchecked checkbox and label inside', async () => {
         const html = await makeSut(BlockMocks.TODO).convert();
 
-        expect(html).toBe(`<div>
-        <input type="checkbox" name="d1e33c43-5079-4e66-961a-df032d38d532">
-        <label for="d1e33c43-5079-4e66-961a-df032d38d532">This is a test</label>
-      </div>`);
+        expect(html.replace(/\s/g, '')).toBe(
+          `\
+        <ul class="to-do-list">
+          <li>
+            <div class="checkbox checkbox-off"></div>
+            <span class="to-do-children-unchecked">This is a test</span>\
+          </li>\
+        </ul>\
+        `.replace(/\s/g, ''),
+        );
       });
     });
 
@@ -415,22 +421,28 @@ describe('#convert', () => {
         const html = await makeSut(BlockMocks.TODO_WITH_CHILDREN).convert();
 
         expect(html.replace(/\s/g, '')).toBe(
-          `
-          <div>
-            <input type="checkbox" name="80d0fc46-5511-4d1d-a4ec-8b2f43d75226">
-            <label for="80d0fc46-5511-4d1d-a4ec-8b2f43d75226">Hello World</label>
+          `\
+        <ul class="to-do-list">
+          <li>
+            <div class="checkbox checkbox-off"></div>
+            <span class="to-do-children-unchecked">Hello World</span>\
             <div class="indented">
-              <div>
-                <input type="checkbox" name="80d0fc46-5511-4d1d-a4ec-8b2f41214426">
-                <label for="80d0fc46-5511-4d1d-a4ec-8b2f41214426">This is a child</label>
-              </div>
-              <div>
-                <input type="checkbox" checked name="80d0fc46-5511-4d1d-a4ec-8b1212114426">
-                <label for="80d0fc46-5511-4d1d-a4ec-8b1212114426">This is a child too</label>
-              </div>
+              <ul class="to-do-list">
+                <li>
+                  <div class="checkbox checkbox-off"></div>
+                  <span class="to-do-children-unchecked">This is a child</span>\
+                </li>\
+              </ul>\
+              <ul class="to-do-list">
+                <li>
+                  <div class="checkbox checkbox-on"></div>
+                  <span class="to-do-children-checked">This is a child too</span>\
+                </li>\
+              </ul>\
             </div>
-          </div>
-          `.replace(/\s/g, ''),
+          </li>\
+        </ul>\
+        `.replace(/\s/g, ''),
         );
       });
     });
@@ -439,10 +451,16 @@ describe('#convert', () => {
       it('returns html with a div and unchecked checkbox and label inside with style on div', async () => {
         const html = await makeSut(BlockMocks.TODO_WITH_FORMAT).convert();
 
-        expect(html).toBe(`<div style="background-color: #DDEBF1; ">
-        <input type="checkbox" name="d1e33c43-5079-4e66-961a-df032d38d532">
-        <label for="d1e33c43-5079-4e66-961a-df032d38d532">This is a todo with style</label>
-      </div>`);
+        expect(html.replace(/\s/g, '')).toBe(
+          `\
+        <ul class="to-do-list" style="background-color: #DDEBF1; ">
+          <li>
+            <div class="checkbox checkbox-off"></div>
+            <span class="to-do-children-unchecked">This is a todo with style</span>\
+          </li>\
+        </ul>\
+        `.replace(/\s/g, ''),
+        );
       });
     });
 
@@ -450,10 +468,16 @@ describe('#convert', () => {
       it('returns html with a div and unchecked checkbox and label inside with style on div', async () => {
         const html = await makeSut(BlockMocks.TODO_WITH_FORMAT_FOREGROUND).convert();
 
-        expect(html).toBe(`<div style="color: #0B6E99; ">
-        <input type="checkbox" name="d1e33c43-5079-4e66-961a-df032d38d532">
-        <label for="d1e33c43-5079-4e66-961a-df032d38d532">This is a todo with style</label>
-      </div>`);
+        expect(html.replace(/\s/g, '')).toBe(
+          `\
+        <ul class="to-do-list" style="color: #0B6E99; ">
+          <li>
+            <div class="checkbox checkbox-off"></div>
+            <span class="to-do-children-unchecked">This is a todo with style</span>\
+          </li>\
+        </ul>\
+        `.replace(/\s/g, ''),
+        );
       });
     });
 
@@ -461,10 +485,16 @@ describe('#convert', () => {
       it('returns html with a div and checked checkbox and label inside', async () => {
         const html = await makeSut(BlockMocks.CHECKED_TODO).convert();
 
-        expect(html).toBe(`<div>
-        <input type="checkbox" checked name="d1e33c43-5079-4e66-961a-df032d38d532">
-        <label for="d1e33c43-5079-4e66-961a-df032d38d532">This is a test</label>
-      </div>`);
+        expect(html.replace(/\s/g, '')).toBe(
+          `\
+        <ul class="to-do-list">
+          <li>
+            <div class="checkbox checkbox-on"></div>
+            <span class="to-do-children-checked">This is a test</span>\
+          </li>\
+        </ul>\
+        `.replace(/\s/g, ''),
+        );
       });
     });
 
@@ -472,14 +502,21 @@ describe('#convert', () => {
       it('returns html with two divs and checkbox and label inside', async () => {
         const html = await makeSut(BlockMocks.UNCHECKED_AND_CHECKED_TODOS).convert();
 
-        expect(html).toBe(
-          `<div>
-        <input type="checkbox" name="d1e33c43-5079-4e66-961a-df032d2332">
-        <label for="d1e33c43-5079-4e66-961a-df032d2332">This is a test</label>
-      </div>\n<div>
-        <input type="checkbox" checked name="d1e33c43-5079-4e66-961a-df032d38d532">
-        <label for="d1e33c43-5079-4e66-961a-df032d38d532">This is a test too</label>
-      </div>`,
+        expect(html.replace(/\s/g, '')).toBe(
+          `\
+        <ul class="to-do-list">
+          <li>
+            <div class="checkbox checkbox-off"></div>
+            <span class="to-do-children-unchecked">This is a test</span>\
+          </li>\
+        </ul>\
+        <ul class="to-do-list">
+          <li>
+            <div class="checkbox checkbox-on"></div>
+            <span class="to-do-children-checked">This is a test too</span>\
+          </li>\
+        </ul>\
+        `.replace(/\s/g, ''),
         );
       });
     });
