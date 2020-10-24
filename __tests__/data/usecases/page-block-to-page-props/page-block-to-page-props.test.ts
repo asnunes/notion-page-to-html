@@ -1,6 +1,7 @@
 import nock from 'nock';
 import { resolve } from 'path';
 import { PageBlockToPageProps } from '../../../../src/data/usecases/page-block-to-page-props';
+import { Base64Converter } from '../../../../src/utils/base-64-converter';
 import * as Blocks from '../../../mocks/blocks';
 import base64Img from '../../../mocks/img/base64';
 
@@ -71,13 +72,49 @@ describe('#toPageProps', () => {
   });
 
   describe('when page has title and icon', () => {
-    describe('when icon is a utf-8 emoji', () => {
-      it('returns emoji on page prop', async () => {
+    describe('when icon is an utf-8 emoji', () => {
+      it('returns emoji in page prop', async () => {
         const pageBlockToPageProps = new PageBlockToPageProps(Blocks.PAGE_WITH_TITLE_AND_EMOJI_ICON[0]);
 
         const result = await pageBlockToPageProps.toPageProps();
 
         expect(result).toEqual({ title: 'Page Title', icon: '🤴' });
+      });
+    });
+
+    describe('when icon is an image url', () => {
+      const block = Blocks.PAGE_WITH_TITLE_AND_IMAGE_ICON[0];
+      const imageSource = block.format.page_icon;
+
+      beforeEach(() => {
+        nock('https://www.notion.so')
+          .get(`/image/${encodeURIComponent(imageSource)}?table=block&id=${block.id}`)
+          .replyWithFile(200, resolve('__tests__/mocks/img/baseImage.jpeg'), {
+            'content-type': 'image/jpeg',
+          });
+      });
+
+      it('returns image as base64 in page prop', async () => {
+        const pageBlockToPageProps = new PageBlockToPageProps(block);
+
+        const result = await pageBlockToPageProps.toPageProps();
+
+        expect(result).toEqual({ title: 'Page Title', icon: base64Img });
+      });
+
+      it('attaches block id to image url on base64 convertion', async () => {
+        const base64ConverterSpy = jest.spyOn(Base64Converter, 'convert');
+        const block = Blocks.PAGE_WITH_TITLE_AND_IMAGE_ICON[0];
+        const imageSource = block.format.page_icon;
+        const pageBlockToPageProps = new PageBlockToPageProps(block);
+
+        await pageBlockToPageProps.toPageProps();
+
+        const expectedImageUrl = `https://www.notion.so/image/${encodeURIComponent(imageSource)}?table=block&id=${
+          block.id
+        }`;
+
+        expect(base64ConverterSpy).toBeCalledWith(expectedImageUrl);
       });
     });
   });

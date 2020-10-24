@@ -1846,3 +1846,14 @@ export const PAGE_WITH_TITLE_AND_EMOJI_ICON = [
     children: [],
   },
 ];
+
+export const PAGE_WITH_TITLE_AND_IMAGE_ICON = [
+  {
+    id: '4d64bbc0-634d-4758-befa-85c5a3a6c22f',
+    type: 'page',
+    properties: {},
+    format: { page_icon: 'https://www.example.com/some_image.png' },
+    decorableTexts: [{ text: 'Page Title', decorations: [] }],
+    children: [],
+  },
+];
