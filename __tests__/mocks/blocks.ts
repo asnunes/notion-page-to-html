@@ -1835,3 +1835,14 @@ export const PAGE_WITH_TITLE_AND_INVALID_COVER_IMAGE = [
     children: [],
   },
 ];
+
+export const PAGE_WITH_TITLE_AND_EMOJI_ICON = [
+  {
+    id: '4d64bbc0-634d-4758-befa-85c5a3a6c22f',
+    type: 'page',
+    properties: {},
+    format: { page_icon: '🤴' },
+    decorableTexts: [{ text: 'Page Title', decorations: [] }],
+    children: [],
+  },
+];

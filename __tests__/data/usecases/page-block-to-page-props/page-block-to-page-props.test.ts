@@ -27,7 +27,7 @@ describe('#toPageProps', () => {
 
   describe('when page has title and cover image', () => {
     describe('when image is from notion', () => {
-      it('return base64 image in coverImageSrc prop', async () => {
+      it('returns base64 image in coverImageSrc prop', async () => {
         nock('https://www.notion.so')
           .get('/images/page-cover/solid_blue.png')
           .replyWithFile(200, resolve('__tests__/mocks/img/baseImage.jpeg'), {
@@ -42,7 +42,7 @@ describe('#toPageProps', () => {
     });
 
     describe('when image is not from notion', () => {
-      it('return base64 image in coverImageSrc prop', async () => {
+      it('returns base64 image in coverImageSrc prop', async () => {
         nock('https://www.example.com')
           .get('/some_image.png')
           .replyWithFile(200, resolve('__tests__/mocks/img/baseImage.jpeg'), {
@@ -60,12 +60,24 @@ describe('#toPageProps', () => {
     });
 
     describe('when image url is not valid', () => {
-      it('return base64 image in coverImageSrc prop', async () => {
+      it('returns base64 image in coverImageSrc prop', async () => {
         const pageBlockToPageProps = new PageBlockToPageProps(Blocks.PAGE_WITH_TITLE_AND_INVALID_COVER_IMAGE[0]);
 
         const result = await pageBlockToPageProps.toPageProps();
 
         expect(result).toEqual({ title: 'Page Title' });
+      });
+    });
+  });
+
+  describe('when page has title and icon', () => {
+    describe('when icon is a utf-8 emoji', () => {
+      it('returns emoji on page prop', async () => {
+        const pageBlockToPageProps = new PageBlockToPageProps(Blocks.PAGE_WITH_TITLE_AND_EMOJI_ICON[0]);
+
+        const result = await pageBlockToPageProps.toPageProps();
+
+        expect(result).toEqual({ title: 'Page Title', icon: '🤴' });
       });
     });
   });
