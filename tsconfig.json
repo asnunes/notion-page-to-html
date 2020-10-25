@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "outDir": "dist",
+    "target": "es5",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "strict": true,
+    "rootDir": "src",
+    "allowJs": true,
+    "lib": ["es2019"]
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "**/__tests__/*"]
+}
