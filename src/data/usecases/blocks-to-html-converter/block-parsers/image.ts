@@ -1,6 +1,7 @@
 import { Block } from '../../../protocols/blocks';
 import { ToHtml } from '../../../../domain/usecases/to-html';
 import { Base64Converter } from '../../../../utils/base-64-converter';
+import { FormatToStyle } from '../../../usecases/format-to-style';
 
 export class ImageBlockToHtml implements ToHtml {
   private readonly _block: Block;
@@ -14,10 +15,11 @@ export class ImageBlockToHtml implements ToHtml {
 
     const imageSource = await Base64Converter.convert(this._rawSrc);
     const caption = this._caption;
+    const style = new FormatToStyle(this._block.format).toStyle();
 
     return `
 <figure class="image">
-<img src="${imageSource}" alt="${caption}">
+<img src="${imageSource}" alt="${caption}"${style}>
 ${caption !== '' ? `<figcaption>${caption}</figcaption>` : ''}
 </figure>
     `;

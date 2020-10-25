@@ -667,6 +667,20 @@ describe('#convert', () => {
       });
     });
 
+    describe('When image has width', () => {
+      it('returns html with img tag with width in style', async () => {
+        const html = await makeSut(BlockMocks.IMAGE_WITH_CUSTOM_SIZE).convert();
+
+        expect(html.replace(/\s/g, '')).toBe(
+          `
+        <figure class="image">
+          <img src="${base64Img}" alt="" style="width: 240px; ">
+        </figure>
+        `.replace(/\s/g, ''),
+        );
+      });
+    });
+
     describe('When detail block is given', () => {
       describe('When there are no style on block', () => {
         it('returns empty string', async () => {

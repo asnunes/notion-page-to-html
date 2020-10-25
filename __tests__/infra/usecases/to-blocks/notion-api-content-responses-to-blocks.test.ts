@@ -93,6 +93,17 @@ describe('#toBlocks', () => {
     });
   });
 
+  describe('when page with custom image size is given', () => {
+    it('passes block_width to format', () => {
+      const notionApiContentResponses = NotionApiMocks.IMAGE_WITH_CUSTOM_SIZE;
+      const notionApiContentResponsesToBlocks = new NotionApiContentResponsesToBlocks(notionApiContentResponses);
+
+      const result = notionApiContentResponsesToBlocks.toBlocks();
+
+      expect(result).toEqual(BlockMocks.IMAGE_WITH_CUSTOM_SIZE);
+    });
+  });
+
   describe('when page with page_icon in format is given', () => {
     it('passes format prop to properties', () => {
       const notionApiContentResponses = NotionApiMocks.CALLOUT_WITH_PAGE_ICON;

@@ -462,6 +462,31 @@ export const CALLOUT_WITH_PAGE_ICON = [
   },
 ];
 
+export const IMAGE_WITH_CUSTOM_SIZE = [
+  {
+    id: 'ec3b36fd-f77d-46b4-8592-5966488612b1',
+    type: 'image',
+    properties: {
+      source: [
+        [
+          'https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bcedd078-56cd-4137-a28a-af16b5746874/767-50x50.jpg',
+        ],
+      ],
+    },
+    format: {
+      block_width: 240,
+      block_height: 50,
+      display_source:
+        'https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bcedd078-56cd-4137-a28a-af16b5746874/767-50x50.jpg',
+      block_full_width: false,
+      block_page_width: false,
+      block_aspect_ratio: 1,
+      block_preserve_scale: true,
+    },
+    contents: [],
+  },
+];
+
 export const TEXT_NOTION_API_CONTENT_RESPONSE = [
   {
     id: '4d64bbc0-634d-4758-befa-85c5a3a6c22f',

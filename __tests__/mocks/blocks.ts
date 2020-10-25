@@ -1544,6 +1544,20 @@ export const IMAGE_WITH_CAPTION = [
   },
 ];
 
+export const IMAGE_WITH_CUSTOM_SIZE = [
+  {
+    id: 'ec3b36fd-f77d-46b4-8592-5966488612b1',
+    type: 'image',
+    properties: {
+      source:
+        'https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bcedd078-56cd-4137-a28a-af16b5746874/767-50x50.jpg',
+    },
+    format: { block_width: 240 },
+    children: [] as Block[],
+    decorableTexts: [],
+  },
+];
+
 export const CALLOUT = [
   {
     id: '16431c64-3bf0-481f-a29f-d544780d84f3',
