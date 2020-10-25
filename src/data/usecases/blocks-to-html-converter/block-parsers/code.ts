@@ -12,7 +12,9 @@ export class CodeBlockToHtml implements ToHtml {
   async convert(): Promise<string> {
     const languageClass = this._language ? `class="language-${this._language}"` : '';
 
-    return Promise.resolve(`<pre><code ${languageClass}>${blockToInnerText(this._block)}</code></pre>`);
+    return Promise.resolve(
+      `<pre><code ${languageClass}>${blockToInnerText(this._block).replace(/(\s{4}|\t)/g, '  ')}</code></pre>`,
+    );
   }
 
   private get _language(): string {

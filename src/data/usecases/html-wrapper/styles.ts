@@ -205,6 +205,16 @@ h3 {
   margin-left: 10px;
 }
 
+hr {
+  background: transparent;
+  display: block;
+  width: 100%;
+  height: 1px;
+  visibility: visible;
+  border: none;
+  border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
 .checkbox {
   display: inline-flex;
   vertical-align: text-bottom;

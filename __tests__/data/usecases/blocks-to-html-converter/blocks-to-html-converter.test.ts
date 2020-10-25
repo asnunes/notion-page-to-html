@@ -520,7 +520,7 @@ describe('#convert', () => {
         const html = await makeSut(BlockMocks.CODE).convert();
 
         expect(html).toBe(
-          `<pre><code class="language-javascript">function test() {\n\tvar isTesting = true;\n\treturn isTesting;\n}</code></pre>`,
+          `<pre><code class="language-javascript">function test() {\n  var isTesting = true;\n  return isTesting;\n}</code></pre>`,
         );
       });
     });
@@ -530,7 +530,7 @@ describe('#convert', () => {
         const html = await makeSut(BlockMocks.CODE_WITH_DECORATION).convert();
 
         expect(html).toBe(
-          `<pre><code class="language-javascript">function test() {\n\tvar isTesting = true;\n\treturn isTesting;\n}</code></pre>`,
+          `<pre><code class="language-javascript">function test() {\n  var isTesting = true;\n  return isTesting;\n}</code></pre>`,
         );
       });
     });
