@@ -205,6 +205,25 @@ h3 {
   margin-left: 10px;
 }
 
+.image {
+  border: none;
+  margin: 1.5em 0;
+  padding: 0;
+  border-radius: 0;
+  text-align: center;
+}
+
+figure {
+  margin: 1.25em 0;
+  page-break-inside: avoid;
+}
+
+figcaption {
+  opacity: 0.5;
+  font-size: 85%;
+  margin-top: 0.5em;
+}
+
 hr {
   background: transparent;
   display: block;

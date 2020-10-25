@@ -644,7 +644,7 @@ describe('#convert', () => {
 
         expect(html.replace(/\s/g, '')).toBe(
           `
-        <figure>
+        <figure class="image">
           <img src="${base64Img}" alt="" >
         </figure>
         `.replace(/\s/g, ''),
@@ -658,7 +658,7 @@ describe('#convert', () => {
 
         expect(html.replace(/\s/g, '')).toBe(
           `
-        <figure>
+        <figure class="image">
           <img src="${base64Img}" alt="It is a caption">
           <figcaption>It is a caption</figcaption>
         </figure>
