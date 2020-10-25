@@ -92,4 +92,4 @@ We love your feedback! Fell free to:
 - Proposing new features
 - Becoming a maintainer
 
-Just create an Github issue ;)
+Just create a Github issue ;)
