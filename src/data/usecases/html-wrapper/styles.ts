@@ -19,7 +19,6 @@ export const STYLE = `\
 
   body {
     line-height: 1.5;
-    white-space: pre-wrap;
   }
 
   @media only screen {
