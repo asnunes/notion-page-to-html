@@ -13,7 +13,13 @@ export class OptionsHtmlWrapper implements HtmlWrapper {
   }
 
   wrapHtml(pageProps: PageProps, html: string): string {
-    if (this._options.bodyContentOnly) return html;
+    if (this._options.bodyContentOnly)
+      return `\
+    <article class="page sans">
+      ${html}
+    </article>\
+    `;
+
     const title = pageProps.title;
 
     return `\
@@ -21,8 +27,10 @@ export class OptionsHtmlWrapper implements HtmlWrapper {
     <html>
       ${this._headFromTemplate(title)}
         <body>
-          ${!this._options.excludeHeaderFromBody ? new HeaderFromTemplate(pageProps).toHeader() : ''}
-          ${html}
+          <article class="page sans">
+            ${!this._options.excludeHeaderFromBody ? new HeaderFromTemplate(pageProps).toHeader() : ''}
+            ${html}
+          </article>
           ${!this._options.excludeScripts ? SCRIPTS : ''}
         </body>
     </html>\

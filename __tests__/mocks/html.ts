@@ -14,10 +14,13 @@ const STYLE_TAG = `\
   body {
     margin: 0;
     padding: 0;
-    line-height: 1.5;
-    white-space: pre-wrap;
     font-family: system-ui, sans-serif;
     color: #37352F;
+  }
+
+  body {
+    line-height: 1.5;
+    white-space: pre-wrap;
   }
 
   @media only screen {
@@ -31,6 +34,77 @@ const STYLE_TAG = `\
   img {
     max-width: 100%;
     max-height: 70vh;
+  }
+
+  ol,
+  ul {
+    margin: 0;
+    margin-block-start: 0.6em;
+    margin-block-end: 0.6em;
+  }
+
+  li > ol:first-child,
+  li > ul:first-child {
+    margin-block-start: 0.6em;
+  }
+
+  ul > li {
+    list-style: disc;
+  }
+
+  ul.to-do-list {
+    text-indent: -1.7em;
+  }
+
+  ul.to-do-list > li {
+    list-style: none;
+  }
+
+  .to-do-children-checked {
+    text-decoration: line-through;
+    opacity: 0.375;
+  }
+
+  ul.toggle > li {
+    list-style: none;
+  }
+
+  ul {
+    padding-inline-start: 1.7em;
+  }
+
+  ul > li {
+    padding-left: 0.1em;
+  }
+
+  ol {
+    padding-inline-start: 1.6em;
+  }
+
+  ol > li {
+    padding-left: 0.2em;
+  }
+
+  .mono ol {
+    padding-inline-start: 2em;
+  }
+
+  .mono ol > li {
+    text-indent: -0.4em;
+  }
+
+  .toggle {
+    padding-inline-start: 0em;
+    list-style-type: none;
+  }
+
+  /* Indent toggle children */
+  .toggle > li > details {
+    padding-left: 1.7em;
+  }
+
+  .toggle > li > details > summary {
+    margin-left: -1.1em;
   }
 
   h1,
@@ -126,8 +200,22 @@ const STYLE_TAG = `\
       margin-left: 8px;
   }
 
-  .indented {
-    padding-left: 1.5em;
+  .checkbox {
+    display: inline-flex;
+    vertical-align: text-bottom;
+    width: 16px;
+    height: 16px;
+    background-size: 16px;
+    margin-left: 2px;
+    margin-right: 5px;
+  }
+  
+  .checkbox-on {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+  }
+  
+  .checkbox-off {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
   }
 </style>
 `;
@@ -142,6 +230,19 @@ const HEADER = `\
 </header>
 `;
 
+const ARTICLE_CONTENT = `\
+<article class="page sans">
+  ${HEADER}
+  <p>Hello World</p>
+</article>
+`;
+
+const ARTICLE_CONTENT_WITHOUT_HEADER = `\
+<article class="page sans">
+  <p>Hello World</p>
+</article>
+`;
+
 export const FULL_DOCUMENT = `
 <!DOCTYPE html>
 <html>
@@ -153,8 +254,7 @@ export const FULL_DOCUMENT = `
     <link href="https://unpkg.com/prismjs@1.22.0/themes/prism.css" rel="stylesheet">
   </head>
   <body>
-    ${HEADER}
-    <p>Hello World</p>
+    ${ARTICLE_CONTENT}
     <script src="https://unpkg.com/prismjs@1.22.0/components/prism-core.min.js"></script>
     <script src="https://unpkg.com/prismjs@1.22.0/plugins/autoloader/prism-autoloader.min.js"></script>
     <script>
@@ -181,8 +281,7 @@ export const DOCUMENT_WITHOUT_TITLE = `
     <link href="https://unpkg.com/prismjs@1.22.0/themes/prism.css" rel="stylesheet">
   </head>
   <body>
-    ${HEADER}
-    <p>Hello World</p>
+    ${ARTICLE_CONTENT}
     <script src="https://unpkg.com/prismjs@1.22.0/components/prism-core.min.js"></script>
     <script src="https://unpkg.com/prismjs@1.22.0/plugins/autoloader/prism-autoloader.min.js"></script>
     <script>
@@ -209,8 +308,7 @@ export const DOCUMENT_WITHOUT_CSS = `
     <link href="https://unpkg.com/prismjs@1.22.0/themes/prism.css" rel="stylesheet">
   </head>
   <body>
-    ${HEADER}
-    <p>Hello World</p>
+    ${ARTICLE_CONTENT}
     <script src="https://unpkg.com/prismjs@1.22.0/components/prism-core.min.js"></script>
     <script src="https://unpkg.com/prismjs@1.22.0/plugins/autoloader/prism-autoloader.min.js"></script>
     <script>
@@ -236,8 +334,7 @@ export const DOCUMENT_METADATA = `
     <link href="https://unpkg.com/prismjs@1.22.0/themes/prism.css" rel="stylesheet">
   </head>
   <body>
-    ${HEADER}
-    <p>Hello World</p>
+    ${ARTICLE_CONTENT}
     <script src="https://unpkg.com/prismjs@1.22.0/components/prism-core.min.js"></script>
     <script src="https://unpkg.com/prismjs@1.22.0/plugins/autoloader/prism-autoloader.min.js"></script>
     <script>
@@ -264,8 +361,7 @@ export const DOCUMENT_WITHOUT_SCRIPTS = `
     <title>Simple Page Test</title>
   </head>
   <body>
-    ${HEADER}
-    <p>Hello World</p>
+    ${ARTICLE_CONTENT}
   </body>
 </html>
 `;
@@ -281,7 +377,7 @@ export const FULL_DOCUMENT_WITHOUT_HEADER_IN_BODY = `
     <link href="https://unpkg.com/prismjs@1.22.0/themes/prism.css" rel="stylesheet">
   </head>
   <body>
-    <p>Hello World</p>
+    ${ARTICLE_CONTENT_WITHOUT_HEADER}
     <script src="https://unpkg.com/prismjs@1.22.0/components/prism-core.min.js"></script>
     <script src="https://unpkg.com/prismjs@1.22.0/plugins/autoloader/prism-autoloader.min.js"></script>
     <script>
@@ -298,7 +394,7 @@ export const FULL_DOCUMENT_WITHOUT_HEADER_IN_BODY = `
 </html>
 `;
 
-export const BODY_ONLY = `<p>Hello World</p>`;
+export const BODY_ONLY = ARTICLE_CONTENT_WITHOUT_HEADER;
 
 export const HEADER_WITH_TITLE_ONLY = `\
 <header>

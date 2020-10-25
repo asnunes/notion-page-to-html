@@ -40,10 +40,8 @@ describe('#convert', () => {
 
         expect(html.replace(/\s/g, '')).toBe(
           `<p>Hello World
-            <div class="indented">
-              <p>This is a child</p>
-              <p>This is a child too</p>
-            </div>
+            <p>This is a child</p>
+            <p>This is a child too</p>
           </p>`.replace(/\s/g, ''),
         );
       });
@@ -288,12 +286,10 @@ describe('#convert', () => {
         expect(html.replace(/\s/g, '')).toBe(
           `<ul>
             <li>Hello World
-              <div class="indented">
-                <ul>
-                  <li>This is a child</li>
-                  <li>This is a child too</li>
-                </ul>
-              </div>
+              <ul>
+                <li>This is a child</li>
+                <li>This is a child too</li>
+              </ul>
             </li>
           </ul>`.replace(/\s/g, ''),
         );
@@ -351,12 +347,10 @@ describe('#convert', () => {
         expect(html.replace(/\s/g, '')).toBe(
           `<ol>
             <li>Hello World
-              <div class="indented">
-                <ol>
-                  <li>This is a child</li>
-                  <li>This is a child too</li>
-                </ol>
-              </div>
+              <ol>
+                <li>This is a child</li>
+                <li>This is a child too</li>
+              </ol>
             </li>
           </ol>`.replace(/\s/g, ''),
         );
@@ -426,7 +420,6 @@ describe('#convert', () => {
           <li>
             <div class="checkbox checkbox-off"></div>
             <span class="to-do-children-unchecked">Hello World</span>\
-            <div class="indented">
               <ul class="to-do-list">
                 <li>
                   <div class="checkbox checkbox-off"></div>
@@ -439,7 +432,6 @@ describe('#convert', () => {
                   <span class="to-do-children-checked">This is a child too</span>\
                 </li>\
               </ul>\
-            </div>
           </li>\
         </ul>\
         `.replace(/\s/g, ''),
@@ -684,11 +676,9 @@ describe('#convert', () => {
             `
             <details open="">
               <summary>This is a detail</summary>
-              <div class="indented">
                 <p>
                   Hello World
                 </p>
-              </div>
             </details>
         `.replace(/\s/g, ''),
           );
@@ -703,11 +693,9 @@ describe('#convert', () => {
             `
             <details open="">
               <summary>Hello <em><strong>World </strong></em><strong>and</strong><em><strong> Sun</strong></em></summary>
-              <div class="indented">
                 <p>
                   Hello World
                 </p>
-              </div>
             </details>
         `.replace(/\s/g, ''),
           );
@@ -722,11 +710,9 @@ describe('#convert', () => {
             `
             <details open="" style="background-color: #FBE4E4; ">
               <summary>This is a detail</summary>
-              <div class="indented">
                 <p>
                   Hello World
                 </p>
-              </div>
             </details>
         `.replace(/\s/g, ''),
           );

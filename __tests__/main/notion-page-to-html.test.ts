@@ -111,7 +111,7 @@ describe('#convert', () => {
           bodyContentOnly: true,
         });
 
-        expect(response).toEqual(HTML_RESPONSES.BODY_ONLY);
+        expect(response.replace(/\s/g, '')).toEqual(HTML_RESPONSES.BODY_ONLY.replace(/\s/g, ''));
       });
 
       it('accepts parse method too', async () => {
@@ -124,7 +124,7 @@ describe('#convert', () => {
           false,
         );
 
-        expect(response).toEqual(HTML_RESPONSES.BODY_ONLY);
+        expect(response.replace(/\s/g, '')).toEqual(HTML_RESPONSES.BODY_ONLY.replace(/\s/g, ''));
       });
     });
   });
