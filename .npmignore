@@ -2,6 +2,7 @@ __tests__
 coverage
 node_modules
 src
+docs
 jest.config.js
 tsconfig.json
 .eslintignore
