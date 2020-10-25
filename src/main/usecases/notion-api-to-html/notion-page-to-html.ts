@@ -3,9 +3,10 @@ import { HtmlOptions } from '../../../data/protocols/html-options/html-options';
 import { OptionsHtmlWrapper } from '../../../data/usecases/html-wrapper/options-html-wrapper';
 import { NotionApiContentResponsesToBlocks } from '../../../infra/usecases/to-blocks/notion-api-content-response-to-blocks';
 import { makeNotionUrlToPageIdFactory, makeNotionApiPageFetcher, makeBlocksToHtml } from '../../factories';
+import { NotionPage } from '../../protocols/notion-page';
 
 export class NotionPageToHtml {
-  static async convert(pageURL: string, htmlOptions: HtmlOptions = {}): Promise<string> {
+  static async convert(pageURL: string, htmlOptions: HtmlOptions = {}): Promise<NotionPage> {
     return new NotionPageToHtml()._convert(pageURL, htmlOptions);
   }
 
@@ -13,21 +14,26 @@ export class NotionPageToHtml {
     return new NotionPageToHtml()._parse(pageURL, includeFullDocument);
   }
 
-  private async _convert(pageURL: string, htmlOptions: HtmlOptions = {}): Promise<string> {
+  private async _convert(pageURL: string, htmlOptions: HtmlOptions = {}): Promise<NotionPage> {
     const pageId = makeNotionUrlToPageIdFactory(pageURL).toPageId();
     const notionApiResponses = await makeNotionApiPageFetcher(pageId).getNotionPageContents();
     const blocks = new NotionApiContentResponsesToBlocks(notionApiResponses).toBlocks();
 
-    if (blocks.length === 0) return Promise.resolve('');
+    if (blocks.length === 0) return Promise.resolve({ html: '' });
 
     const htmlBody = await makeBlocksToHtml(blocks).convert();
-
     const pageProps = await new PageBlockToPageProps(blocks[0]).toPageProps();
-    return new OptionsHtmlWrapper(htmlOptions).wrapHtml(pageProps, htmlBody);
+
+    return {
+      title: pageProps.title,
+      ...(pageProps.icon && { icon: pageProps.icon }),
+      ...(pageProps.coverImageSrc && { cover: pageProps.coverImageSrc }),
+      html: new OptionsHtmlWrapper(htmlOptions).wrapHtml(pageProps, htmlBody),
+    };
   }
 
   private async _parse(pageURL: string, includeFullDocument = true): Promise<string> {
     console.warn('"parse" method is now deprecated. Please, use "convert" instead.');
-    return this._convert(pageURL, { bodyContentOnly: !includeFullDocument });
+    return (await this._convert(pageURL, { bodyContentOnly: !includeFullDocument })).html;
   }
 }

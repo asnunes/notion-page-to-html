@@ -4,6 +4,7 @@ import { NotionPageToHtml } from '../../src/main/usecases/notion-api-to-html/not
 import { InvalidPageUrlError } from '../../src/infra/errors/invalid-page-url';
 import * as NotionApiMocks from '../mocks/notion-api-responses';
 import * as HTML_RESPONSES from '../mocks/html';
+import base64 from '../mocks/img/base64';
 
 describe('#convert', () => {
   describe('When page is valid', () => {
@@ -29,7 +30,7 @@ describe('#convert', () => {
 
         const response = await NotionPageToHtml.convert(url);
 
-        expect(response.replace(/\s/g, '')).toEqual(HTML_RESPONSES.FULL_DOCUMENT.replace(/\s/g, ''));
+        expect(response.html.replace(/\s/g, '')).toEqual(HTML_RESPONSES.FULL_DOCUMENT.replace(/\s/g, ''));
       });
 
       it('returns full html when short url is given', async () => {
@@ -37,7 +38,31 @@ describe('#convert', () => {
 
         const response = await NotionPageToHtml.convert(url);
 
-        expect(response.replace(/\s/g, '')).toEqual(HTML_RESPONSES.FULL_DOCUMENT.replace(/\s/g, ''));
+        expect(response.html.replace(/\s/g, '')).toEqual(HTML_RESPONSES.FULL_DOCUMENT.replace(/\s/g, ''));
+      });
+
+      it('returns page title in title prop', async () => {
+        const url = `https://www.notion.so/${pageId}`;
+
+        const response = await NotionPageToHtml.convert(url);
+
+        expect(response.title).toEqual('Simple Page Test');
+      });
+
+      it('returns page cover in cover prop', async () => {
+        const url = `https://www.notion.so/${pageId}`;
+
+        const response = await NotionPageToHtml.convert(url);
+
+        expect(response.cover).toEqual(base64);
+      });
+
+      it('returns page icon in icon prop', async () => {
+        const url = `https://www.notion.so/${pageId}`;
+
+        const response = await NotionPageToHtml.convert(url);
+
+        expect(response.icon).toEqual('🤴');
       });
     });
 
@@ -49,7 +74,7 @@ describe('#convert', () => {
           excludeTitleFromHead: true,
         });
 
-        expect(response.replace(/\s/g, '')).toEqual(HTML_RESPONSES.DOCUMENT_WITHOUT_TITLE.replace(/\s/g, ''));
+        expect(response.html.replace(/\s/g, '')).toEqual(HTML_RESPONSES.DOCUMENT_WITHOUT_TITLE.replace(/\s/g, ''));
       });
     });
 
@@ -61,7 +86,7 @@ describe('#convert', () => {
           excludeCSS: true,
         });
 
-        expect(response.replace(/\s/g, '')).toEqual(HTML_RESPONSES.DOCUMENT_WITHOUT_CSS.replace(/\s/g, ''));
+        expect(response.html.replace(/\s/g, '')).toEqual(HTML_RESPONSES.DOCUMENT_WITHOUT_CSS.replace(/\s/g, ''));
       });
     });
 
@@ -73,7 +98,7 @@ describe('#convert', () => {
           excludeMetadata: true,
         });
 
-        expect(response.replace(/\s/g, '')).toEqual(HTML_RESPONSES.DOCUMENT_METADATA.replace(/\s/g, ''));
+        expect(response.html.replace(/\s/g, '')).toEqual(HTML_RESPONSES.DOCUMENT_METADATA.replace(/\s/g, ''));
       });
     });
 
@@ -85,7 +110,7 @@ describe('#convert', () => {
           excludeScripts: true,
         });
 
-        expect(response.replace(/\s/g, '')).toEqual(HTML_RESPONSES.DOCUMENT_WITHOUT_SCRIPTS.replace(/\s/g, ''));
+        expect(response.html.replace(/\s/g, '')).toEqual(HTML_RESPONSES.DOCUMENT_WITHOUT_SCRIPTS.replace(/\s/g, ''));
       });
     });
 
@@ -97,7 +122,7 @@ describe('#convert', () => {
           excludeHeaderFromBody: true,
         });
 
-        expect(response.replace(/\s/g, '')).toEqual(
+        expect(response.html.replace(/\s/g, '')).toEqual(
           HTML_RESPONSES.FULL_DOCUMENT_WITHOUT_HEADER_IN_BODY.replace(/\s/g, ''),
         );
       });
@@ -111,7 +136,7 @@ describe('#convert', () => {
           bodyContentOnly: true,
         });
 
-        expect(response.replace(/\s/g, '')).toEqual(HTML_RESPONSES.BODY_ONLY.replace(/\s/g, ''));
+        expect(response.html.replace(/\s/g, '')).toEqual(HTML_RESPONSES.BODY_ONLY.replace(/\s/g, ''));
       });
 
       it('accepts parse method too', async () => {
