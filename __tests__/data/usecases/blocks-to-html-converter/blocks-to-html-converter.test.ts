@@ -275,7 +275,7 @@ describe('#convert', () => {
       it('returns html with ul tag with li tag inside', async () => {
         const html = await makeSut(BlockMocks.UNORDERED_LIST_WITH_SINGLE_ITEM).convert();
 
-        expect(html).toBe('<ul>\n  <li>This is a test</li>\n</ul>');
+        expect(html).toBe('<ul>\n<li>This is a test</li>\n</ul>');
       });
     });
 
@@ -300,7 +300,7 @@ describe('#convert', () => {
       it('returns html with ul tag with li tag inside and background', async () => {
         const html = await makeSut(BlockMocks.UNORDERED_LIST_WITH_SINGLE_ITEM_AND_FORMAT).convert();
 
-        expect(html).toBe('<ul style="background-color: #E9E5E3; ">\n  <li>This is a item with background</li>\n</ul>');
+        expect(html).toBe('<ul style="background-color: #E9E5E3; ">\n<li>This is a item with background</li>\n</ul>');
       });
     });
 
@@ -308,7 +308,7 @@ describe('#convert', () => {
       it('returns html with ul tag with li tag inside and foreground', async () => {
         const html = await makeSut(BlockMocks.UNORDERED_LIST_WITH_SINGLE_ITEM_AND_FORMAT_FOREGROUND).convert();
 
-        expect(html).toBe('<ul style="color: #D9730D; ">\n  <li>This is a item with color</li>\n</ul>');
+        expect(html).toBe('<ul style="color: #D9730D; ">\n<li>This is a item with color</li>\n</ul>');
       });
     });
 
@@ -316,7 +316,7 @@ describe('#convert', () => {
       it('returns html with ul tag with li tag inside', async () => {
         const html = await makeSut(BlockMocks.UNORDERED_LIST_WITH_TWO_ITEMS).convert();
 
-        expect(html).toBe('<ul>\n  <li>This is a test</li>\n  <li>This is a test too</li>\n</ul>');
+        expect(html).toBe('<ul>\n<li>This is a test</li>\n<li>This is a test too</li>\n</ul>');
       });
     });
 
@@ -325,7 +325,7 @@ describe('#convert', () => {
         const html = await makeSut(BlockMocks.UNORDERED_LIST_WITH_DECORATED_ITEMS).convert();
 
         expect(html).toBe(
-          '<ul>\n  <li>Hello <em><strong>World </strong></em><strong>and</strong><em><strong> Sun</strong></em></li>\n</ul>',
+          '<ul>\n<li>Hello <em><strong>World </strong></em><strong>and</strong><em><strong> Sun</strong></em></li>\n</ul>',
         );
       });
     });
@@ -336,7 +336,7 @@ describe('#convert', () => {
       it('returns html with ol tag with li tag inside', async () => {
         const html = await makeSut(BlockMocks.ORDERED_LIST_WITH_SINGLE_ITEM).convert();
 
-        expect(html).toBe('<ol>\n  <li>This is a test</li>\n</ol>');
+        expect(html).toBe('<ol>\n<li>This is a test</li>\n</ol>');
       });
     });
 
@@ -361,7 +361,7 @@ describe('#convert', () => {
       it('returns html with ol tag with li tag inside and background', async () => {
         const html = await makeSut(BlockMocks.ORDERED_LIST_WITH_SINGLE_ITEM_AND_FORMAT).convert();
 
-        expect(html).toBe('<ol style="background-color: #E03E3E; ">\n  <li>This is a item with background</li>\n</ol>');
+        expect(html).toBe('<ol style="background-color: #E03E3E; ">\n<li>This is a item with background</li>\n</ol>');
       });
     });
 
@@ -369,7 +369,7 @@ describe('#convert', () => {
       it('returns html with ol tag with li tag inside and foreground', async () => {
         const html = await makeSut(BlockMocks.ORDERED_LIST_WITH_SINGLE_ITEM_AND_FORMAT_FOREGROUND).convert();
 
-        expect(html).toBe('<ol style="color: #0F7B6C; ">\n  <li>This is a item with color</li>\n</ol>');
+        expect(html).toBe('<ol style="color: #0F7B6C; ">\n<li>This is a item with color</li>\n</ol>');
       });
     });
 
@@ -377,7 +377,7 @@ describe('#convert', () => {
       it('returns html with ol tag with li tag inside', async () => {
         const html = await makeSut(BlockMocks.ORDERED_LIST_WITH_TWO_ITEMS).convert();
 
-        expect(html).toBe('<ol>\n  <li>This is a test</li>\n  <li>This is a test too</li>\n</ol>');
+        expect(html).toBe('<ol>\n<li>This is a test</li>\n<li>This is a test too</li>\n</ol>');
       });
     });
 
@@ -386,7 +386,7 @@ describe('#convert', () => {
         const html = await makeSut(BlockMocks.ORDERED_LIST_WITH_DECORATED_ITEMS).convert();
 
         expect(html).toBe(
-          '<ol>\n  <li>Hello <em><strong>World </strong></em><strong>and</strong><em><strong> Sun</strong></em></li>\n</ol>',
+          '<ol>\n<li>Hello <em><strong>World </strong></em><strong>and</strong><em><strong> Sun</strong></em></li>\n</ol>',
         );
       });
     });

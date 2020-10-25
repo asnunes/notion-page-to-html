@@ -15,17 +15,15 @@ export class ToDoBlockToHtml implements ToHtml {
     const style = new FormatToStyle(this._block.format).toStyle();
     const childrenHtml = await indentBlocksToHtml(this._block.children);
 
-    return Promise.resolve(
-      `<ul class="to-do-list"${style}>
-        <li>
-          <div class="checkbox checkbox-${this._isChecked() ? 'on' : 'off'}"></div>
-          <span class="to-do-children-${this._isChecked() ? 'checked' : 'unchecked'}">${await blockToInnerHtml(
-        this._block,
-      )}</span>${childrenHtml}\
-        </li>\
-      </ul>\
-      `,
-    );
+    return Promise.resolve(`\
+<ul class="to-do-list"${style}>
+<li>
+<div class="checkbox checkbox-${this._isChecked() ? 'on' : 'off'}"></div>
+<span class="to-do-children-${this._isChecked() ? 'checked' : 'unchecked'}">${await blockToInnerHtml(
+      this._block,
+    )}</span>${childrenHtml}
+</li>
+</ul>`);
   }
 
   private _isChecked(): boolean {

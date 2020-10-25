@@ -16,12 +16,12 @@ export class ListBlockToHtml implements ToHtml {
 
     const innerHtml = await this._itemsHtml();
 
-    return Promise.resolve(`<${tag}${style}>\n  ${innerHtml}\n</${tag}>`);
+    return Promise.resolve(`<${tag}${style}>\n${innerHtml}\n</${tag}>`);
   }
 
   private async _itemsHtml(): Promise<string> {
     const items = await Promise.all(this._block.children.map(async (c) => new ListItemToHtml(c).convert()));
-    return Promise.resolve(items.join('\n  '));
+    return Promise.resolve(items.join('\n'));
   }
 }
 

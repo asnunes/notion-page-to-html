@@ -15,41 +15,38 @@ export class OptionsHtmlWrapper implements HtmlWrapper {
   wrapHtml(pageProps: PageProps, html: string): string {
     if (this._options.bodyContentOnly)
       return `\
-    <article class="page sans">
-      ${html}
-    </article>\
-    `;
+<article class="page sans">
+${html}
+</article>`;
 
     const title = pageProps.title;
 
     return `\
-    <!DOCTYPE html>
-    <html>
-      ${this._headFromTemplate(title)}
-        <body>
-          <article class="page sans">
-            ${!this._options.excludeHeaderFromBody ? new HeaderFromTemplate(pageProps).toHeader() : ''}
-            ${html}
-          </article>
-          ${!this._options.excludeScripts ? SCRIPTS : ''}
-        </body>
-    </html>\
-    `;
+<!DOCTYPE html>
+<html>
+${this._headFromTemplate(title)}
+<body>
+<article class="page sans">
+${!this._options.excludeHeaderFromBody ? new HeaderFromTemplate(pageProps).toHeader() : ''}
+${html}
+</article>
+${!this._options.excludeScripts ? SCRIPTS : ''}
+</body>
+</html>`;
   }
 
   private _headFromTemplate(title: string): string {
     return `\
-    <head>
-      ${!this._options.excludeMetadata ? '<meta charset="utf-8">' : ''}
-      ${!this._options.excludeMetadata ? '<meta name="viewport" content="width=device-width, initial-scale=1">' : ''}
-      ${!this._options.excludeCSS ? STYLE : ''}
-      ${!this._options.excludeTitleFromHead ? `<title>${title}</title>` : ''}
-      ${
-        !this._options.excludeScripts
-          ? '<link href="https://unpkg.com/prismjs@1.22.0/themes/prism.css" rel="stylesheet">'
-          : ''
-      }
-    </head>
-    `;
+<head>
+${!this._options.excludeMetadata ? '<meta charset="utf-8">' : ''}
+${!this._options.excludeMetadata ? '<meta name="viewport" content="width=device-width, initial-scale=1">' : ''}
+${!this._options.excludeCSS ? STYLE : ''}
+${!this._options.excludeTitleFromHead ? `<title>${title}</title>` : ''}
+${
+  !this._options.excludeScripts
+    ? '<link href="https://unpkg.com/prismjs@1.22.0/themes/prism.css" rel="stylesheet">'
+    : ''
+}
+</head>`;
   }
 }

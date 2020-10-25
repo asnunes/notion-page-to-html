@@ -16,10 +16,10 @@ export class CalloutBlockToHtml implements ToHtml {
     const iconHtml = await new IconToHtml(this._block.properties.page_icon, this._block.id).toHtml();
 
     return Promise.resolve(`
-    <div class="callout"${style}>
-      ${iconHtml}
-      <p>${await blockToInnerHtml(this._block)}</p>
-    </div>
+<div class="callout"${style}>
+${iconHtml}
+<p>${await blockToInnerHtml(this._block)}</p>
+</div>
     `);
   }
 }

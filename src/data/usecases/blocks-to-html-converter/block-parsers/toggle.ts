@@ -16,9 +16,9 @@ export class ToggleBlockToHtml implements ToHtml {
     const childrenHtml = await indentBlocksToHtml(this._block.children);
 
     return Promise.resolve(`
-          <details open=""${style}>
-            <summary>${await blockToInnerHtml(this._block)}</summary>
-            ${childrenHtml}
-          </details>`);
+<details open=""${style}>
+<summary>${await blockToInnerHtml(this._block)}</summary>
+${childrenHtml}
+</details>`);
   }
 }

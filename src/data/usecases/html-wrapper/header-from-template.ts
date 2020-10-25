@@ -9,11 +9,11 @@ export class HeaderFromTemplate {
 
   toHeader(): string {
     return `\
-      <header>
-        ${this._coverImageHtml}
-        ${this._iconHtml}
-        ${this._titleHtml}
-      </header>\
+<header>
+${this._coverImageHtml}
+${this._iconHtml}
+${this._titleHtml}
+</header>\
     `;
   }
 

@@ -16,10 +16,10 @@ export class ImageBlockToHtml implements ToHtml {
     const caption = this._caption;
 
     return `
-    <figure>
-      <img src="${imageSource}" alt="${caption}">
-      ${caption !== '' ? `<figcaption>${caption}</figcaption>` : ''}
-    </figure>
+<figure>
+<img src="${imageSource}" alt="${caption}">
+${caption !== '' ? `<figcaption>${caption}</figcaption>` : ''}
+</figure>
     `;
   }
 
