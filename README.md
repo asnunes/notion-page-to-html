@@ -1,12 +1,12 @@
+![Cover image](docs/cover.png)
+
 # Notion Page To HTML
 
-NodeJS tool to convert public notion pages to HTML.
-
-This tool is based on [Potion](https://github.com/benborgers/potion), an open-source reverse-engineered API for [Notion](http://notion.so).
+JavaScript tool to convert public notion pages to HTML.
 
 ## Supported features
 
-Most of native notion blocks are currently supported:
+Most of native Notion blocks are currently supported:
 
 - Headings
 - Text With Decorations
@@ -19,34 +19,77 @@ Most of native notion blocks are currently supported:
 - Checkbox
 - Bulleted Lists
 - Numbered Lists
+- Toggle Lists
 - Divider
+- Callout
+- Nested blocks
 
-Toggle lists, embeds and nested blocks are not supported yet.
+Embeds and tables are not supported yet.
+
+## Why notion-page-to-html?
+
+It's perfect as content manager system
+
+- This tool can get any public page from Notion and convert it to html. This is perfect
+  for the ones who want to use Notion as CMS. Once it gets page content from Notion, it becomes completely independent (images are converted to base64 so you do not have to call Notion again to get content). You can convert a page and then make it private again.
+
+It's fully customizable
+
+- You can choose how you want to get page content. Do you want title, cover, and icon in html body? You can do that! Do you want they apart of html so you can choose where place it? You have it. Do want html without style? Without Equation and Code Highlighting scripts? Do you want body content only? You have those options too.
 
 ## Basic Usage
 
-Install it using npm or yarn
+Install it using npm
 
 ```bash
-npm install notion-page-to-html --save
+npm install notion-page-to-html
 ```
 
-Import lib inside your code and give link to a public notion page and get full html
+Then, just import it and paste a public Notion page url
 
 ```jsx
 const NotionPageToHtml = require('notion-page-to-html');
 
 // ...
-NotionPageToHtml.parse(
-  'https://www.notion.so/asnunes/Simple-Page-Text-4d64bbc0634d4758befa85c5a3a6c22f'
+const page = NotionPageToHtml.convert(
+  'https://www.notion.so/asnunes/Simple-Page-Text-4d64bbc0634d4758befa85c5a3a6c22f',
+);
+
+const { title, cover, icon, html } = NotionPageToHtml.convert(
+  'https://www.notion.so/asnunes/Simple-Page-Text-4d64bbc0634d4758befa85c5a3a6c22f',
 );
 ```
 
-If you want to load html body only, without any css or scripts to highlight code or style math equations, you can pass false as second argument to parse method
+`cover` is a base64 string from original page cover image. `icon` can be an emoji or base64 image based on original page icon. `html` is a full html document by default. It has style, body, MathJax and PrismJS CDN scripts by default. You can pass some options to handle html content.
 
 ```jsx
-NotionPageToHtml.parse(
+const page = NotionPageToHtml.convert(
   'https://www.notion.so/asnunes/Simple-Page-Text-4d64bbc0634d4758befa85c5a3a6c22f',
-  false
+  options,
 );
 ```
+
+`options` is an object with the following keys
+
+| Key                     | Default value | If true                                                |
+| ----------------------- | ------------- | ------------------------------------------------------ |
+| `excludeCSS`            | false         | returns html without style tag                         |
+| `excludeMetadata`       | false         | returns html without metatags                          |
+| `excludeScripts`        | false         | returns html without script tags                       |
+| `excludeHeaderFromBody` | false         | returns html without title, cover and icon inside body |
+| `excludeTitleFromHead`  | false         | returns html without title tag in head                 |
+| `bodyContentOnly`       | false         | returns html body tag content only                     |
+
+---
+
+## Contributing
+
+We love your feedback! Fell free to:
+
+- Reporting a bug
+- Discussing the current state of the code
+- Submitting a fix
+- Proposing new features
+- Becoming a maintainer
+
+Just create an Github issue ;)
