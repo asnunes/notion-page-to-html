@@ -181,7 +181,7 @@ const STYLE_TAG = `\
   .callout {
     padding: 16px 16px 16px 12px;
     display: flex;
-    width: 95%;
+    width: 100%;
     border-radius: 3px;
     border-width: 1px;
     border-style: solid;
@@ -191,19 +191,19 @@ const STYLE_TAG = `\
   }
 
   .callout-emoji {
-      height: 21.6px;
-      width: 21.6px;
-      font-size: 21.6px;
-      line-height: 1.1;
-      margin-left: 0px;
+    height: 21.6px;
+    width: 21.6px;
+    font-size: 21.6px;
+    line-height: 1.1;
+    margin-left: 0px;
   }
 
   .callout p {
-      max-width: 100%;
-      width: 100%;
-      white-space: pre-wrap;
-      word-break: break-word;
-      margin-left: 8px;
+    max-width: 100%;
+    width: 100%;
+    white-space: pre-wrap;
+    word-break: break-word;
+    margin-left: 10px;
   }
 
   .checkbox {

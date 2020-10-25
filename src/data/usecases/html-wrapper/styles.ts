@@ -180,7 +180,7 @@ h3 {
 .callout {
   padding: 16px 16px 16px 12px;
   display: flex;
-  width: 95%;
+  width: 100%;
   border-radius: 3px;
   border-width: 1px;
   border-style: solid;
@@ -202,7 +202,7 @@ h3 {
   width: 100%;
   white-space: pre-wrap;
   word-break: break-word;
-  margin-left: 8px;
+  margin-left: 10px;
 }
 
 .checkbox {
