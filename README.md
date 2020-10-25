@@ -84,12 +84,12 @@ const page = NotionPageToHtml.convert(
 
 ## Contributing
 
-We love your feedback! Fell free to:
+We love your feedback! Feel free to:
 
-- Reporting a bug
-- Discussing the current state of the code
-- Submitting a fix
-- Proposing new features
-- Becoming a maintainer
+- Report a bug
+- Discuss the current state of the code
+- Submit a fix
+- Propose new features
+- Become a maintainer
 
 Just create a Github issue ;)
