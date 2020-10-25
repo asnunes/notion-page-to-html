@@ -153,7 +153,14 @@ img.icon {
 
 .page-header-icon img {
   border-radius: 3px;
-} 
+}
+
+blockquote {
+  font-size: 1.25em;
+  margin: 1em 0;
+  padding-left: 1em;
+  border-left: 3px solid rgb(55, 53, 47);
+}  
 
 h1 {
   font-size: 1.875rem;
