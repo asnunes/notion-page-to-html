@@ -30,8 +30,8 @@ export class ListBlocksWrapper {
     return {
       id: `${childBlock.id}-parent`,
       type: 'list',
-      properties: {},
-      format: {},
+      properties: childBlock.properties,
+      format: childBlock.format,
       children: [childBlock],
       decorableTexts: [],
     };
