@@ -2,3 +2,5 @@
 /node_modules
 /.vscode
 /dist
+script.js
+test.html
