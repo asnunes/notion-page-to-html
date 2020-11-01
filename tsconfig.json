@@ -10,7 +10,7 @@
     "strict": true,
     "rootDir": "src",
     "allowJs": true,
-    "lib": ["es2019", "DOM"]
+    "lib": ["es2019"]
   },
   "include": ["src"],
   "exclude": ["node_modules", "**/__tests__/*"]

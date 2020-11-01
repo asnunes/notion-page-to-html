@@ -1,4 +1,4 @@
-import { isBrowser } from 'browser-or-node';
+import { NodeHttpGetClient } from './usecases/http-get/node-http-get';
 
 export class Base64Converter {
   private readonly _imageSource: string;
@@ -12,11 +12,7 @@ export class Base64Converter {
   }
 
   async _convert(): Promise<string> {
-    const Client = isBrowser
-      ? (await import('./usecases/http-get/node-fetch-http-get')).NodeFetchHttpGetClient
-      : (await import('./usecases/http-get/node-http-get')).NodeHttpGetClient;
-
-    const response = await new Client().get(this._imageSource);
+    const response = await new NodeHttpGetClient().get(this._imageSource);
     return Promise.resolve(response.data.toString());
   }
 }
