@@ -2,7 +2,7 @@
 
 # Notion Page To HTML
 
-JavaScript tool to convert public notion pages to HTML.
+NodeJS tool to convert public notion pages to HTML.
 
 ## Supported features
 
