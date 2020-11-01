@@ -4,4 +4,3 @@ coverage
 ./data
 requirements
 .vscode
-webpack.config.js
