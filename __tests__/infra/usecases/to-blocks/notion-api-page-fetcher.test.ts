@@ -1,6 +1,5 @@
 import nock from 'nock';
 import { NotionApiPageFetcher } from '../../../../src/infra/usecases/to-notion-api-content-responses/notion-api-page-fetcher';
-import { NodeFetchHttpPostClient } from '../../../../src/infra/usecases/http-post/node-fetch-http-post-client';
 import { NodeHttpPostClient } from '../../../../src/infra/usecases/http-post/node-http-post-client';
 import { MissingContentError, MissingPageIdError, NotionPageAccessError } from '../../../../src/infra/errors';
 import * as NotionApiMocks from '../../../mocks/notion-api-responses';
@@ -12,7 +11,6 @@ describe('#getNotionPageContents', () => {
 
   const makeSut = (notionPageId?: string): NotionApiPageFetcher => {
     const httpPostClient = new NodeHttpPostClient();
-    // const httpPostClient = new NodeFetchHttpPostClient();
     return new NotionApiPageFetcher(notionPageId, httpPostClient);
   };
 

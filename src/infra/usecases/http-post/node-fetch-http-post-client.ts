@@ -1,9 +1,8 @@
 import { HttpPostClient, HttpResponse } from '../../../data/protocols/http-request';
-import fetch from 'node-fetch';
 
 export class NodeFetchHttpPostClient implements HttpPostClient {
   async post(url: string, body: Record<string, any>): Promise<HttpResponse> {
-    const res = await fetch(url, {
+    const res = await window.fetch(url, {
       method: 'POST',
       headers: {
         'content-type': 'application/json',

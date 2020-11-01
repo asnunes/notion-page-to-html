@@ -2,13 +2,15 @@
   "compilerOptions": {
     "baseUrl": "src",
     "outDir": "dist",
+    "sourceMap": true,
+    "declaration": true,
     "target": "es5",
     "module": "commonjs",
     "esModuleInterop": true,
     "strict": true,
     "rootDir": "src",
     "allowJs": true,
-    "lib": ["es2019"]
+    "lib": ["es2019", "DOM"]
   },
   "include": ["src"],
   "exclude": ["node_modules", "**/__tests__/*"]

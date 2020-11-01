@@ -1,20 +1,19 @@
 import { HttpGetClient, HttpResponse } from '../../../data/protocols/http-request';
-import fetch, { Response } from 'node-fetch';
 
 export class NodeFetchHttpGetClient implements HttpGetClient {
   async get(url: string): Promise<HttpResponse> {
-    const res = await fetch(url, {
+    const res = await window.fetch(url, {
       method: 'GET',
     });
 
     return {
       status: res.status,
       data: await this._getData(res),
-      headers: res.headers.raw(),
+      headers: res.headers as Record<string, any>,
     };
   }
 
-  private async _getData(res: Response): Promise<Record<string, any> | string> {
+  private async _getData(res: any): Promise<Record<string, any> | string> {
     const format = res.headers.raw()['content-type'][0];
 
     if (format.includes('image')) {
