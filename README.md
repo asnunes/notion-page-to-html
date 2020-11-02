@@ -4,6 +4,10 @@
 
 NodeJS tool to convert public notion pages to HTML.
 
+Also available as public API:
+
+[https://notion-page-to-html-api.vercel.app/](https://notion-page-to-html-api.vercel.app/)
+
 ## Supported features
 
 Most of native Notion blocks are currently supported:
@@ -39,7 +43,7 @@ It's fully customizable
 
 ## Basic Usage
 
-Install it using npm
+Install it in a NodeJS project using npm
 
 ```bash
 npm install notion-page-to-html
