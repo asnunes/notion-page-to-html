@@ -20,7 +20,7 @@ const foregroundColorTextToHEX: Record<string, string> = {
 };
 
 const backgroundColorsToHex: Record<string, string> = {
-  gray_background: '#E03E3E',
+  gray_background: '#B4AEAE',
   brown_background: '#E9E5E3',
   orange_background: '#FAEBDD',
   yellow_background: '#FBF3DB',
