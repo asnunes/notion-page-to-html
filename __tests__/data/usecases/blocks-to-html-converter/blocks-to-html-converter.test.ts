@@ -361,7 +361,7 @@ describe('#convert', () => {
       it('returns html with ol tag with li tag inside and background', async () => {
         const html = await makeSut(BlockMocks.ORDERED_LIST_WITH_SINGLE_ITEM_AND_FORMAT).convert();
 
-        expect(html).toBe('<ol style="background-color: #E03E3E; ">\n<li>This is a item with background</li>\n</ol>');
+        expect(html).toBe('<ol style="background-color: #B4AEAE; ">\n<li>This is a item with background</li>\n</ol>');
       });
     });
 
