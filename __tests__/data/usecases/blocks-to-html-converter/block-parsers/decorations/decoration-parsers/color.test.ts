@@ -150,7 +150,7 @@ describe('#convert', () => {
 
       const result = await new ColorDecorationToHtml(text, decoration).convert();
 
-      expect(result).toBe('<span style="background-color: #E03E3E;">Text with color</span>');
+      expect(result).toBe('<span style="background-color: #B4AEAE;">Text with color</span>');
     });
   });
 
