@@ -265,17 +265,13 @@ const HEADER = `\
 </header>
 `;
 
-const ARTICLE_CONTENT = `\
-<article class="page sans">
-  ${HEADER}
-  <p>Hello World</p>
-</article>
+const CONTENT_WITH_HEADER = `\
+${HEADER}
+<p>Hello World</p>
 `;
 
-const ARTICLE_CONTENT_WITHOUT_HEADER = `\
-<article class="page sans">
-  <p>Hello World</p>
-</article>
+const CONTENT_WITHOUT_HEADER = `\
+<p>Hello World</p>
 `;
 
 export const FULL_DOCUMENT = `
@@ -289,7 +285,7 @@ export const FULL_DOCUMENT = `
     <link href="https://unpkg.com/prismjs@1.22.0/themes/prism.css" rel="stylesheet">
   </head>
   <body>
-    ${ARTICLE_CONTENT}
+    ${CONTENT_WITH_HEADER}
     <script src="https://unpkg.com/prismjs@1.22.0/components/prism-core.min.js"></script>
     <script src="https://unpkg.com/prismjs@1.22.0/plugins/autoloader/prism-autoloader.min.js"></script>
     <script>
@@ -316,7 +312,7 @@ export const DOCUMENT_WITHOUT_TITLE = `
     <link href="https://unpkg.com/prismjs@1.22.0/themes/prism.css" rel="stylesheet">
   </head>
   <body>
-    ${ARTICLE_CONTENT}
+    ${CONTENT_WITH_HEADER}
     <script src="https://unpkg.com/prismjs@1.22.0/components/prism-core.min.js"></script>
     <script src="https://unpkg.com/prismjs@1.22.0/plugins/autoloader/prism-autoloader.min.js"></script>
     <script>
@@ -343,7 +339,7 @@ export const DOCUMENT_WITHOUT_CSS = `
     <link href="https://unpkg.com/prismjs@1.22.0/themes/prism.css" rel="stylesheet">
   </head>
   <body>
-    ${ARTICLE_CONTENT}
+    ${CONTENT_WITH_HEADER}
     <script src="https://unpkg.com/prismjs@1.22.0/components/prism-core.min.js"></script>
     <script src="https://unpkg.com/prismjs@1.22.0/plugins/autoloader/prism-autoloader.min.js"></script>
     <script>
@@ -369,7 +365,7 @@ export const DOCUMENT_METADATA = `
     <link href="https://unpkg.com/prismjs@1.22.0/themes/prism.css" rel="stylesheet">
   </head>
   <body>
-    ${ARTICLE_CONTENT}
+    ${CONTENT_WITH_HEADER}
     <script src="https://unpkg.com/prismjs@1.22.0/components/prism-core.min.js"></script>
     <script src="https://unpkg.com/prismjs@1.22.0/plugins/autoloader/prism-autoloader.min.js"></script>
     <script>
@@ -396,7 +392,7 @@ export const DOCUMENT_WITHOUT_SCRIPTS = `
     <title>Simple Page Test</title>
   </head>
   <body>
-    ${ARTICLE_CONTENT}
+    ${CONTENT_WITH_HEADER}
   </body>
 </html>
 `;
@@ -412,7 +408,7 @@ export const FULL_DOCUMENT_WITHOUT_HEADER_IN_BODY = `
     <link href="https://unpkg.com/prismjs@1.22.0/themes/prism.css" rel="stylesheet">
   </head>
   <body>
-    ${ARTICLE_CONTENT_WITHOUT_HEADER}
+    ${CONTENT_WITHOUT_HEADER}
     <script src="https://unpkg.com/prismjs@1.22.0/components/prism-core.min.js"></script>
     <script src="https://unpkg.com/prismjs@1.22.0/plugins/autoloader/prism-autoloader.min.js"></script>
     <script>
@@ -429,7 +425,7 @@ export const FULL_DOCUMENT_WITHOUT_HEADER_IN_BODY = `
 </html>
 `;
 
-export const BODY_ONLY = ARTICLE_CONTENT_WITHOUT_HEADER;
+export const BODY_ONLY = CONTENT_WITHOUT_HEADER;
 
 export const HEADER_WITH_TITLE_ONLY = `\
 <header>
