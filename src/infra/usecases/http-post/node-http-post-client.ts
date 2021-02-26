@@ -17,7 +17,6 @@ export class NodeHttpPostClient implements HttpPostClient {
       },
     };
 
-    let data = '';
     let status = 504;
 
     const requestAsPromised: Promise<HttpResponse> = new Promise((resolve, reject) => {
@@ -25,11 +24,16 @@ export class NodeHttpPostClient implements HttpPostClient {
         .request(options, (res) => {
           status = res.statusCode || 504;
 
+          const chunks = new Array<Uint8Array>();
+
           res.on('data', (chunk) => {
-            data += chunk;
+            chunks.push(chunk);
           });
 
-          res.on('end', () => resolve({ status, data: JSON.parse(data) }));
+          res.on('end', () => {
+            const result = Buffer.concat(chunks).toString('utf8');
+            resolve({ status, data: JSON.parse(result) });
+          });
         })
         .on('error', (err) => reject(err.message));
 
