@@ -13,7 +13,7 @@ export class OptionsHtmlWrapper implements HtmlWrapper {
   }
 
   wrapHtml(pageProps: PageProps, html: string): string {
-    if (this._options.bodyContentOnly) return `${html}`;
+    if (this._options.bodyContentOnly) return html;
 
     const title = pageProps.title;
 
