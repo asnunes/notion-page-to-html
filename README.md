@@ -54,20 +54,22 @@ Then, just import it and paste a public Notion page url
 ```jsx
 const NotionPageToHtml = require('notion-page-to-html');
 
-// ...
-const page = NotionPageToHtml.convert(
-  'https://www.notion.so/asnunes/Simple-Page-Text-4d64bbc0634d4758befa85c5a3a6c22f',
-);
+// using then
+NotionPageToHtml.convert("https://www.notion.so/asnunes/Simple-Page-Text-4d64bbc0634d4758befa85c5a3a6c22f").then((page) => console.log(page));
 
-const { title, cover, icon, html } = NotionPageToHtml.convert(
-  'https://www.notion.so/asnunes/Simple-Page-Text-4d64bbc0634d4758befa85c5a3a6c22f',
-);
+// using async/await
+async function getPage() {
+  const { title, icon, cover, html } = await NotionPageToHtml.convert("https://www.notion.so/asnunes/Simple-Page-Text-4d64bbc0634d4758befa85c5a3a6c22f");
+  console.log(title, icon, conver, html);
+}
+
+getPage();
 ```
 
 `cover` is a base64 string from original page cover image. `icon` can be an emoji or base64 image based on original page icon. `html` is a full html document by default. It has style, body, MathJax and PrismJS CDN scripts by default. You can pass some options to handle html content.
 
 ```jsx
-const page = NotionPageToHtml.convert(
+NotionPageToHtml.convert(
   'https://www.notion.so/asnunes/Simple-Page-Text-4d64bbc0634d4758befa85c5a3a6c22f',
   options,
 );
