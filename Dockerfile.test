@@ -1,0 +1,6 @@
+FROM node:14.17
+WORKDIR /usr/src/notion-page-to-html
+RUN npm -g i npm
+COPY ./package*.json ./
+RUN npm install
+COPY . .
