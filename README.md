@@ -115,7 +115,7 @@ npm i /path/to/tar/gz
 
 Docker approach for testing
 
-1. Make sure you have Docker and Docker Compose installed and then run
+1. Make sure you have Docker and Docker Compose installed and then run:
 ````
 make test
 ````
