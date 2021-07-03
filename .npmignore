@@ -16,3 +16,6 @@ tsconfig.json
 .vscode
 script.js
 test.html
+docker-compose*
+Dockerfile*
+Makefile
