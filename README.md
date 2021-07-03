@@ -88,6 +88,38 @@ NotionPageToHtml.convert(
 
 ---
 
+## Development and testing
+
+1. Clone this application
+
+2. Make sure you have node v14 or higher and then install all of the dependencies
+
+````
+npm i
+````
+Running tests:
+
+````
+npm test
+````
+
+Installing locally in another project:
+````
+npm build
+npm pack
+````
+Inside your project:
+````
+npm i /path/to/tar/gz
+````
+
+Docker approach for testing
+
+1. Make sure you have Docker and Docker Compose installed and then run:
+````
+make test
+````
+
 ## Contributing
 
 We love your feedback! Feel free to:
@@ -98,4 +130,4 @@ We love your feedback! Feel free to:
 - Propose new features
 - Become a maintainer
 
-Just create a Github issue ;)
+Just create a Github issue or a PR ;)
