@@ -16,6 +16,14 @@ export class NodeHttpGetClient implements HttpGetClient {
           res.on('end', () => {
             const format = res.headers['content-type'] || 'image/jpeg';
 
+            if (res.statusCode === 403) {
+              console.log('There was a 403 error with the image: ' + url);
+              return resolve({
+                status: 200,
+                data: url,
+              });
+            }
+
             if (format.includes('image')) {
               return resolve({
                 status: res.statusCode || 200,
