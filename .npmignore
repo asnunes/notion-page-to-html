@@ -19,3 +19,5 @@ test.html
 docker-compose*
 Dockerfile*
 Makefile
+.husky
+.github

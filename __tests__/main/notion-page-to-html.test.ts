@@ -17,8 +17,12 @@ describe('#convert', () => {
 
       nock('https://www.notion.so').post('/api/v3/getRecordValues').reply(200, NotionApiMocks.SUCCESSFUL_RECORDS);
 
-      nock('https://www.example.com')
-        .get('/image.png')
+      nock('https://www.notion.so')
+        .get('/image/https%3A%2F%2Fwww.example.com%2Fimage.png')
+        .query({
+          table: 'block',
+          id: '4d64bbc0-634d-4758-befa-85c5a3a6c22f',
+        })
         .replyWithFile(200, resolve('__tests__/mocks/img/baseImage.jpeg'), {
           'content-type': 'image/jpeg',
         });

@@ -30,7 +30,11 @@ describe('#toPageProps', () => {
     describe('when image is from notion', () => {
       it('returns base64 image in coverImageSrc prop', async () => {
         nock('https://www.notion.so')
-          .get('/images/page-cover/solid_blue.png')
+          .get('/image/https%3A%2F%2Fwww.notion.so%2Fimages%2Fpage-cover%2Fsolid_blue.png')
+          .query({
+            table: 'block',
+            id: '4d64bbc0-634d-4758-befa-85c5a3a6c22f',
+          })
           .replyWithFile(200, resolve('__tests__/mocks/img/baseImage.jpeg'), {
             'content-type': 'image/jpeg',
           });
@@ -44,8 +48,12 @@ describe('#toPageProps', () => {
 
     describe('when image is not from notion', () => {
       it('returns base64 image in coverImageSrc prop', async () => {
-        nock('https://www.example.com')
-          .get('/some_image.png')
+        nock('https://www.notion.so')
+          .get('/image/https%3A%2F%2Fwww.example.com%2Fsome_image.png')
+          .query({
+            table: 'block',
+            id: '4d64bbc0-634d-4758-befa-85c5a3a6c22f',
+          })
           .replyWithFile(200, resolve('__tests__/mocks/img/baseImage.jpeg'), {
             'content-type': 'image/jpeg',
           });
