@@ -16,7 +16,7 @@ export class PageBlockToCoverImageSource {
     let head = '';
     if (pageCover.startsWith('/')) head = 'https://www.notion.so';
 
-    const base64 = await Base64Converter.convert(head + pageCover);
+    const base64 = await Base64Converter.convert(this.getImageAuthenticatedSrc(head + pageCover));
     const position = this._pageCoverPositionToPositionCenter(this._pageBlock.format.page_cover_position || 0.6);
 
     return { base64, position };
@@ -24,6 +24,10 @@ export class PageBlockToCoverImageSource {
 
   private _isImageURL(url: string): boolean {
     return /(?:([^:\/?#]+):)?(?:\/\/([^/?#]*))?([^?#]*\.(?:jpg|gif|png|jpeg))(?:\?([^#]*))?(?:#(.*))?/gi.test(url);
+  }
+
+  private getImageAuthenticatedSrc(src: string): string {
+    return `https://www.notion.so/image/${encodeURIComponent(src)}?table=block&id=${this._pageBlock.id}`;
   }
 
   private _pageCoverPositionToPositionCenter(coverPosition: number): number {
