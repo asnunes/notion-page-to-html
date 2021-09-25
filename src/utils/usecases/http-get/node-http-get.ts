@@ -1,5 +1,6 @@
 import { HttpGetClient, HttpResponse } from '../../../data/protocols/http-request';
 import https from 'https';
+import { ForbiddenError } from '../../errors';
 
 export class NodeHttpGetClient implements HttpGetClient {
   async get(url: string): Promise<HttpResponse> {
@@ -16,13 +17,7 @@ export class NodeHttpGetClient implements HttpGetClient {
           res.on('end', () => {
             const format = res.headers['content-type'] || 'image/jpeg';
 
-            if (res.statusCode === 403) {
-              console.log('There was a 403 error with the image: ' + url);
-              return resolve({
-                status: 200,
-                data: url,
-              });
-            }
+            if (res.statusCode === 403) throw new ForbiddenError('could not fetch data from url: ' + url);
 
             if (format.includes('image')) {
               return resolve({
