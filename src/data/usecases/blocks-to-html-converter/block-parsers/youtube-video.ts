@@ -22,7 +22,8 @@ export class YouTubeVideoBlockToHtml implements ToHtml {
   }
 
   private get _youtubeId(): string | void {
-    const youtubeIdMatcher = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/gi;
+    const youtubeIdMatcher =
+      /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/gi;
     return youtubeIdMatcher.exec(this._src)?.[1];
   }
 

@@ -1,6 +1,7 @@
 import { HttpPostClient, HttpResponse } from '../../../data/protocols/http-request';
 import { NotionApiContentResponse } from '../../protocols/notion-api-content-response';
 import { NotionPageIdValidator, PageRecordValidator } from './validation';
+import { PageChunkValidator } from './validation/page-chunk';
 
 const NOTION_API_PATH = 'https://www.notion.so/api/v3/';
 
@@ -18,11 +19,12 @@ export class NotionApiPageFetcher {
 
   async getNotionPageContents(): Promise<NotionApiContentResponse[]> {
     const pageRecords = await this._fetchRecordValues();
-
     const pageRecordError = new PageRecordValidator(this._notionPageId, pageRecords).validate();
     if (pageRecordError) throw pageRecordError;
 
     const chunk = await this._fetchPageChunk();
+    const chunkError = new PageChunkValidator(this._notionPageId, chunk.status).validate();
+    if (chunkError) throw chunkError;
 
     const pageData = pageRecords.data as Record<string, any>;
     const chunkData = chunk.data as Record<string, any>;
@@ -107,7 +109,7 @@ export class NotionApiPageFetcher {
     });
   }
 
-  private async _fetchPageChunk(): Promise<HttpResponse> {
+  private _fetchPageChunk(): Promise<HttpResponse> {
     return this._httpPostClient.post(NOTION_API_PATH + 'loadPageChunk', {
       pageId: this._notionPageId,
       limit: 999999,
@@ -119,12 +121,12 @@ export class NotionApiPageFetcher {
     });
   }
 
-  private async _fetchRecordValuesByContentIds(contentIds: string[]): Promise<HttpResponse> {
+  private _fetchRecordValuesByContentIds(contentIds: string[]): Promise<HttpResponse> {
     if (contentIds.length === 0)
-      return {
+      return Promise.resolve({
         status: 200,
         data: {},
-      };
+      });
 
     return this._httpPostClient.post(NOTION_API_PATH + 'syncRecordValues', {
       requests: contentIds.map((id) => ({
