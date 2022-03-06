@@ -15,7 +15,7 @@ export class PageChunkValidator implements Validation {
       return new NotionPageAccessError(this._notionPageId);
     }
 
-    if ([400, 404].includes(this._pageChunkStatus)) {
+    if (this._pageChunkStatus === 404) {
       return new NotionPageNotFound(this._notionPageId);
     }
 
