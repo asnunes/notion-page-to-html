@@ -72,7 +72,7 @@ describe('#getNotionPageContents', () => {
     });
   });
 
-  describe('when notion page id not open for public reading', () => {
+  describe('when notion page is not open for public reading', () => {
     it('throws NotionPageAccessError', async () => {
       nock('https://www.notion.so').post('/api/v3/getRecordValues').reply(200, NotionApiMocks.NO_PAGE_ACCESS_RECORDS);
 

@@ -32,12 +32,4 @@ describe('PageChunkValidator', () => {
 
     expect(error?.name).toBe('NotionPageNotFound');
   });
-
-  it('should return NotionPageNotFound error if status is 400', () => {
-    const sut = new PageChunkValidator('any_id', 400);
-
-    const error = sut.validate();
-
-    expect(error?.name).toBe('NotionPageNotFound');
-  });
 });
