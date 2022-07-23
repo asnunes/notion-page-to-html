@@ -1,4 +1,4 @@
-import { NodeHttpGetClient } from './usecases/http-get/node-http-get';
+import { NodeHttpGetClient } from './use-cases/http-get/node-http-get';
 
 export class Base64Converter {
   private readonly _imageSource: string;

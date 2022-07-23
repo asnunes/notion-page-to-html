@@ -1,4 +1,4 @@
-import { HeaderFromTemplate } from '../../../../src/data/usecases/html-wrapper/header-from-template';
+import { HeaderFromTemplate } from '../../../../src/data/use-cases/html-wrapper/header-from-template';
 import * as html from '../../../mocks/html';
 
 describe('#toHeader', () => {

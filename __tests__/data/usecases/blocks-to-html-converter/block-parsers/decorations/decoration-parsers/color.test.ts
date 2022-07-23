@@ -1,4 +1,4 @@
-import { ColorDecorationToHtml } from '../../../../../../../src/data/usecases/blocks-to-html-converter/block-parsers/decorations/decoration-parsers/color';
+import { ColorDecorationToHtml } from '../../../../../../../src/data/use-cases/blocks-to-html-converter/block-parsers/decorations/decoration-parsers/color';
 import { Decoration } from '../../../../../../../src/data/protocols/blocks';
 
 describe('#convert', () => {

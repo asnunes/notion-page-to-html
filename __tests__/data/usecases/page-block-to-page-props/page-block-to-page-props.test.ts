@@ -1,6 +1,6 @@
 import nock from 'nock';
 import { resolve } from 'path';
-import { PageBlockToPageProps } from '../../../../src/data/usecases/page-block-to-page-props';
+import { PageBlockToPageProps } from '../../../../src/data/use-cases/page-block-to-page-props';
 import { Base64Converter } from '../../../../src/utils/base-64-converter';
 import * as Blocks from '../../../mocks/blocks';
 import base64Img from '../../../mocks/img/base64';

@@ -3,10 +3,10 @@ import { resolve } from 'path';
 
 import { Block } from '../../../../src/data/protocols/blocks';
 import * as BlockMocks from '../../../mocks/blocks';
-import { BlocksToHTML } from '../../../../src/data/usecases/blocks-to-html-converter/blocks-to-html-converter';
-import { BlockDispatcher } from '../../../../src/data/usecases/blocks-to-html-converter/block-dispatcher';
-import { ListBlocksWrapper } from '../../../../src/data/usecases/blocks-to-html-converter/list-blocks-wrapper';
-import { ToHtml } from '../../../../src/domain/usecases/to-html';
+import { BlocksToHTML } from '../../../../src/data/use-cases/blocks-to-html-converter/blocks-to-html-converter';
+import { BlockDispatcher } from '../../../../src/data/use-cases/blocks-to-html-converter/block-dispatcher';
+import { ListBlocksWrapper } from '../../../../src/data/use-cases/blocks-to-html-converter/list-blocks-wrapper';
+import { ToHtml } from '../../../../src/domain/use-cases/to-html';
 import { Base64Converter } from '../../../../src/utils/base-64-converter';
 import base64Img from '../../../mocks/img/base64';
 

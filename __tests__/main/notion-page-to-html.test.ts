@@ -1,6 +1,6 @@
 import nock from 'nock';
 import { resolve } from 'path';
-import { NotionPageToHtml } from '../../src/main/usecases/notion-api-to-html/notion-page-to-html';
+import { NotionPageToHtml } from '../../src/main/use-cases/notion-api-to-html/notion-page-to-html';
 import { InvalidPageUrlError } from '../../src/infra/errors/invalid-page-url';
 import * as NotionApiMocks from '../mocks/notion-api-responses';
 import * as HTML_RESPONSES from '../mocks/html';
