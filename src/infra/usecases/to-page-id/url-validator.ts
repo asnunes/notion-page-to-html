@@ -14,6 +14,6 @@ export class UrlValidor implements Validation {
   }
 
   private _isNotionPargeUrl(): boolean {
-    return /^http(s?):\/\/(w{3}.)?notion.so\/((\w)+?\/)?(\w|-){32,}/g.test(this._url);
+    return /^http(s?):\/\/((w{3}.)?notion.so|[\w\-]*\.notion\.site)\/((\w)+?\/)?(\w|-){32,}/g.test(this._url);
   }
 }
