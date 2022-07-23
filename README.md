@@ -105,7 +105,7 @@ npm test
 
 Installing locally in another project:
 ````
-npm build
+npm run build
 npm pack
 ````
 Inside your project:
