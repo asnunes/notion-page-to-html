@@ -1,6 +1,7 @@
 /coverage
 /node_modules
-/.vscode
+.vscode
+.idea
 /dist
 script.js
 test.html
