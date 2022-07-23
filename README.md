@@ -2,7 +2,7 @@
 
 # Notion Page To HTML
 
-NodeJS tool to convert public notion pages to HTML.
+NodeJS tool to convert public notion pages to HTML.
 
 Also available as public API:
 
@@ -10,7 +10,7 @@ Also available as public API:
 
 ## Supported features
 
-Most of native Notion blocks are currently supported:
+Most of the native Notion blocks are currently supported:
 
 - Headings
 - Text With Decorations
@@ -54,13 +54,10 @@ Then, just import it and paste a public Notion page url
 ```jsx
 const NotionPageToHtml = require('notion-page-to-html');
 
-// using then
-NotionPageToHtml.convert("https://www.notion.so/asnunes/Simple-Page-Text-4d64bbc0634d4758befa85c5a3a6c22f").then((page) => console.log(page));
-
 // using async/await
 async function getPage() {
   const { title, icon, cover, html } = await NotionPageToHtml.convert("https://www.notion.so/asnunes/Simple-Page-Text-4d64bbc0634d4758befa85c5a3a6c22f");
-  console.log(title, icon, cover, html);
+  console.log(title, icon, cover, html);
 }
 
 getPage();
@@ -92,7 +89,7 @@ NotionPageToHtml.convert(
 
 1. Clone this application
 
-2. Make sure you have node v14 or higher and then install all of the dependencies
+2. Make sure you have node v14 or higher and then install all dependencies
 
 ````
 npm i
@@ -130,4 +127,4 @@ We love your feedback! Feel free to:
 - Propose new features
 - Become a maintainer
 
-Just create a Github issue or a PR ;)
+Just create a GitHub issue or a PR ;)
