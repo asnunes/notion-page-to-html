@@ -1,8 +1,8 @@
 import { PageBlockToPageProps } from '../../../data/use-cases/page-block-to-page-props';
 import { HtmlOptions } from '../../../data/protocols/html-options/html-options';
 import { OptionsHtmlWrapper } from '../../../data/use-cases/html-wrapper/options-html-wrapper';
-import { NotionApiContentResponsesToBlocks } from '../../../infra/usecases/to-blocks/notion-api-content-response-to-blocks';
-import { makeNotionUrlToPageIdFactory, makeNotionApiPageFetcher, makeBlocksToHtml } from '../../factories';
+import { NotionApiContentResponsesToBlocks } from '../../../infra/use-cases/to-blocks/notion-api-content-response-to-blocks';
+import { createNotionUrlToPageId, createNotionApiPageFetcher, makeBlocksToHtml } from '../../factories';
 import { NotionPage } from '../../protocols/notion-page';
 
 /**
@@ -32,16 +32,8 @@ export class NotionPageToHtml {
    * @throws If the url is invalid, it will throw an error.
    */
   static async convert(pageURL: string, htmlOptions: HtmlOptions = {}): Promise<NotionPage> {
-    return new NotionPageToHtml()._convert(pageURL, htmlOptions);
-  }
-
-  static async parse(pageURL: string, includeFullDocument = true): Promise<string> {
-    return new NotionPageToHtml()._parse(pageURL, includeFullDocument);
-  }
-
-  private async _convert(pageURL: string, htmlOptions: HtmlOptions = {}): Promise<NotionPage> {
-    const pageId = makeNotionUrlToPageIdFactory(pageURL).toPageId();
-    const fetcher = await makeNotionApiPageFetcher(pageId);
+    const pageId = createNotionUrlToPageId(pageURL).toPageId();
+    const fetcher = await createNotionApiPageFetcher(pageId);
     const notionApiResponses = await fetcher.getNotionPageContents();
     const blocks = new NotionApiContentResponsesToBlocks(notionApiResponses).toBlocks();
 
@@ -56,10 +48,5 @@ export class NotionPageToHtml {
       ...(pageProps.coverImageSrc && { cover: pageProps.coverImageSrc }),
       html: new OptionsHtmlWrapper(htmlOptions).wrapHtml(pageProps, htmlBody),
     };
-  }
-
-  private async _parse(pageURL: string, includeFullDocument = true): Promise<string> {
-    console.warn('"parse" method is now deprecated. Please, use "convert" instead.');
-    return (await this._convert(pageURL, { bodyContentOnly: !includeFullDocument })).html;
   }
 }
