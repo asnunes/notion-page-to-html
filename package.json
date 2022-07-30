@@ -1,12 +1,13 @@
 {
   "name": "notion-page-to-html",
-  "version": "1.1.4",
+  "version": "1.2.0",
   "description": "It converts public notion pages to html from url",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "rm -rf ./dist && tsc",
-    "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
+    "prebuild": "rm -rf ./dist",
+    "build": "tsc -p tsconfig.build.json",
+    "lint": "eslint '*/**/*.{js,ts}' --quiet --fix",
     "lint:staged": "lint-staged",
     "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
     "test:watch": "npm test -- --watch",

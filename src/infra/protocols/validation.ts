@@ -1,3 +1,3 @@
-export interface Validation {
-  validate(): Error | null;
+export interface Validation<Args extends Array<unknown> = []> {
+  validate(...args: Args): Error | null;
 }

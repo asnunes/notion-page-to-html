@@ -1,4 +1,4 @@
-import { NotionPageToHtml } from './main/usecases/notion-api-to-html';
+import { NotionPageToHtml } from './main/use-cases/notion-api-to-html';
 
 export default NotionPageToHtml;
 module.exports = NotionPageToHtml;
