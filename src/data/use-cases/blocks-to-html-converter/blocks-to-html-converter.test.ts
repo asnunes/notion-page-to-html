@@ -532,6 +532,19 @@ describe('#convert', () => {
         );
       });
     });
+
+    describe('When there is 4 space indent code', () => {
+      it('correctly preserve the 4 spaces and return html with pre tag and code tag inside', async () => {
+        const html = await makeSut(BlockMocks.CODE_WITH_4_SPACES).convert();
+
+        expect(html).toBe(
+          `<pre><code class="language-python">def print_pattern():
+    size = 4
+    for i in range(size):
+        print("*" * size)</code></pre>`
+        )
+      })
+    })
   });
 
   describe('When single quote block is given', () => {
