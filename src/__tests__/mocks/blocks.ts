@@ -1270,6 +1270,25 @@ export const CODE_WITH_DECORATION = [
   },
 ];
 
+export const CODE_WITH_4_SPACES = [
+  {
+    id: '479c7b34-6c22-4f2d-b947-8f47d02b48d6',
+    type: 'code',
+    properties: { language: 'Python' },
+    format: {},
+    children: [] as Block[],
+    decorableTexts: [
+      {
+        text: `def print_pattern():
+    size = 4
+    for i in range(size):
+        print("*" * size)`,
+        decorations: [],
+      },
+    ],
+  },
+];
+
 export const QUOTE = [
   {
     id: 'e0a0cfa3-1f64-438b-ac79-95e5c7ad4565',
